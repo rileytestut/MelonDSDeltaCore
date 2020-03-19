@@ -7,31 +7,238 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0AB862236B80E90089EC41 /* RTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB831236B80E70089EC41 /* RTC.cpp */; };
+		BF0AB864236B80E90089EC41 /* SPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB835236B80E70089EC41 /* SPU.cpp */; };
+		BF0AB865236B80E90089EC41 /* Wifi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB838236B80E70089EC41 /* Wifi.cpp */; };
+		BF0AB866236B80E90089EC41 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB83A236B80E70089EC41 /* CRC32.cpp */; };
+		BF0AB867236B80E90089EC41 /* ARMInterpreter_ALU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB841236B80E80089EC41 /* ARMInterpreter_ALU.cpp */; };
+		BF0AB868236B80E90089EC41 /* NDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB842236B80E80089EC41 /* NDS.cpp */; };
+		BF0AB869236B80E90089EC41 /* GPU3D_Soft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB845236B80E80089EC41 /* GPU3D_Soft.cpp */; };
+		BF0AB86A236B80E90089EC41 /* ARMInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB846236B80E80089EC41 /* ARMInterpreter.cpp */; };
+		BF0AB86B236B80E90089EC41 /* NDSCart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB848236B80E80089EC41 /* NDSCart.cpp */; };
+		BF0AB86C236B80E90089EC41 /* Savestate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB849236B80E80089EC41 /* Savestate.cpp */; };
+		BF0AB86D236B80E90089EC41 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB84C236B80E80089EC41 /* Config.cpp */; };
+		BF0AB86F236B80E90089EC41 /* ARMInterpreter_Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB84F236B80E80089EC41 /* ARMInterpreter_Branch.cpp */; };
+		BF0AB871236B80E90089EC41 /* CP15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB851236B80E80089EC41 /* CP15.cpp */; };
+		BF0AB872236B80E90089EC41 /* ARMInterpreter_LoadStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB854236B80E90089EC41 /* ARMInterpreter_LoadStore.cpp */; };
+		BF0AB873236B80E90089EC41 /* WifiAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB855236B80E90089EC41 /* WifiAP.cpp */; };
+		BF0AB874236B80E90089EC41 /* SPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB857236B80E90089EC41 /* SPI.cpp */; };
+		BF0AB875236B80E90089EC41 /* DMA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB858236B80E90089EC41 /* DMA.cpp */; };
+		BF0AB876236B80E90089EC41 /* GPU2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB85F236B80E90089EC41 /* GPU2D.cpp */; };
+		BF0AB877236B80E90089EC41 /* ARM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB860236B80E90089EC41 /* ARM.cpp */; };
+		BF0AB878236B80E90089EC41 /* GPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB861236B80E90089EC41 /* GPU.cpp */; };
+		BF0AB87B236B87FF0089EC41 /* MelonDSEmulatorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = BF0AB879236B87FF0089EC41 /* MelonDSEmulatorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF0AB87C236B88000089EC41 /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB87A236B87FF0089EC41 /* MelonDSEmulatorBridge.mm */; };
+		BF0AB880236B885A0089EC41 /* libMelonDS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0AB828236B80840089EC41 /* libMelonDS.a */; };
+		BF0AB882236B886D0089EC41 /* MelonDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB881236B886D0089EC41 /* MelonDS.swift */; };
+		BF0AB886236B8A170089EC41 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB885236B8A170089EC41 /* Platform.cpp */; };
+		BF0AB889236B8A200089EC41 /* LAN_Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB888236B8A200089EC41 /* LAN_Socket.cpp */; };
+		BF0AB88C236B8A490089EC41 /* LAN_PCap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB88B236B8A490089EC41 /* LAN_PCap.cpp */; };
+		BF0AB88F236B8BA20089EC41 /* PlatformConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB88D236B8BA10089EC41 /* PlatformConfig.cpp */; };
+		BF0AB892236B8C5D0089EC41 /* GPU3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB84E236B80E80089EC41 /* GPU3D.cpp */; };
+		BF5D28F22422D14F00382EF2 /* firmware.bin in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28EF2422D14F00382EF2 /* firmware.bin */; };
+		BF5D28F32422D14F00382EF2 /* bios7.rom in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28F02422D14F00382EF2 /* bios7.rom */; };
+		BF5D28F42422D14F00382EF2 /* bios9.rom in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28F12422D14F00382EF2 /* bios9.rom */; };
+		BF5D28F52422D64700382EF2 /* GPU3D_OpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB850236B80E80089EC41 /* GPU3D_OpenGL.cpp */; };
+		BF5D28F62422D65F00382EF2 /* OpenGLSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB833236B80E70089EC41 /* OpenGLSupport.cpp */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BF0AB87D236B88570089EC41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF73177C2356624000774F10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF0AB827236B80840089EC41;
+			remoteInfo = libMelonDS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BF0AB826236B80840089EC41 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BF0AB828236B80840089EC41 /* libMelonDS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMelonDS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF0AB831236B80E70089EC41 /* RTC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RTC.cpp; path = melonDS/src/RTC.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB832236B80E70089EC41 /* OpenGLSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLSupport.h; path = melonDS/src/OpenGLSupport.h; sourceTree = SOURCE_ROOT; };
+		BF0AB833236B80E70089EC41 /* OpenGLSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLSupport.cpp; path = melonDS/src/OpenGLSupport.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB834236B80E70089EC41 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = melonDS/src/Platform.h; sourceTree = SOURCE_ROOT; };
+		BF0AB835236B80E70089EC41 /* SPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SPU.cpp; path = melonDS/src/SPU.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB836236B80E70089EC41 /* GPU3D_OpenGL_shaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU3D_OpenGL_shaders.h; path = melonDS/src/GPU3D_OpenGL_shaders.h; sourceTree = SOURCE_ROOT; };
+		BF0AB837236B80E70089EC41 /* GPU3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU3D.h; path = melonDS/src/GPU3D.h; sourceTree = SOURCE_ROOT; };
+		BF0AB838236B80E70089EC41 /* Wifi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wifi.cpp; path = melonDS/src/Wifi.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB839236B80E70089EC41 /* SPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPU.h; path = melonDS/src/SPU.h; sourceTree = SOURCE_ROOT; };
+		BF0AB83A236B80E70089EC41 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = melonDS/src/CRC32.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB83B236B80E70089EC41 /* WifiAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WifiAP.h; path = melonDS/src/WifiAP.h; sourceTree = SOURCE_ROOT; };
+		BF0AB83C236B80E70089EC41 /* NDSCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDSCart.h; path = melonDS/src/NDSCart.h; sourceTree = SOURCE_ROOT; };
+		BF0AB83D236B80E70089EC41 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = melonDS/src/CRC32.h; sourceTree = SOURCE_ROOT; };
+		BF0AB83E236B80E70089EC41 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = melonDS/src/version.h; sourceTree = SOURCE_ROOT; };
+		BF0AB83F236B80E80089EC41 /* ARM_InstrTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARM_InstrTable.h; path = melonDS/src/ARM_InstrTable.h; sourceTree = SOURCE_ROOT; };
+		BF0AB840236B80E80089EC41 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = melonDS/src/Config.h; sourceTree = SOURCE_ROOT; };
+		BF0AB841236B80E80089EC41 /* ARMInterpreter_ALU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_ALU.cpp; path = melonDS/src/ARMInterpreter_ALU.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB842236B80E80089EC41 /* NDS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NDS.cpp; path = melonDS/src/NDS.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB843236B80E80089EC41 /* Savestate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Savestate.h; path = melonDS/src/Savestate.h; sourceTree = SOURCE_ROOT; };
+		BF0AB844236B80E80089EC41 /* GPU2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU2D.h; path = melonDS/src/GPU2D.h; sourceTree = SOURCE_ROOT; };
+		BF0AB845236B80E80089EC41 /* GPU3D_Soft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D_Soft.cpp; path = melonDS/src/GPU3D_Soft.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB846236B80E80089EC41 /* ARMInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter.cpp; path = melonDS/src/ARMInterpreter.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB847236B80E80089EC41 /* Wifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wifi.h; path = melonDS/src/Wifi.h; sourceTree = SOURCE_ROOT; };
+		BF0AB848236B80E80089EC41 /* NDSCart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NDSCart.cpp; path = melonDS/src/NDSCart.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB849236B80E80089EC41 /* Savestate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Savestate.cpp; path = melonDS/src/Savestate.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB84A236B80E80089EC41 /* SPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPI.h; path = melonDS/src/SPI.h; sourceTree = SOURCE_ROOT; };
+		BF0AB84B236B80E80089EC41 /* ARMInterpreter_LoadStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_LoadStore.h; path = melonDS/src/ARMInterpreter_LoadStore.h; sourceTree = SOURCE_ROOT; };
+		BF0AB84C236B80E80089EC41 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Config.cpp; path = melonDS/src/Config.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB84D236B80E80089EC41 /* ARM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARM.h; path = melonDS/src/ARM.h; sourceTree = SOURCE_ROOT; };
+		BF0AB84E236B80E80089EC41 /* GPU3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D.cpp; path = melonDS/src/GPU3D.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB84F236B80E80089EC41 /* ARMInterpreter_Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_Branch.cpp; path = melonDS/src/ARMInterpreter_Branch.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB850236B80E80089EC41 /* GPU3D_OpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D_OpenGL.cpp; path = melonDS/src/GPU3D_OpenGL.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB851236B80E80089EC41 /* CP15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CP15.cpp; path = melonDS/src/CP15.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB852236B80E80089EC41 /* RTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTC.h; path = melonDS/src/RTC.h; sourceTree = SOURCE_ROOT; };
+		BF0AB853236B80E90089EC41 /* ARMInterpreter_Branch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_Branch.h; path = melonDS/src/ARMInterpreter_Branch.h; sourceTree = SOURCE_ROOT; };
+		BF0AB854236B80E90089EC41 /* ARMInterpreter_LoadStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_LoadStore.cpp; path = melonDS/src/ARMInterpreter_LoadStore.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB855236B80E90089EC41 /* WifiAP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WifiAP.cpp; path = melonDS/src/WifiAP.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB856236B80E90089EC41 /* DMA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMA.h; path = melonDS/src/DMA.h; sourceTree = SOURCE_ROOT; };
+		BF0AB857236B80E90089EC41 /* SPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SPI.cpp; path = melonDS/src/SPI.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB858236B80E90089EC41 /* DMA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DMA.cpp; path = melonDS/src/DMA.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB859236B80E90089EC41 /* ARMInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter.h; path = melonDS/src/ARMInterpreter.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85A236B80E90089EC41 /* FIFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FIFO.h; path = melonDS/src/FIFO.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85B236B80E90089EC41 /* GPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU.h; path = melonDS/src/GPU.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85C236B80E90089EC41 /* NDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDS.h; path = melonDS/src/NDS.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85D236B80E90089EC41 /* ARMInterpreter_ALU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_ALU.h; path = melonDS/src/ARMInterpreter_ALU.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85E236B80E90089EC41 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = melonDS/src/types.h; sourceTree = SOURCE_ROOT; };
+		BF0AB85F236B80E90089EC41 /* GPU2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU2D.cpp; path = melonDS/src/GPU2D.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB860236B80E90089EC41 /* ARM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARM.cpp; path = melonDS/src/ARM.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB861236B80E90089EC41 /* GPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU.cpp; path = melonDS/src/GPU.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB879236B87FF0089EC41 /* MelonDSEmulatorBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSEmulatorBridge.h; sourceTree = "<group>"; };
+		BF0AB87A236B87FF0089EC41 /* MelonDSEmulatorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MelonDSEmulatorBridge.mm; sourceTree = "<group>"; };
+		BF0AB881236B886D0089EC41 /* MelonDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelonDS.swift; sourceTree = "<group>"; };
+		BF0AB885236B8A170089EC41 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = melonDS/src/libui_sdl/Platform.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB887236B8A200089EC41 /* LAN_Socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAN_Socket.h; path = melonDS/src/libui_sdl/LAN_Socket.h; sourceTree = SOURCE_ROOT; };
+		BF0AB888236B8A200089EC41 /* LAN_Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LAN_Socket.cpp; path = melonDS/src/libui_sdl/LAN_Socket.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB88A236B8A490089EC41 /* LAN_PCap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAN_PCap.h; path = melonDS/src/libui_sdl/LAN_PCap.h; sourceTree = SOURCE_ROOT; };
+		BF0AB88B236B8A490089EC41 /* LAN_PCap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LAN_PCap.cpp; path = melonDS/src/libui_sdl/LAN_PCap.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB88D236B8BA10089EC41 /* PlatformConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformConfig.cpp; path = melonDS/src/libui_sdl/PlatformConfig.cpp; sourceTree = SOURCE_ROOT; };
+		BF0AB88E236B8BA20089EC41 /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = melonDS/src/libui_sdl/PlatformConfig.h; sourceTree = SOURCE_ROOT; };
+		BF5D28EF2422D14F00382EF2 /* firmware.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = firmware.bin; sourceTree = "<group>"; };
+		BF5D28F02422D14F00382EF2 /* bios7.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = bios7.rom; sourceTree = "<group>"; };
+		BF5D28F12422D14F00382EF2 /* bios9.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = bios9.rom; sourceTree = "<group>"; };
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BF7317822356624000774F10 /* Frameworks */ = {
+		BF0AB825236B80840089EC41 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF7317822356624000774F10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF0AB880236B885A0089EC41 /* libMelonDS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF0AB829236B80840089EC41 /* libMelonDS */ = {
+			isa = PBXGroup;
+			children = (
+				BF0AB83F236B80E80089EC41 /* ARM_InstrTable.h */,
+				BF0AB884236B8A0E0089EC41 /* UI */,
+				BF0AB860236B80E90089EC41 /* ARM.cpp */,
+				BF0AB84D236B80E80089EC41 /* ARM.h */,
+				BF0AB841236B80E80089EC41 /* ARMInterpreter_ALU.cpp */,
+				BF0AB85D236B80E90089EC41 /* ARMInterpreter_ALU.h */,
+				BF0AB84F236B80E80089EC41 /* ARMInterpreter_Branch.cpp */,
+				BF0AB853236B80E90089EC41 /* ARMInterpreter_Branch.h */,
+				BF0AB854236B80E90089EC41 /* ARMInterpreter_LoadStore.cpp */,
+				BF0AB84B236B80E80089EC41 /* ARMInterpreter_LoadStore.h */,
+				BF0AB846236B80E80089EC41 /* ARMInterpreter.cpp */,
+				BF0AB859236B80E90089EC41 /* ARMInterpreter.h */,
+				BF0AB84C236B80E80089EC41 /* Config.cpp */,
+				BF0AB840236B80E80089EC41 /* Config.h */,
+				BF0AB851236B80E80089EC41 /* CP15.cpp */,
+				BF0AB83A236B80E70089EC41 /* CRC32.cpp */,
+				BF0AB83D236B80E70089EC41 /* CRC32.h */,
+				BF0AB858236B80E90089EC41 /* DMA.cpp */,
+				BF0AB856236B80E90089EC41 /* DMA.h */,
+				BF0AB85A236B80E90089EC41 /* FIFO.h */,
+				BF0AB861236B80E90089EC41 /* GPU.cpp */,
+				BF0AB85B236B80E90089EC41 /* GPU.h */,
+				BF0AB85F236B80E90089EC41 /* GPU2D.cpp */,
+				BF0AB844236B80E80089EC41 /* GPU2D.h */,
+				BF0AB836236B80E70089EC41 /* GPU3D_OpenGL_shaders.h */,
+				BF0AB850236B80E80089EC41 /* GPU3D_OpenGL.cpp */,
+				BF0AB845236B80E80089EC41 /* GPU3D_Soft.cpp */,
+				BF0AB84E236B80E80089EC41 /* GPU3D.cpp */,
+				BF0AB837236B80E70089EC41 /* GPU3D.h */,
+				BF0AB842236B80E80089EC41 /* NDS.cpp */,
+				BF0AB85C236B80E90089EC41 /* NDS.h */,
+				BF0AB848236B80E80089EC41 /* NDSCart.cpp */,
+				BF0AB83C236B80E70089EC41 /* NDSCart.h */,
+				BF0AB833236B80E70089EC41 /* OpenGLSupport.cpp */,
+				BF0AB832236B80E70089EC41 /* OpenGLSupport.h */,
+				BF0AB834236B80E70089EC41 /* Platform.h */,
+				BF0AB831236B80E70089EC41 /* RTC.cpp */,
+				BF0AB852236B80E80089EC41 /* RTC.h */,
+				BF0AB849236B80E80089EC41 /* Savestate.cpp */,
+				BF0AB843236B80E80089EC41 /* Savestate.h */,
+				BF0AB857236B80E90089EC41 /* SPI.cpp */,
+				BF0AB84A236B80E80089EC41 /* SPI.h */,
+				BF0AB835236B80E70089EC41 /* SPU.cpp */,
+				BF0AB839236B80E70089EC41 /* SPU.h */,
+				BF0AB85E236B80E90089EC41 /* types.h */,
+				BF0AB83E236B80E70089EC41 /* version.h */,
+				BF0AB838236B80E70089EC41 /* Wifi.cpp */,
+				BF0AB847236B80E80089EC41 /* Wifi.h */,
+				BF0AB855236B80E90089EC41 /* WifiAP.cpp */,
+				BF0AB83B236B80E70089EC41 /* WifiAP.h */,
+			);
+			path = libMelonDS;
+			sourceTree = "<group>";
+		};
+		BF0AB87F236B885A0089EC41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF0AB884236B8A0E0089EC41 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BF0AB885236B8A170089EC41 /* Platform.cpp */,
+				BF0AB88B236B8A490089EC41 /* LAN_PCap.cpp */,
+				BF0AB88A236B8A490089EC41 /* LAN_PCap.h */,
+				BF0AB888236B8A200089EC41 /* LAN_Socket.cpp */,
+				BF0AB887236B8A200089EC41 /* LAN_Socket.h */,
+				BF0AB88D236B8BA10089EC41 /* PlatformConfig.cpp */,
+				BF0AB88E236B8BA20089EC41 /* PlatformConfig.h */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		BF73177B2356624000774F10 = {
 			isa = PBXGroup;
 			children = (
 				BF7317872356624000774F10 /* MelonDSDeltaCore */,
+				BF0AB829236B80840089EC41 /* libMelonDS */,
 				BF7317862356624000774F10 /* Products */,
+				BF0AB87F236B885A0089EC41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -39,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				BF7317852356624000774F10 /* MelonDSDeltaCore.framework */,
+				BF0AB828236B80840089EC41 /* libMelonDS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -47,6 +255,12 @@
 			isa = PBXGroup;
 			children = (
 				BF7317882356624000774F10 /* MelonDSDeltaCore.h */,
+				BF0AB881236B886D0089EC41 /* MelonDS.swift */,
+				BF0AB879236B87FF0089EC41 /* MelonDSEmulatorBridge.h */,
+				BF0AB87A236B87FF0089EC41 /* MelonDSEmulatorBridge.mm */,
+				BF5D28F02422D14F00382EF2 /* bios7.rom */,
+				BF5D28F12422D14F00382EF2 /* bios9.rom */,
+				BF5D28EF2422D14F00382EF2 /* firmware.bin */,
 				BF7317892356624000774F10 /* Info.plist */,
 			);
 			path = MelonDSDeltaCore;
@@ -60,12 +274,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */,
+				BF0AB87B236B87FF0089EC41 /* MelonDSEmulatorBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BF0AB827236B80840089EC41 /* libMelonDS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF0AB830236B80840089EC41 /* Build configuration list for PBXNativeTarget "libMelonDS" */;
+			buildPhases = (
+				BF0AB824236B80840089EC41 /* Sources */,
+				BF0AB825236B80840089EC41 /* Frameworks */,
+				BF0AB826236B80840089EC41 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libMelonDS;
+			productName = libMelonDS;
+			productReference = BF0AB828236B80840089EC41 /* libMelonDS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		BF7317842356624000774F10 /* MelonDSDeltaCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF73178D2356624000774F10 /* Build configuration list for PBXNativeTarget "MelonDSDeltaCore" */;
@@ -78,6 +310,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BF0AB87E236B88570089EC41 /* PBXTargetDependency */,
 			);
 			name = MelonDSDeltaCore;
 			productName = MelonDSDeltaCore;
@@ -90,11 +323,16 @@
 		BF73177C2356624000774F10 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Riley Testut";
 				TargetAttributes = {
+					BF0AB827236B80840089EC41 = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					BF7317842356624000774F10 = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
 					};
 				};
 			};
@@ -112,6 +350,7 @@
 			projectRoot = "";
 			targets = (
 				BF7317842356624000774F10 /* MelonDSDeltaCore */,
+				BF0AB827236B80840089EC41 /* libMelonDS */,
 			);
 		};
 /* End PBXProject section */
@@ -121,22 +360,93 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5D28F22422D14F00382EF2 /* firmware.bin in Resources */,
+				BF5D28F32422D14F00382EF2 /* bios7.rom in Resources */,
+				BF5D28F42422D14F00382EF2 /* bios9.rom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BF0AB824236B80840089EC41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF0AB868236B80E90089EC41 /* NDS.cpp in Sources */,
+				BF5D28F62422D65F00382EF2 /* OpenGLSupport.cpp in Sources */,
+				BF0AB865236B80E90089EC41 /* Wifi.cpp in Sources */,
+				BF0AB871236B80E90089EC41 /* CP15.cpp in Sources */,
+				BF0AB866236B80E90089EC41 /* CRC32.cpp in Sources */,
+				BF0AB867236B80E90089EC41 /* ARMInterpreter_ALU.cpp in Sources */,
+				BF0AB88F236B8BA20089EC41 /* PlatformConfig.cpp in Sources */,
+				BF0AB874236B80E90089EC41 /* SPI.cpp in Sources */,
+				BF0AB864236B80E90089EC41 /* SPU.cpp in Sources */,
+				BF0AB86F236B80E90089EC41 /* ARMInterpreter_Branch.cpp in Sources */,
+				BF0AB876236B80E90089EC41 /* GPU2D.cpp in Sources */,
+				BF0AB886236B8A170089EC41 /* Platform.cpp in Sources */,
+				BF0AB869236B80E90089EC41 /* GPU3D_Soft.cpp in Sources */,
+				BF0AB873236B80E90089EC41 /* WifiAP.cpp in Sources */,
+				BF0AB86C236B80E90089EC41 /* Savestate.cpp in Sources */,
+				BF0AB862236B80E90089EC41 /* RTC.cpp in Sources */,
+				BF0AB877236B80E90089EC41 /* ARM.cpp in Sources */,
+				BF0AB875236B80E90089EC41 /* DMA.cpp in Sources */,
+				BF0AB872236B80E90089EC41 /* ARMInterpreter_LoadStore.cpp in Sources */,
+				BF0AB889236B8A200089EC41 /* LAN_Socket.cpp in Sources */,
+				BF0AB88C236B8A490089EC41 /* LAN_PCap.cpp in Sources */,
+				BF0AB878236B80E90089EC41 /* GPU.cpp in Sources */,
+				BF0AB86D236B80E90089EC41 /* Config.cpp in Sources */,
+				BF5D28F52422D64700382EF2 /* GPU3D_OpenGL.cpp in Sources */,
+				BF0AB892236B8C5D0089EC41 /* GPU3D.cpp in Sources */,
+				BF0AB86A236B80E90089EC41 /* ARMInterpreter.cpp in Sources */,
+				BF0AB86B236B80E90089EC41 /* NDSCart.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF7317812356624000774F10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0AB882236B886D0089EC41 /* MelonDS.swift in Sources */,
+				BF0AB87C236B88000089EC41 /* MelonDSEmulatorBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BF0AB87E236B88570089EC41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF0AB827236B80840089EC41 /* libMelonDS */;
+			targetProxy = BF0AB87D236B88570089EC41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		BF0AB82E236B80840089EC41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MelonDS;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF0AB82F236B80840089EC41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MelonDS;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BF73178B2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -177,7 +487,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -188,7 +498,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -245,7 +555,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -260,15 +570,16 @@
 		BF73178E2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -278,6 +589,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -286,6 +598,7 @@
 		BF73178F2356624000774F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
@@ -294,7 +607,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,6 +624,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BF0AB830236B80840089EC41 /* Build configuration list for PBXNativeTarget "libMelonDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF0AB82E236B80840089EC41 /* Debug */,
+				BF0AB82F236B80840089EC41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BF73177F2356624000774F10 /* Build configuration list for PBXProject "MelonDSDeltaCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
