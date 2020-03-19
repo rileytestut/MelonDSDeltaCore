@@ -28,7 +28,6 @@
 		BF0AB877236B80E90089EC41 /* ARM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB860236B80E90089EC41 /* ARM.cpp */; };
 		BF0AB878236B80E90089EC41 /* GPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB861236B80E90089EC41 /* GPU.cpp */; };
 		BF0AB87B236B87FF0089EC41 /* MelonDSEmulatorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = BF0AB879236B87FF0089EC41 /* MelonDSEmulatorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF0AB87C236B88000089EC41 /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB87A236B87FF0089EC41 /* MelonDSEmulatorBridge.mm */; };
 		BF0AB880236B885A0089EC41 /* libMelonDS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0AB828236B80840089EC41 /* libMelonDS.a */; };
 		BF0AB882236B886D0089EC41 /* MelonDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB881236B886D0089EC41 /* MelonDS.swift */; };
 		BF0AB886236B8A170089EC41 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB885236B8A170089EC41 /* Platform.cpp */; };
@@ -36,6 +35,9 @@
 		BF0AB88C236B8A490089EC41 /* LAN_PCap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB88B236B8A490089EC41 /* LAN_PCap.cpp */; };
 		BF0AB88F236B8BA20089EC41 /* PlatformConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB88D236B8BA10089EC41 /* PlatformConfig.cpp */; };
 		BF0AB892236B8C5D0089EC41 /* GPU3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB84E236B80E80089EC41 /* GPU3D.cpp */; };
+		BF45C6202423196C00F115EE /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB87A236B87FF0089EC41 /* MelonDSEmulatorBridge.mm */; };
+		BF45C62324231AF900F115EE /* Standard.deltamapping in Resources */ = {isa = PBXBuildFile; fileRef = BF45C62124231AF800F115EE /* Standard.deltamapping */; };
+		BF45C62424231AF900F115EE /* Standard.deltaskin in Resources */ = {isa = PBXBuildFile; fileRef = BF45C62224231AF800F115EE /* Standard.deltaskin */; };
 		BF5D28F22422D14F00382EF2 /* firmware.bin in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28EF2422D14F00382EF2 /* firmware.bin */; };
 		BF5D28F32422D14F00382EF2 /* bios7.rom in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28F02422D14F00382EF2 /* bios7.rom */; };
 		BF5D28F42422D14F00382EF2 /* bios9.rom in Resources */ = {isa = PBXBuildFile; fileRef = BF5D28F12422D14F00382EF2 /* bios9.rom */; };
@@ -127,6 +129,8 @@
 		BF0AB88B236B8A490089EC41 /* LAN_PCap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LAN_PCap.cpp; path = melonDS/src/libui_sdl/LAN_PCap.cpp; sourceTree = SOURCE_ROOT; };
 		BF0AB88D236B8BA10089EC41 /* PlatformConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformConfig.cpp; path = melonDS/src/libui_sdl/PlatformConfig.cpp; sourceTree = SOURCE_ROOT; };
 		BF0AB88E236B8BA20089EC41 /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = melonDS/src/libui_sdl/PlatformConfig.h; sourceTree = SOURCE_ROOT; };
+		BF45C62124231AF800F115EE /* Standard.deltamapping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = Standard.deltamapping; path = "Controller Skin/Standard.deltamapping"; sourceTree = "<group>"; };
+		BF45C62224231AF800F115EE /* Standard.deltaskin */ = {isa = PBXFileReference; lastKnownFileType = file; name = Standard.deltaskin; path = "Controller Skin/Standard.deltaskin"; sourceTree = "<group>"; };
 		BF5D28EF2422D14F00382EF2 /* firmware.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = firmware.bin; sourceTree = "<group>"; };
 		BF5D28F02422D14F00382EF2 /* bios7.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = bios7.rom; sourceTree = "<group>"; };
 		BF5D28F12422D14F00382EF2 /* bios9.rom */ = {isa = PBXFileReference; lastKnownFileType = file; path = bios9.rom; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 				BF5D28F12422D14F00382EF2 /* bios9.rom */,
 				BF5D28EF2422D14F00382EF2 /* firmware.bin */,
 				BF7317892356624000774F10 /* Info.plist */,
+				BF45C62124231AF800F115EE /* Standard.deltamapping */,
+				BF45C62224231AF800F115EE /* Standard.deltaskin */,
 			);
 			path = MelonDSDeltaCore;
 			sourceTree = "<group>";
@@ -362,6 +368,8 @@
 			files = (
 				BF5D28F22422D14F00382EF2 /* firmware.bin in Resources */,
 				BF5D28F32422D14F00382EF2 /* bios7.rom in Resources */,
+				BF45C62324231AF900F115EE /* Standard.deltamapping in Resources */,
+				BF45C62424231AF900F115EE /* Standard.deltaskin in Resources */,
 				BF5D28F42422D14F00382EF2 /* bios9.rom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,8 +415,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF45C6202423196C00F115EE /* MelonDSEmulatorBridge.mm in Sources */,
 				BF0AB882236B886D0089EC41 /* MelonDS.swift in Sources */,
-				BF0AB87C236B88000089EC41 /* MelonDSEmulatorBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +578,8 @@
 		BF73178E2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
@@ -598,7 +607,8 @@
 		BF73178F2356624000774F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_MODULES_AUTOLINK = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;

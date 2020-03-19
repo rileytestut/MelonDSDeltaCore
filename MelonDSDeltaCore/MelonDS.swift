@@ -16,20 +16,20 @@ public extension GameType
     static let melonDS = GameType("com.rileytestut.delta.game.ds")
 }
 
-@objc public enum DSGameInput: Int, Input
+@objc public enum MelonDSGameInput: Int, Input
 {
-    case up = 1
-    case down = 2
-    case left = 4
-    case right = 8
-    case a = 16
-    case b = 32
-    case x = 64
-    case y = 128
-    case l = 256
-    case r = 512
-    case start = 1024
-    case select = 2048
+    case a = 1
+    case b = 2
+    case select = 4
+    case start = 8
+    case right = 16
+    case left = 32
+    case up = 64
+    case down = 128
+    case r = 256
+    case l = 512
+    case x = 1024
+    case y = 2048
     
     case touchScreenX = 4096
     case touchScreenY = 8192
@@ -49,11 +49,14 @@ public extension GameType
 
 public struct MelonDS: DeltaCoreProtocol
 {
+    public var name: String { "MelonDSDeltaCore" }
+    public var identifier: String { "com.rileytestut.MelonDSDeltaCore" }
+    
     public static let core = MelonDS()
     
     public let gameType = GameType.melonDS
     
-    public let gameInputType: Input.Type = DSGameInput.self
+    public let gameInputType: Input.Type = MelonDSGameInput.self
     
     public let gameSaveFileExtension = "dsv"
     
@@ -69,7 +72,15 @@ public struct MelonDS: DeltaCoreProtocol
         return []
     }
     
-    public let emulatorBridge: EmulatorBridging = MelonDSEmulatorBridge.shared
+    public var emulatorBridge: EmulatorBridging {
+        let bridge = (NSClassFromString("MelonDSEmulatorBridge") as! NSObject.Type).perform("sharedBridge")!.takeUnretainedValue() as! EmulatorBridging
+        return bridge
+    }
+    
+    public var resourceBundle: Bundle {
+        let bundle = Bundle(identifier: "com.rileytestut.MelonDSDeltaCore")!
+        return bundle
+    }
     
     private init()
     {

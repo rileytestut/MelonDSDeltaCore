@@ -7,8 +7,12 @@
 //
 
 #import "MelonDSEmulatorBridge.h"
+#import <CoreGraphics/CoreGraphics.h>
 
-#import <DSDeltaCore/DSDeltaCore-Swift.h>
+#import <UIKit/UIKit.h>
+
+#import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
+#import <DeltaCore/DeltaCore-Swift.h>
 
 #include "../melonDS/src/NDS.h"
 #include "../melonDS/src/GPU.h"
@@ -78,16 +82,31 @@ void Stop(bool internal)
     
 //    NSURL *gameDirectory = [NSURL URLWithString:@"/dev/null"];
     
-    NSURL *saveFileURL = [[gameURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"melonSAV"];
+    NSURL *saveFileURL = [[gameURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"dsv"];
     
-    if (NDS::LoadROM(gameURL.fileSystemRepresentation, saveFileURL.fileSystemRepresentation, true))
+    if ([[NSFileManager defaultManager] fileExistsAtPath:saveFileURL.path])
     {
-        NSLog(@"Loaded!");
+        if (NDS::LoadROM(gameURL.fileSystemRepresentation, saveFileURL.fileSystemRepresentation, false))
+        {
+            NSLog(@"Loaded (with save file)!");
+        }
+        else
+        {
+            NSLog(@"Failed (with save file) :(");
+        }
     }
     else
     {
-        NSLog(@"Failed :(");
+        if (NDS::LoadROM(gameURL.fileSystemRepresentation, NULL, false))
+        {
+            NSLog(@"Loaded!");
+        }
+        else
+        {
+            NSLog(@"Failed :(");
+        }
     }
+    
 }
 
 - (void)stop
@@ -106,14 +125,29 @@ void Stop(bool internal)
 
 - (void)runFrameAndProcessVideo:(BOOL)processVideo
 {
-    if (self.activatedInputs & DSGameInputTouchScreenX || self.activatedInputs & DSGameInputTouchScreenY)
+    uint16_t keys = self.activatedInputs;
+    
+    for (uint8_t i = 0; i < 12; i++) {
+        bool key = !!((keys >> i) & 1);
+       uint8_t nds_key = i > 9 ? i + 6 : i;
+
+
+       if (key) {
+          NDS::PressKey(nds_key);
+       } else {
+          NDS::ReleaseKey(nds_key);
+       }
+    }
+    
+    if (self.activatedInputs & MelonDSGameInputTouchScreenX || self.activatedInputs & MelonDSGameInputTouchScreenY)
     {
-        NSLog(@"Touching: %@ %@", @(self.touchScreenPoint.x), @(self.touchScreenPoint.y));
         NDS::TouchScreen(self.touchScreenPoint.x, self.touchScreenPoint.y);
+        NDS::PressKey(16+6);
     }
     else
     {
         NDS::ReleaseScreen();
+        NDS::ReleaseKey(16+6);
     }
     
     NDS::RunFrame();
@@ -147,13 +181,13 @@ void Stop(bool internal)
     
     CGPoint touchPoint = self.touchScreenPoint;
     
-    switch ((DSGameInput)input)
+    switch ((MelonDSGameInput)input)
     {
-    case DSGameInputTouchScreenX:
+    case MelonDSGameInputTouchScreenX:
         touchPoint.x = value * 256;
         break;
         
-    case DSGameInputTouchScreenY:
+    case MelonDSGameInputTouchScreenY:
         touchPoint.y = value * 192;
         break;
             
@@ -169,13 +203,13 @@ void Stop(bool internal)
     
     CGPoint touchPoint = self.touchScreenPoint;
     
-    switch ((DSGameInput)input)
+    switch ((MelonDSGameInput)input)
     {
-        case DSGameInputTouchScreenX:
+        case MelonDSGameInputTouchScreenX:
             touchPoint.x = 0;
             break;
             
-        case DSGameInputTouchScreenY:
+        case MelonDSGameInputTouchScreenY:
             touchPoint.y = 0;
             break;
             
@@ -205,10 +239,16 @@ void Stop(bool internal)
 
 - (void)saveSaveStateToURL:(NSURL *)URL
 {
+    Savestate *savestate = new Savestate(URL.fileSystemRepresentation, true);
+    NDS::DoSavestate(savestate);
+    delete savestate;
 }
 
 - (void)loadSaveStateFromURL:(NSURL *)URL
 {
+    Savestate *savestate = new Savestate(URL.fileSystemRepresentation, false);
+    NDS::DoSavestate(savestate);
+    delete savestate;
 }
 
 #pragma mark - Cheats -

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <DeltaCore/DeltaCore.h>
-#import <DeltaCore/DeltaCore-Swift.h>
+
+@protocol DLTAEmulatorBridging;
 
 NS_ASSUME_NONNULL_BEGIN
 
