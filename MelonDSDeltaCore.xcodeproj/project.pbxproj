@@ -7,16 +7,115 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF02B2C324366EF6001B4E65 /* Wifi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B28C24366EF4001B4E65 /* Wifi.cpp */; };
+		BF02B2C424366EF6001B4E65 /* SPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B28E24366EF4001B4E65 /* SPI.cpp */; };
+		BF02B2C524366EF6001B4E65 /* NDSCart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B28F24366EF4001B4E65 /* NDSCart.cpp */; };
+		BF02B2C724366EF6001B4E65 /* Savestate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B29124366EF4001B4E65 /* Savestate.cpp */; };
+		BF02B2C824366EF6001B4E65 /* GPU2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B29624366EF4001B4E65 /* GPU2D.cpp */; };
+		BF02B2C924366EF6001B4E65 /* GPU3D_Soft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B29724366EF4001B4E65 /* GPU3D_Soft.cpp */; };
+		BF02B2CA24366EF6001B4E65 /* ARMInterpreter_ALU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B29E24366EF4001B4E65 /* ARMInterpreter_ALU.cpp */; };
+		BF02B2CB24366EF6001B4E65 /* ARM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B29F24366EF4001B4E65 /* ARM.cpp */; };
+		BF02B2CC24366EF6001B4E65 /* SPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A024366EF4001B4E65 /* SPU.cpp */; };
+		BF02B2CD24366EF6001B4E65 /* ARCodeList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A124366EF4001B4E65 /* ARCodeList.cpp */; };
+		BF02B2CE24366EF6001B4E65 /* ARMInterpreter_LoadStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A324366EF5001B4E65 /* ARMInterpreter_LoadStore.cpp */; };
+		BF02B2CF24366EF6001B4E65 /* WifiAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A524366EF5001B4E65 /* WifiAP.cpp */; };
+		BF02B2D024366EF6001B4E65 /* GPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A624366EF5001B4E65 /* GPU.cpp */; };
+		BF02B2D124366EF6001B4E65 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A824366EF5001B4E65 /* CRC32.cpp */; };
+		BF02B2D224366EF6001B4E65 /* RTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A924366EF5001B4E65 /* RTC.cpp */; };
+		BF02B2D324366EF6001B4E65 /* ARMInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */; };
+		BF02B2D424366EF6001B4E65 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AC24366EF5001B4E65 /* Config.cpp */; };
+		BF02B2D524366EF6001B4E65 /* GBACart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AD24366EF5001B4E65 /* GBACart.cpp */; };
+		BF02B2D624366EF6001B4E65 /* GPU3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */; };
+		BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */; };
+		BF02B2D824366EF6001B4E65 /* CP15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B424366EF5001B4E65 /* CP15.cpp */; };
+		BF02B2D924366EF6001B4E65 /* DMA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B724366EF6001B4E65 /* DMA.cpp */; };
+		BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B924366EF6001B4E65 /* AREngine.cpp */; };
+		BF02B2DC24366EF6001B4E65 /* NDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2C224366EF6001B4E65 /* NDS.cpp */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BF02B28124366DDF001B4E65 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BF02B28324366DDF001B4E65 /* libMelonDS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMelonDS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF02B28C24366EF4001B4E65 /* Wifi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wifi.cpp; path = melonDS/src/Wifi.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B28D24366EF4001B4E65 /* ARMInterpreter_Branch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_Branch.h; path = melonDS/src/ARMInterpreter_Branch.h; sourceTree = SOURCE_ROOT; };
+		BF02B28E24366EF4001B4E65 /* SPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SPI.cpp; path = melonDS/src/SPI.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B28F24366EF4001B4E65 /* NDSCart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NDSCart.cpp; path = melonDS/src/NDSCart.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B29124366EF4001B4E65 /* Savestate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Savestate.cpp; path = melonDS/src/Savestate.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B29224366EF4001B4E65 /* ARM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARM.h; path = melonDS/src/ARM.h; sourceTree = SOURCE_ROOT; };
+		BF02B29324366EF4001B4E65 /* ARCodeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCodeList.h; path = melonDS/src/ARCodeList.h; sourceTree = SOURCE_ROOT; };
+		BF02B29424366EF4001B4E65 /* GPU2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU2D.h; path = melonDS/src/GPU2D.h; sourceTree = SOURCE_ROOT; };
+		BF02B29524366EF4001B4E65 /* ARMInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter.h; path = melonDS/src/ARMInterpreter.h; sourceTree = SOURCE_ROOT; };
+		BF02B29624366EF4001B4E65 /* GPU2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU2D.cpp; path = melonDS/src/GPU2D.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B29724366EF4001B4E65 /* GPU3D_Soft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D_Soft.cpp; path = melonDS/src/GPU3D_Soft.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B29824366EF4001B4E65 /* GPU3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU3D.h; path = melonDS/src/GPU3D.h; sourceTree = SOURCE_ROOT; };
+		BF02B29924366EF4001B4E65 /* GPU3D_OpenGL_shaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU3D_OpenGL_shaders.h; path = melonDS/src/GPU3D_OpenGL_shaders.h; sourceTree = SOURCE_ROOT; };
+		BF02B29A24366EF4001B4E65 /* NDSCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDSCart.h; path = melonDS/src/NDSCart.h; sourceTree = SOURCE_ROOT; };
+		BF02B29B24366EF4001B4E65 /* SPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPI.h; path = melonDS/src/SPI.h; sourceTree = SOURCE_ROOT; };
+		BF02B29C24366EF4001B4E65 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = melonDS/src/Platform.h; sourceTree = SOURCE_ROOT; };
+		BF02B29D24366EF4001B4E65 /* DMA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMA.h; path = melonDS/src/DMA.h; sourceTree = SOURCE_ROOT; };
+		BF02B29E24366EF4001B4E65 /* ARMInterpreter_ALU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_ALU.cpp; path = melonDS/src/ARMInterpreter_ALU.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B29F24366EF4001B4E65 /* ARM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARM.cpp; path = melonDS/src/ARM.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A024366EF4001B4E65 /* SPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SPU.cpp; path = melonDS/src/SPU.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A124366EF4001B4E65 /* ARCodeList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARCodeList.cpp; path = melonDS/src/ARCodeList.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A224366EF5001B4E65 /* GPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPU.h; path = melonDS/src/GPU.h; sourceTree = SOURCE_ROOT; };
+		BF02B2A324366EF5001B4E65 /* ARMInterpreter_LoadStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_LoadStore.cpp; path = melonDS/src/ARMInterpreter_LoadStore.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A424366EF5001B4E65 /* ARMInterpreter_ALU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_ALU.h; path = melonDS/src/ARMInterpreter_ALU.h; sourceTree = SOURCE_ROOT; };
+		BF02B2A524366EF5001B4E65 /* WifiAP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WifiAP.cpp; path = melonDS/src/WifiAP.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A624366EF5001B4E65 /* GPU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU.cpp; path = melonDS/src/GPU.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A724366EF5001B4E65 /* AREngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AREngine.h; path = melonDS/src/AREngine.h; sourceTree = SOURCE_ROOT; };
+		BF02B2A824366EF5001B4E65 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = melonDS/src/CRC32.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2A924366EF5001B4E65 /* RTC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RTC.cpp; path = melonDS/src/RTC.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter.cpp; path = melonDS/src/ARMInterpreter.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2AB24366EF5001B4E65 /* SPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPU.h; path = melonDS/src/SPU.h; sourceTree = SOURCE_ROOT; };
+		BF02B2AC24366EF5001B4E65 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Config.cpp; path = melonDS/src/Config.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2AD24366EF5001B4E65 /* GBACart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GBACart.cpp; path = melonDS/src/GBACart.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2AE24366EF5001B4E65 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = melonDS/src/types.h; sourceTree = SOURCE_ROOT; };
+		BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D.cpp; path = melonDS/src/GPU3D.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2B024366EF5001B4E65 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = melonDS/src/Config.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B124366EF5001B4E65 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = melonDS/src/CRC32.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B224366EF5001B4E65 /* Wifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wifi.h; path = melonDS/src/Wifi.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_Branch.cpp; path = melonDS/src/ARMInterpreter_Branch.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2B424366EF5001B4E65 /* CP15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CP15.cpp; path = melonDS/src/CP15.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2B524366EF5001B4E65 /* ARMInterpreter_LoadStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMInterpreter_LoadStore.h; path = melonDS/src/ARMInterpreter_LoadStore.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B624366EF5001B4E65 /* Savestate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Savestate.h; path = melonDS/src/Savestate.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B724366EF6001B4E65 /* DMA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DMA.cpp; path = melonDS/src/DMA.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2B824366EF6001B4E65 /* GBACart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBACart.h; path = melonDS/src/GBACart.h; sourceTree = SOURCE_ROOT; };
+		BF02B2B924366EF6001B4E65 /* AREngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AREngine.cpp; path = melonDS/src/AREngine.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2BA24366EF6001B4E65 /* ARM_InstrTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARM_InstrTable.h; path = melonDS/src/ARM_InstrTable.h; sourceTree = SOURCE_ROOT; };
+		BF02B2BB24366EF6001B4E65 /* NDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDS.h; path = melonDS/src/NDS.h; sourceTree = SOURCE_ROOT; };
+		BF02B2BC24366EF6001B4E65 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = melonDS/src/version.h; sourceTree = SOURCE_ROOT; };
+		BF02B2BD24366EF6001B4E65 /* FIFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FIFO.h; path = melonDS/src/FIFO.h; sourceTree = SOURCE_ROOT; };
+		BF02B2BE24366EF6001B4E65 /* OpenGLSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLSupport.h; path = melonDS/src/OpenGLSupport.h; sourceTree = SOURCE_ROOT; };
+		BF02B2BF24366EF6001B4E65 /* GPU3D_OpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D_OpenGL.cpp; path = melonDS/src/GPU3D_OpenGL.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2C024366EF6001B4E65 /* RTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTC.h; path = melonDS/src/RTC.h; sourceTree = SOURCE_ROOT; };
+		BF02B2C124366EF6001B4E65 /* WifiAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WifiAP.h; path = melonDS/src/WifiAP.h; sourceTree = SOURCE_ROOT; };
+		BF02B2C224366EF6001B4E65 /* NDS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NDS.cpp; path = melonDS/src/NDS.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2DD243670B7001B4E65 /* OpenGLSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLSupport.cpp; path = melonDS/src/OpenGLSupport.cpp; sourceTree = SOURCE_ROOT; };
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BF02B28024366DDF001B4E65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF7317822356624000774F10 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -27,10 +126,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF02B28424366DDF001B4E65 /* libMelonDS */ = {
+			isa = PBXGroup;
+			children = (
+				BF02B2A124366EF4001B4E65 /* ARCodeList.cpp */,
+				BF02B29324366EF4001B4E65 /* ARCodeList.h */,
+				BF02B2B924366EF6001B4E65 /* AREngine.cpp */,
+				BF02B2A724366EF5001B4E65 /* AREngine.h */,
+				BF02B2BA24366EF6001B4E65 /* ARM_InstrTable.h */,
+				BF02B29F24366EF4001B4E65 /* ARM.cpp */,
+				BF02B29224366EF4001B4E65 /* ARM.h */,
+				BF02B29E24366EF4001B4E65 /* ARMInterpreter_ALU.cpp */,
+				BF02B2A424366EF5001B4E65 /* ARMInterpreter_ALU.h */,
+				BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */,
+				BF02B28D24366EF4001B4E65 /* ARMInterpreter_Branch.h */,
+				BF02B2A324366EF5001B4E65 /* ARMInterpreter_LoadStore.cpp */,
+				BF02B2B524366EF5001B4E65 /* ARMInterpreter_LoadStore.h */,
+				BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */,
+				BF02B29524366EF4001B4E65 /* ARMInterpreter.h */,
+				BF02B2AC24366EF5001B4E65 /* Config.cpp */,
+				BF02B2B024366EF5001B4E65 /* Config.h */,
+				BF02B2B424366EF5001B4E65 /* CP15.cpp */,
+				BF02B2A824366EF5001B4E65 /* CRC32.cpp */,
+				BF02B2B124366EF5001B4E65 /* CRC32.h */,
+				BF02B2B724366EF6001B4E65 /* DMA.cpp */,
+				BF02B29D24366EF4001B4E65 /* DMA.h */,
+				BF02B2BD24366EF6001B4E65 /* FIFO.h */,
+				BF02B2AD24366EF5001B4E65 /* GBACart.cpp */,
+				BF02B2B824366EF6001B4E65 /* GBACart.h */,
+				BF02B2A624366EF5001B4E65 /* GPU.cpp */,
+				BF02B2A224366EF5001B4E65 /* GPU.h */,
+				BF02B29624366EF4001B4E65 /* GPU2D.cpp */,
+				BF02B29424366EF4001B4E65 /* GPU2D.h */,
+				BF02B29924366EF4001B4E65 /* GPU3D_OpenGL_shaders.h */,
+				BF02B2BF24366EF6001B4E65 /* GPU3D_OpenGL.cpp */,
+				BF02B29724366EF4001B4E65 /* GPU3D_Soft.cpp */,
+				BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */,
+				BF02B29824366EF4001B4E65 /* GPU3D.h */,
+				BF02B2C224366EF6001B4E65 /* NDS.cpp */,
+				BF02B2BB24366EF6001B4E65 /* NDS.h */,
+				BF02B28F24366EF4001B4E65 /* NDSCart.cpp */,
+				BF02B29A24366EF4001B4E65 /* NDSCart.h */,
+				BF02B2DD243670B7001B4E65 /* OpenGLSupport.cpp */,
+				BF02B2BE24366EF6001B4E65 /* OpenGLSupport.h */,
+				BF02B29C24366EF4001B4E65 /* Platform.h */,
+				BF02B2A924366EF5001B4E65 /* RTC.cpp */,
+				BF02B2C024366EF6001B4E65 /* RTC.h */,
+				BF02B29124366EF4001B4E65 /* Savestate.cpp */,
+				BF02B2B624366EF5001B4E65 /* Savestate.h */,
+				BF02B28E24366EF4001B4E65 /* SPI.cpp */,
+				BF02B29B24366EF4001B4E65 /* SPI.h */,
+				BF02B2A024366EF4001B4E65 /* SPU.cpp */,
+				BF02B2AB24366EF5001B4E65 /* SPU.h */,
+				BF02B2AE24366EF5001B4E65 /* types.h */,
+				BF02B2BC24366EF6001B4E65 /* version.h */,
+				BF02B28C24366EF4001B4E65 /* Wifi.cpp */,
+				BF02B2B224366EF5001B4E65 /* Wifi.h */,
+				BF02B2A524366EF5001B4E65 /* WifiAP.cpp */,
+				BF02B2C124366EF6001B4E65 /* WifiAP.h */,
+			);
+			path = libMelonDS;
+			sourceTree = "<group>";
+		};
 		BF73177B2356624000774F10 = {
 			isa = PBXGroup;
 			children = (
 				BF7317872356624000774F10 /* MelonDSDeltaCore */,
+				BF02B28424366DDF001B4E65 /* libMelonDS */,
 				BF7317862356624000774F10 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				BF7317852356624000774F10 /* MelonDSDeltaCore.framework */,
+				BF02B28324366DDF001B4E65 /* libMelonDS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +229,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BF02B28224366DDF001B4E65 /* libMelonDS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF02B28B24366DDF001B4E65 /* Build configuration list for PBXNativeTarget "libMelonDS" */;
+			buildPhases = (
+				BF02B27F24366DDF001B4E65 /* Sources */,
+				BF02B28024366DDF001B4E65 /* Frameworks */,
+				BF02B28124366DDF001B4E65 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libMelonDS;
+			productName = libMelonDS;
+			productReference = BF02B28324366DDF001B4E65 /* libMelonDS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		BF7317842356624000774F10 /* MelonDSDeltaCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF73178D2356624000774F10 /* Build configuration list for PBXNativeTarget "MelonDSDeltaCore" */;
@@ -90,9 +270,13 @@
 		BF73177C2356624000774F10 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Riley Testut";
 				TargetAttributes = {
+					BF02B28224366DDF001B4E65 = {
+						CreatedOnToolsVersion = 11.4;
+					};
 					BF7317842356624000774F10 = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -112,6 +296,7 @@
 			projectRoot = "";
 			targets = (
 				BF7317842356624000774F10 /* MelonDSDeltaCore */,
+				BF02B28224366DDF001B4E65 /* libMelonDS */,
 			);
 		};
 /* End PBXProject section */
@@ -127,6 +312,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BF02B27F24366DDF001B4E65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF02B2C724366EF6001B4E65 /* Savestate.cpp in Sources */,
+				BF02B2D224366EF6001B4E65 /* RTC.cpp in Sources */,
+				BF02B2C824366EF6001B4E65 /* GPU2D.cpp in Sources */,
+				BF02B2D824366EF6001B4E65 /* CP15.cpp in Sources */,
+				BF02B2CD24366EF6001B4E65 /* ARCodeList.cpp in Sources */,
+				BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */,
+				BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */,
+				BF02B2C424366EF6001B4E65 /* SPI.cpp in Sources */,
+				BF02B2CE24366EF6001B4E65 /* ARMInterpreter_LoadStore.cpp in Sources */,
+				BF02B2D324366EF6001B4E65 /* ARMInterpreter.cpp in Sources */,
+				BF02B2D524366EF6001B4E65 /* GBACart.cpp in Sources */,
+				BF02B2CA24366EF6001B4E65 /* ARMInterpreter_ALU.cpp in Sources */,
+				BF02B2C524366EF6001B4E65 /* NDSCart.cpp in Sources */,
+				BF02B2D024366EF6001B4E65 /* GPU.cpp in Sources */,
+				BF02B2CF24366EF6001B4E65 /* WifiAP.cpp in Sources */,
+				BF02B2CB24366EF6001B4E65 /* ARM.cpp in Sources */,
+				BF02B2D924366EF6001B4E65 /* DMA.cpp in Sources */,
+				BF02B2D124366EF6001B4E65 /* CRC32.cpp in Sources */,
+				BF02B2C924366EF6001B4E65 /* GPU3D_Soft.cpp in Sources */,
+				BF02B2D424366EF6001B4E65 /* Config.cpp in Sources */,
+				BF02B2D624366EF6001B4E65 /* GPU3D.cpp in Sources */,
+				BF02B2CC24366EF6001B4E65 /* SPU.cpp in Sources */,
+				BF02B2C324366EF6001B4E65 /* Wifi.cpp in Sources */,
+				BF02B2DC24366EF6001B4E65 /* NDS.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BF7317812356624000774F10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +353,36 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		BF02B28924366DDF001B4E65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MelonDS;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF02B28A24366DDF001B4E65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MelonDS;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BF73178B2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -312,6 +558,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BF02B28B24366DDF001B4E65 /* Build configuration list for PBXNativeTarget "libMelonDS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF02B28924366DDF001B4E65 /* Debug */,
+				BF02B28A24366DDF001B4E65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BF73177F2356624000774F10 /* Build configuration list for PBXProject "MelonDSDeltaCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

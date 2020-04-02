@@ -1,0 +1,3 @@
+[submodule "melonDS"]
+	path = melonDS
+	url = https://github.com/rileytestut/melonDS.git
