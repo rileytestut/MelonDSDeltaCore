@@ -44,6 +44,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
 @property (nonatomic) CGPoint touchScreenPoint;
 
 @property (nonatomic, getter=isInitialized) BOOL initialized;
+@property (nonatomic, getter=isStopping) BOOL stopping;
 
 @end
 
@@ -89,10 +90,14 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
     {
         NDS::LoadBIOS();
     }
+    
+    self.stopping = NO;
 }
 
 - (void)stop
 {
+    self.stopping = YES;
+    
     NDS::Stop();
 }
 
@@ -108,6 +113,11 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
 
 - (void)runFrameAndProcessVideo:(BOOL)processVideo
 {
+    if ([self isStopping])
+    {
+        return;
+    }
+    
     uint16_t inputs = self.activatedInputs;
     for (uint8_t i = 0; i < 12; i++)
     {
@@ -308,6 +318,13 @@ namespace Platform
 {
     void StopEmu()
     {
+        if ([MelonDSEmulatorBridge.sharedBridge isStopping])
+        {
+            return;
+        }
+        
+        MelonDSEmulatorBridge.sharedBridge.stopping = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:DLTAEmulatorCore.emulationDidQuitNotification object:nil];
     }
     
     FILE* OpenFile(const char* path, const char* mode, bool mustexist)
