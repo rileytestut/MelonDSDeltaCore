@@ -125,20 +125,33 @@
 
 - (void)saveGameSaveToURL:(NSURL *)URL
 {
+    NDS::RelocateSave(URL.fileSystemRepresentation, true);
 }
 
 - (void)loadGameSaveFromURL:(NSURL *)URL
 {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:URL.path])
+    {
+        return;
+    }
+    
+    NDS::RelocateSave(URL.fileSystemRepresentation, false);
 }
 
 #pragma mark - Save States -
 
 - (void)saveSaveStateToURL:(NSURL *)URL
 {
+    Savestate *savestate = new Savestate(URL.fileSystemRepresentation, true);
+    NDS::DoSavestate(savestate);
+    delete savestate;
 }
 
 - (void)loadSaveStateFromURL:(NSURL *)URL
 {
+    Savestate *savestate = new Savestate(URL.fileSystemRepresentation, false);
+    NDS::DoSavestate(savestate);
+    delete savestate;
 }
 
 #pragma mark - Cheats -
