@@ -31,8 +31,23 @@
 		BF02B2D924366EF6001B4E65 /* DMA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B724366EF6001B4E65 /* DMA.cpp */; };
 		BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B924366EF6001B4E65 /* AREngine.cpp */; };
 		BF02B2DC24366EF6001B4E65 /* NDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2C224366EF6001B4E65 /* NDS.cpp */; };
+		BF02B2ED24367486001B4E65 /* MelonDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2EC24367486001B4E65 /* MelonDS.swift */; };
+		BF02B2F0243674AF001B4E65 /* MelonDSEmulatorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = BF02B2EE243674AF001B4E65 /* MelonDSEmulatorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */; };
+		BF02B2F32436774E001B4E65 /* libMelonDS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF02B28324366DDF001B4E65 /* libMelonDS.a */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFE9907D2444FD0C006409A7 /* PlatformConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE9907B2444FD0C006409A7 /* PlatformConfig.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF02B2F824367A74001B4E65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF73177C2356624000774F10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF02B28224366DDF001B4E65;
+			remoteInfo = libMelonDS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BF02B28124366DDF001B4E65 /* CopyFiles */ = {
@@ -103,9 +118,14 @@
 		BF02B2C124366EF6001B4E65 /* WifiAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WifiAP.h; path = melonDS/src/WifiAP.h; sourceTree = SOURCE_ROOT; };
 		BF02B2C224366EF6001B4E65 /* NDS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NDS.cpp; path = melonDS/src/NDS.cpp; sourceTree = SOURCE_ROOT; };
 		BF02B2DD243670B7001B4E65 /* OpenGLSupport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLSupport.cpp; path = melonDS/src/OpenGLSupport.cpp; sourceTree = SOURCE_ROOT; };
+		BF02B2EC24367486001B4E65 /* MelonDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelonDS.swift; sourceTree = "<group>"; };
+		BF02B2EE243674AF001B4E65 /* MelonDSEmulatorBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSEmulatorBridge.h; sourceTree = "<group>"; };
+		BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MelonDSEmulatorBridge.mm; sourceTree = "<group>"; };
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFE9907B2444FD0C006409A7 /* PlatformConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformConfig.cpp; path = "../../../../Delta-Working Multiplayer!/v2.0/Delta/Cores/MelonDSDeltaCore/melonDS/src/libui_sdl/PlatformConfig.cpp"; sourceTree = "<group>"; };
+		BFE9907C2444FD0C006409A7 /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = "../../../../Delta-Working Multiplayer!/v2.0/Delta/Cores/MelonDSDeltaCore/melonDS/src/libui_sdl/PlatformConfig.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF02B2F32436774E001B4E65 /* libMelonDS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +150,7 @@
 		BF02B28424366DDF001B4E65 /* libMelonDS */ = {
 			isa = PBXGroup;
 			children = (
+				BF02B2F424367A1D001B4E65 /* libui_sdl */,
 				BF02B2A124366EF4001B4E65 /* ARCodeList.cpp */,
 				BF02B29324366EF4001B4E65 /* ARCodeList.h */,
 				BF02B2B924366EF6001B4E65 /* AREngine.cpp */,
@@ -188,12 +210,46 @@
 			path = libMelonDS;
 			sourceTree = "<group>";
 		};
+		BF02B2F22436774E001B4E65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF02B2F424367A1D001B4E65 /* libui_sdl */ = {
+			isa = PBXGroup;
+			children = (
+				BFE9907B2444FD0C006409A7 /* PlatformConfig.cpp */,
+				BFE9907C2444FD0C006409A7 /* PlatformConfig.h */,
+			);
+			name = libui_sdl;
+			sourceTree = "<group>";
+		};
+		BF02B2FA24367CCA001B4E65 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				BF02B2EE243674AF001B4E65 /* MelonDSEmulatorBridge.h */,
+				BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		BF02B30724368320001B4E65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF7317892356624000774F10 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BF73177B2356624000774F10 = {
 			isa = PBXGroup;
 			children = (
 				BF7317872356624000774F10 /* MelonDSDeltaCore */,
 				BF02B28424366DDF001B4E65 /* libMelonDS */,
 				BF7317862356624000774F10 /* Products */,
+				BF02B2F22436774E001B4E65 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,7 +266,9 @@
 			isa = PBXGroup;
 			children = (
 				BF7317882356624000774F10 /* MelonDSDeltaCore.h */,
-				BF7317892356624000774F10 /* Info.plist */,
+				BF02B2EC24367486001B4E65 /* MelonDS.swift */,
+				BF02B2FA24367CCA001B4E65 /* Bridge */,
+				BF02B30724368320001B4E65 /* Supporting Files */,
 			);
 			path = MelonDSDeltaCore;
 			sourceTree = "<group>";
@@ -223,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */,
+				BF02B2F0243674AF001B4E65 /* MelonDSEmulatorBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +317,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BF02B2F924367A74001B4E65 /* PBXTargetDependency */,
 			);
 			name = MelonDSDeltaCore;
 			productName = MelonDSDeltaCore;
@@ -279,6 +339,7 @@
 					};
 					BF7317842356624000774F10 = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -321,6 +382,7 @@
 				BF02B2C824366EF6001B4E65 /* GPU2D.cpp in Sources */,
 				BF02B2D824366EF6001B4E65 /* CP15.cpp in Sources */,
 				BF02B2CD24366EF6001B4E65 /* ARCodeList.cpp in Sources */,
+				BFE9907D2444FD0C006409A7 /* PlatformConfig.cpp in Sources */,
 				BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */,
 				BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */,
 				BF02B2C424366EF6001B4E65 /* SPI.cpp in Sources */,
@@ -347,10 +409,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */,
+				BF02B2ED24367486001B4E65 /* MelonDS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF02B2F924367A74001B4E65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF02B28224366DDF001B4E65 /* libMelonDS */;
+			targetProxy = BF02B2F824367A74001B4E65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BF02B28924366DDF001B4E65 /* Debug */ = {
@@ -360,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
@@ -374,7 +447,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
@@ -423,7 +498,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -506,6 +581,7 @@
 		BF73178E2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
@@ -524,6 +600,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -532,6 +609,7 @@
 		BF73178F2356624000774F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
