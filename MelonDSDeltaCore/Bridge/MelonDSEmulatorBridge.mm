@@ -22,6 +22,9 @@
 
 @property (nonatomic, copy, nullable, readwrite) NSURL *gameURL;
 
+@property (nonatomic) uint32_t activatedInputs;
+@property (nonatomic) CGPoint touchScreenPoint;
+
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 
 @end
@@ -87,6 +90,33 @@
 
 - (void)runFrameAndProcessVideo:(BOOL)processVideo
 {
+    uint16_t inputs = self.activatedInputs;
+    for (uint8_t i = 0; i < 12; i++)
+    {
+        uint8_t key = i > 9 ? i + 6 : i;
+        BOOL isActivated = !!((inputs >> i) & 1);
+        
+        if (isActivated)
+        {
+            NDS::PressKey(key);
+        }
+        else
+        {
+            NDS::ReleaseKey(key);
+        }
+    }
+    
+    if (self.activatedInputs & MelonDSGameInputTouchScreenX || self.activatedInputs & MelonDSGameInputTouchScreenY)
+    {        
+        NDS::TouchScreen(self.touchScreenPoint.x, self.touchScreenPoint.y);
+        NDS::PressKey(16 + 6);
+    }
+    else
+    {
+        NDS::ReleaseScreen();
+        NDS::ReleaseKey(16 + 6);
+    }
+    
     NDS::RunFrame();
     
     static int16_t buffer[0x1000];
@@ -111,14 +141,52 @@
 
 - (void)activateInput:(NSInteger)input value:(double)value
 {
+    self.activatedInputs |= (uint32_t)input;
+    
+    CGPoint touchPoint = self.touchScreenPoint;
+    
+    switch ((MelonDSGameInput)input)
+    {
+    case MelonDSGameInputTouchScreenX:
+        touchPoint.x = value * (256 - 1);
+        break;
+        
+    case MelonDSGameInputTouchScreenY:
+        touchPoint.y = value * (192 - 1);
+        break;
+            
+    default: break;
+    }
+
+    self.touchScreenPoint = touchPoint;
 }
 
 - (void)deactivateInput:(NSInteger)input
 {
+    self.activatedInputs &= ~((uint32_t)input);
+    
+    CGPoint touchPoint = self.touchScreenPoint;
+    
+    switch ((MelonDSGameInput)input)
+    {
+        case MelonDSGameInputTouchScreenX:
+            touchPoint.x = 0;
+            break;
+            
+        case MelonDSGameInputTouchScreenY:
+            touchPoint.y = 0;
+            break;
+            
+        default: break;
+    }
+    
+    self.touchScreenPoint = touchPoint;
 }
 
 - (void)resetInputs
 {
+    self.activatedInputs = 0;
+    self.touchScreenPoint = CGPointZero;
 }
 
 #pragma mark - Game Saves -
