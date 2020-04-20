@@ -11,12 +11,18 @@
 #import <UIKit/UIKit.h> // Prevent undeclared symbols in below headers
 
 #import <DeltaCore/DeltaCore-Swift.h>
+#import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
 
 #include "Platform.h"
+#include "NDS.h"
+#include "SPU.h"
+#include "GPU.h"
 
 @interface MelonDSEmulatorBridge ()
 
 @property (nonatomic, copy, nullable, readwrite) NSURL *gameURL;
+
+@property (nonatomic, getter=isInitialized) BOOL initialized;
 
 @end
 
@@ -40,10 +46,33 @@
 
 - (void)startWithGameURL:(NSURL *)gameURL
 {
+    if ([self isInitialized])
+    {
+        NDS::DeInit();
+    }
+    
+    NDS::Init();
+    self.initialized = YES;
+    
+    GPU3D::InitRenderer(false);
+        
+    BOOL isDirectory = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
+    {
+        if (!NDS::LoadROM(gameURL.fileSystemRepresentation, "", YES))
+        {
+            NSLog(@"Failed to load Nintendo DS ROM.");
+        }
+    }
+    else
+    {
+        NDS::LoadBIOS();
+    }
 }
 
 - (void)stop
 {
+    NDS::Stop();
 }
 
 - (void)pause
@@ -58,6 +87,24 @@
 
 - (void)runFrameAndProcessVideo:(BOOL)processVideo
 {
+    NDS::RunFrame();
+    
+    static int16_t buffer[0x1000];
+    u32 availableBytes = SPU::GetOutputSize();
+    availableBytes = MAX(availableBytes, (u32)(sizeof(buffer) / (2 * sizeof(int16_t))));
+       
+    int samples = SPU::ReadOutput(buffer, availableBytes);
+    [self.audioRenderer.audioBuffer writeBuffer:buffer size:samples * 4];
+    
+    if (processVideo)
+    {
+        int screenBufferSize = 256 * 192 * 4;
+        
+        memcpy(self.videoRenderer.videoBuffer, GPU::Framebuffer[GPU::FrontBuffer][0], screenBufferSize);
+        memcpy(self.videoRenderer.videoBuffer + screenBufferSize, GPU::Framebuffer[GPU::FrontBuffer][1], screenBufferSize);
+        
+        [self.videoRenderer processFrame];
+    }
 }
 
 #pragma mark - Inputs -
@@ -116,6 +163,21 @@
     return (1.0 / 60.0);
 }
 
+- (NSURL *)bios7URL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"bios7.bin"];
+}
+
+- (NSURL *)bios9URL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"bios9.bin"];
+}
+
+- (NSURL *)firmwareURL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"firmware.bin"];
+}
+
 @end
 
 namespace Platform
@@ -141,12 +203,17 @@ namespace Platform
     
     FILE* OpenLocalFile(const char* path, const char* mode)
     {
-        return OpenFile(path, mode);
+        NSURL *fileURL = [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@(path)];
+        return OpenFile(fileURL.fileSystemRepresentation, mode);
     }
     
     FILE* OpenDataFile(const char* path)
     {
-        return OpenFile(path, "rb");
+        NSString *resourceName = [@(path) stringByDeletingPathExtension];
+        NSString *extension = [@(path) pathExtension];
+        
+        NSURL *fileURL = [MelonDSEmulatorBridge.dsResources URLForResource:resourceName withExtension:extension];
+        return OpenFile(fileURL.fileSystemRepresentation, "rb");
     }
     
     void *Thread_Create(void (*func)())

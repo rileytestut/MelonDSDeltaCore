@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (class, nonatomic, readonly) MelonDSEmulatorBridge *sharedBridge;
 
+@property (nonatomic, readonly) NSURL *bios7URL;
+@property (nonatomic, readonly) NSURL *bios9URL;
+@property (nonatomic, readonly) NSURL *firmwareURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

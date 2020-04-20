@@ -73,3 +73,17 @@ public struct MelonDS: DeltaCoreProtocol
     {
     }
 }
+
+// Expose DeltaCore properties to Objective-C.
+public extension MelonDSEmulatorBridge
+{
+    @objc(dsResources) class var __dsResources: Bundle {
+        return MelonDS.core.resourceBundle
+    }
+    
+    @objc(coreDirectoryURL) class var __coreDirectoryURL: URL {
+        return _coreDirectoryURL
+    }
+}
+
+private let _coreDirectoryURL = MelonDS.core.directoryURL
