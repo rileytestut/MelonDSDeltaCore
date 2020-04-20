@@ -17,6 +17,24 @@
 #include "NDS.h"
 #include "SPU.h"
 #include "GPU.h"
+#include "AREngine.h"
+
+// Forward-declare private melonDS functions/types.
+namespace AREngine
+{
+
+typedef struct
+{
+    u32 Code[2 * 64];
+    bool Enabled;
+
+} CheatEntry;
+
+extern CheatEntry CheatCodes[64];
+extern u32 NumCheatCodes;
+
+void ParseTextCode(char* text, int tlen, u32* code, int clen);
+}
 
 @interface MelonDSEmulatorBridge ()
 
@@ -226,11 +244,36 @@
 
 - (BOOL)addCheatCode:(NSString *)cheatCode type:(NSString *)type
 {
+    NSArray<NSString *> *codes = [cheatCode componentsSeparatedByString:@"\n"];
+    for (NSString *code in codes)
+    {
+        if (code.length != 17)
+        {
+            return NO;
+        }
+        
+        NSMutableCharacterSet *legalCharactersSet = [NSMutableCharacterSet hexadecimalCharacterSet];
+        [legalCharactersSet addCharactersInString:@" "];
+        
+        if ([code rangeOfCharacterFromSet:legalCharactersSet.invertedSet].location != NSNotFound)
+        {
+            return NO;
+        }
+    }
+    
+    AREngine::CheatEntry *entry = &AREngine::CheatCodes[AREngine::NumCheatCodes];
+    entry->Enabled = true;
+    u32* ptr = &entry->Code[0];
+        
+    AREngine::ParseTextCode((char *)cheatCode.UTF8String, (int)[cheatCode lengthOfBytesUsingEncoding:NSUTF8StringEncoding], ptr, 128);
+    AREngine::NumCheatCodes++;
+    
     return YES;
 }
 
 - (void)resetCheats
 {
+    AREngine::Reset();
 }
 
 - (void)updateCheats

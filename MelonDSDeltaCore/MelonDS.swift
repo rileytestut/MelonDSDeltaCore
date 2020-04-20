@@ -16,6 +16,11 @@ public extension GameType
     static let ds = GameType("com.rileytestut.delta.game.ds")
 }
 
+public extension CheatType
+{
+    static let actionReplay = CheatType("ActionReplay")
+}
+
 @objc public enum MelonDSGameInput: Int, Input
 {
     case a = 1
@@ -62,7 +67,8 @@ public struct MelonDS: DeltaCoreProtocol
     public let videoFormat = VideoFormat(format: .bitmap(.bgra8), dimensions: CGSize(width: 256, height: 384))
     
     public var supportedCheatFormats: Set<CheatFormat> {
-        return []
+        let actionReplayFormat = CheatFormat(name: NSLocalizedString("Action Replay", comment: ""), format: "XXXXXXXX YYYYYYYY", type: .actionReplay)
+        return [actionReplayFormat]
     }
     
     public var emulatorBridge: EmulatorBridging { MelonDSEmulatorBridge.shared }
