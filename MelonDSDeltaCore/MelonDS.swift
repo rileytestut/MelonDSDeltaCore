@@ -11,6 +11,7 @@ import AVFoundation
 
 import DeltaCore
 
+#if !STATIC_LIBRARY
 public extension GameType
 {
     static let ds = GameType("com.rileytestut.delta.game.ds")
@@ -20,6 +21,7 @@ public extension CheatType
 {
     static let actionReplay = CheatType("ActionReplay")
 }
+#endif
 
 @objc public enum MelonDSGameInput: Int, Input
 {
@@ -72,8 +74,6 @@ public struct MelonDS: DeltaCoreProtocol
     }
     
     public var emulatorBridge: EmulatorBridging { MelonDSEmulatorBridge.shared }
-    
-    public var resourceBundle: Bundle { self.bundle }
     
     private init()
     {

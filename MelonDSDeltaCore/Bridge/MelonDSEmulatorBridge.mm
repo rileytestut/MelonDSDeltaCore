@@ -11,7 +11,12 @@
 #import <UIKit/UIKit.h> // Prevent undeclared symbols in below headers
 
 #import <DeltaCore/DeltaCore-Swift.h>
+
+#if STATIC_LIBRARY
+#import "MelonDSDeltaCore-Swift.h"
+#else
 #import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
+#endif
 
 #include "Platform.h"
 #include "NDS.h"
