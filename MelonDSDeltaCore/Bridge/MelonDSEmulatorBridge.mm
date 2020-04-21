@@ -18,11 +18,11 @@
 #import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
 #endif
 
-#include "Platform.h"
-#include "NDS.h"
-#include "SPU.h"
-#include "GPU.h"
-#include "AREngine.h"
+#include "melonDS/src/Platform.h"
+#include "melonDS/src/NDS.h"
+#include "melonDS/src/SPU.h"
+#include "melonDS/src/GPU.h"
+#include "melonDS/src/AREngine.h"
 
 // Forward-declare private melonDS functions/types.
 namespace AREngine
