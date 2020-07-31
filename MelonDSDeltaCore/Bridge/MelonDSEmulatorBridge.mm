@@ -10,6 +10,7 @@
 
 #import <UIKit/UIKit.h> // Prevent undeclared symbols in below headers
 
+#import <DeltaCore/DeltaCore.h>
 #import <DeltaCore/DeltaCore-Swift.h>
 
 #if STATIC_LIBRARY
