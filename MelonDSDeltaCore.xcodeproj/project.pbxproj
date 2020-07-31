@@ -36,11 +36,10 @@
 		BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */; };
 		BF02B2F32436774E001B4E65 /* libMelonDS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF02B28324366DDF001B4E65 /* libMelonDS.a */; };
 		BF02B2FE24367CF5001B4E65 /* MelonDSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = BF02B2FC24367CF5001B4E65 /* MelonDSTypes.h */; };
-		BF02B311243683F8001B4E65 /* Standard.deltaskin in Resources */ = {isa = PBXBuildFile; fileRef = BF02B30F243683F8001B4E65 /* Standard.deltaskin */; };
 		BF30AC1F244E3F5300F0C744 /* romlist.bin in Resources */ = {isa = PBXBuildFile; fileRef = BF30AC1E244E3F5300F0C744 /* romlist.bin */; };
-		BF30AC21244E493500F0C744 /* Standard.deltamapping in Resources */ = {isa = PBXBuildFile; fileRef = BF30AC20244E493500F0C744 /* Standard.deltamapping */; };
 		BF30AC24244E876100F0C744 /* PlatformConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF30AC22244E876000F0C744 /* PlatformConfig.cpp */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFC5FF5C24D23AA3001FBC15 /* Standard.deltamapping in Resources */ = {isa = PBXBuildFile; fileRef = BFC5FF5B24D23AA3001FBC15 /* Standard.deltamapping */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,14 +126,14 @@
 		BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MelonDSEmulatorBridge.mm; sourceTree = "<group>"; };
 		BF02B2FC24367CF5001B4E65 /* MelonDSTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSTypes.h; sourceTree = "<group>"; };
 		BF02B2FD24367CF5001B4E65 /* MelonDSTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MelonDSTypes.m; sourceTree = "<group>"; };
-		BF02B30F243683F8001B4E65 /* Standard.deltaskin */ = {isa = PBXFileReference; lastKnownFileType = file; name = Standard.deltaskin; path = "../../../../melonDS Delta/Delta/Cores/MelonDSDeltaCore/MelonDSDeltaCore/Controller Skin/Standard.deltaskin"; sourceTree = "<group>"; };
 		BF30AC1E244E3F5300F0C744 /* romlist.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = romlist.bin; path = melonDS/romlist.bin; sourceTree = SOURCE_ROOT; };
-		BF30AC20244E493500F0C744 /* Standard.deltamapping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = Standard.deltamapping; path = "../../../../melonDS Delta/Delta/Cores/MelonDSDeltaCore/MelonDSDeltaCore/Standard.deltamapping"; sourceTree = "<group>"; };
 		BF30AC22244E876000F0C744 /* PlatformConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformConfig.cpp; path = melonDS/src/libui_sdl/PlatformConfig.cpp; sourceTree = SOURCE_ROOT; };
 		BF30AC23244E876100F0C744 /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = melonDS/src/libui_sdl/PlatformConfig.h; sourceTree = SOURCE_ROOT; };
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC5FF5B24D23AA3001FBC15 /* Standard.deltamapping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Standard.deltamapping; sourceTree = "<group>"; };
+		BFC5FF5D24D23AAC001FBC15 /* Standard.deltaskin */ = {isa = PBXFileReference; lastKnownFileType = file; name = Standard.deltaskin; path = "Controller Skin/Standard.deltaskin"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,8 +257,8 @@
 			children = (
 				BF7317892356624000774F10 /* Info.plist */,
 				BF30AC1E244E3F5300F0C744 /* romlist.bin */,
-				BF02B30F243683F8001B4E65 /* Standard.deltaskin */,
-				BF30AC20244E493500F0C744 /* Standard.deltamapping */,
+				BFC5FF5D24D23AAC001FBC15 /* Standard.deltaskin */,
+				BFC5FF5B24D23AA3001FBC15 /* Standard.deltamapping */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -390,8 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF02B311243683F8001B4E65 /* Standard.deltaskin in Resources */,
-				BF30AC21244E493500F0C744 /* Standard.deltamapping in Resources */,
+				BFC5FF5C24D23AA3001FBC15 /* Standard.deltamapping in Resources */,
 				BF30AC1F244E3F5300F0C744 /* romlist.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
