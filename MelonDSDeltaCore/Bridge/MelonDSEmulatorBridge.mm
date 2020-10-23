@@ -25,21 +25,64 @@
 #include "melonDS/src/GPU.h"
 #include "melonDS/src/AREngine.h"
 
-// Forward-declare private melonDS functions/types.
-namespace AREngine
+#include "melonDS/src/Config.h"
+
+#include <memory>
+
+// Copied from melonDS source (no longer exists in HEAD)
+void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
 {
+    u32 cur_word = 0;
+    u32 ndigits = 0;
+    u32 nin = 0;
+    u32 nout = 0;
 
-typedef struct
-{
-    u32 Code[2 * 64];
-    bool Enabled;
+    char c;
+    while ((c = *text++) != '\0')
+    {
+        u32 val;
+        if (c >= '0' && c <= '9')
+            val = c - '0';
+        else if (c >= 'a' && c <= 'f')
+            val = c - 'a' + 0xA;
+        else if (c >= 'A' && c <= 'F')
+            val = c - 'A' + 0xA;
+        else
+            continue;
 
-} CheatEntry;
+        cur_word <<= 4;
+        cur_word |= val;
 
-extern CheatEntry CheatCodes[64];
-extern u32 NumCheatCodes;
+        ndigits++;
+        if (ndigits >= 8)
+        {
+            if (nout >= clen)
+            {
+                printf("AR: code too long!\n");
+                return;
+            }
 
-void ParseTextCode(char* text, int tlen, u32* code, int clen);
+            *code++ = cur_word;
+            nout++;
+
+            ndigits = 0;
+            cur_word = 0;
+        }
+
+        nin++;
+        if (nin >= tlen) break;
+    }
+
+    if (nout & 1)
+    {
+        printf("AR: code was missing one word\n");
+        if (nout >= clen)
+        {
+            printf("AR: code too long!\n");
+            return;
+        }
+        *code++ = 0;
+    }
 }
 
 @interface MelonDSEmulatorBridge ()
@@ -48,6 +91,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
 
 @property (nonatomic) uint32_t activatedInputs;
 @property (nonatomic) CGPoint touchScreenPoint;
+
+@property (nonatomic, assign) std::shared_ptr<ARCodeFile> cheatCodes;
 
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
@@ -70,6 +115,18 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
     return _emulatorBridge;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _cheatCodes = std::make_shared<ARCodeFile>("");
+        _activatedInputs = 0;
+    }
+    
+    return self;
+}
+
 #pragma mark - Emulation State -
 
 - (void)startWithGameURL:(NSURL *)gameURL
@@ -78,12 +135,23 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
     {
         NDS::DeInit();
     }
+    else
+    {
+        // DS paths
+        strncpy(Config::BIOS7Path, self.bios7URL.lastPathComponent.UTF8String, self.bios7URL.lastPathComponent.length);
+        strncpy(Config::BIOS9Path, self.bios9URL.lastPathComponent.UTF8String, self.bios9URL.lastPathComponent.length);
+        strncpy(Config::FirmwarePath, self.firmwareURL.lastPathComponent.UTF8String, self.firmwareURL.lastPathComponent.length);
+    }
     
     NDS::Init();
     self.initialized = YES;
-    
-    GPU3D::InitRenderer(false);
         
+    GPU::RenderSettings settings;
+    settings.Soft_Threaded = NO;
+
+    GPU::InitRenderer(0);
+    GPU::SetRenderSettings(0, settings);
+    
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
     {
@@ -124,31 +192,17 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
         return;
     }
     
-    uint16_t inputs = self.activatedInputs;
-    for (uint8_t i = 0; i < 12; i++)
-    {
-        uint8_t key = i > 9 ? i + 6 : i;
-        BOOL isActivated = !!((inputs >> i) & 1);
-        
-        if (isActivated)
-        {
-            NDS::PressKey(key);
-        }
-        else
-        {
-            NDS::ReleaseKey(key);
-        }
-    }
+    uint32_t inputsMask = 0x007F03FF; // 0b110000001111111111;
+    uint16_t sanitizedInputs = inputsMask ^ self.activatedInputs;
+    NDS::SetKeyMask(sanitizedInputs);
     
     if (self.activatedInputs & MelonDSGameInputTouchScreenX || self.activatedInputs & MelonDSGameInputTouchScreenY)
-    {        
+    {
         NDS::TouchScreen(self.touchScreenPoint.x, self.touchScreenPoint.y);
-        NDS::PressKey(16 + 6);
     }
     else
     {
         NDS::ReleaseScreen();
-        NDS::ReleaseKey(16 + 6);
     }
     
     NDS::RunFrame();
@@ -277,23 +331,35 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen);
         }
     }
     
-    AREngine::CheatEntry *entry = &AREngine::CheatCodes[AREngine::NumCheatCodes];
-    entry->Enabled = true;
-    u32* ptr = &entry->Code[0];
-        
-    AREngine::ParseTextCode((char *)cheatCode.UTF8String, (int)[cheatCode lengthOfBytesUsingEncoding:NSUTF8StringEncoding], ptr, 128);
-    AREngine::NumCheatCodes++;
+    NSString *sanitizedCode = [[cheatCode componentsSeparatedByCharactersInSet:NSCharacterSet.hexadecimalCharacterSet.invertedSet] componentsJoinedByString:@""];
+    int codeLength = (sanitizedCode.length / 8);
     
+    ARCode code;
+    memset(code.Name, 0, 128);
+    memset(code.Code, 0, 128);
+    memcpy(code.Name, sanitizedCode.UTF8String, MIN(128, sanitizedCode.length));
+    ParseTextCode((char *)sanitizedCode.UTF8String, (int)[sanitizedCode lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &code.Code[0], 128);
+    code.Enabled = YES;
+    code.CodeLen = codeLength;
+
+    ARCodeCat category;
+    memcpy(category.Name, sanitizedCode.UTF8String, MIN(128, sanitizedCode.length));
+    category.Codes.push_back(code);
+
+    self.cheatCodes->Categories.push_back(category);
+
     return YES;
 }
 
 - (void)resetCheats
 {
+    self.cheatCodes->Categories.clear();
     AREngine::Reset();
 }
 
 - (void)updateCheats
 {
+    AREngine::SetCodeFile(self.cheatCodes.get());
 }
 
 #pragma mark - Getters/Setters -

@@ -10,12 +10,12 @@ Pod::Spec.new do |spec|
   spec.author             = { "Riley Testut" => "riley@rileytestut.com" }
   spec.social_media_url   = "https://twitter.com/rileytestut"
   
-  spec.source_files  = "MelonDSDeltaCore/**/*.{swift}", "MelonDSDeltaCore/MelonDSDeltaCore.h", "MelonDSDeltaCore/Bridge/MelonDSEmulatorBridge.{h,mm}", "MelonDSDeltaCore/Types/MelonDSTypes.{h,m}", "melonDS/src/*.{h,hpp,cpp}", "melonDS/src/libui_sdl/PlatformConfig.{h,cpp}"
-  spec.exclude_files = "melonDS/src/GPU3D_OpenGL.cpp", "melonDS/src/OpenGLSupport.cpp"
+  spec.source_files  = "MelonDSDeltaCore/**/*.{swift}", "MelonDSDeltaCore/MelonDSDeltaCore.h", "MelonDSDeltaCore/Bridge/MelonDSEmulatorBridge.{h,mm}", "MelonDSDeltaCore/Types/MelonDSTypes.{h,m}", "melonDS/src/*.{h,hpp,cpp}", "melonDS/src/fontend/qt_sdl/PlatformConfig.{h,cpp}", "melonDS/src/tiny-AES-c/*.{h,hpp,c}"
+  spec.exclude_files = "melonDS/src/GPU3D_OpenGL.cpp", "melonDS/src/OpenGLSupport.cpp", "melonDS/src/GPU_OpenGL.cpp", "melonDS/src/ARM_InstrInfo.cpp", "melonDS/src/ARMJIT_Memory.cpp", "melonDS/src/ARMJIT.cpp"
   spec.public_header_files = "MelonDSDeltaCore/Types/MelonDSTypes.h", "MelonDSDeltaCore/Bridge/MelonDSEmulatorBridge.h", "MelonDSDeltaCore/MelonDSDeltaCore.h"
   spec.header_mappings_dir = ""
   spec.resource_bundles = {
-    "melonDS" => ["MelonDSDeltaCore/**/*.deltamapping", "MelonDSDeltaCore/**/*.deltaskin", "melonDS/romlist.bin"]
+    "melonDS" => ["MelonDSDeltaCore/**/*.deltamapping", "MelonDSDeltaCore/**/*.deltaskin"]
   }
   
   spec.dependency 'DeltaCore'
