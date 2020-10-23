@@ -141,8 +141,16 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         strncpy(Config::BIOS7Path, self.bios7URL.lastPathComponent.UTF8String, self.bios7URL.lastPathComponent.length);
         strncpy(Config::BIOS9Path, self.bios9URL.lastPathComponent.UTF8String, self.bios9URL.lastPathComponent.length);
         strncpy(Config::FirmwarePath, self.firmwareURL.lastPathComponent.UTF8String, self.firmwareURL.lastPathComponent.length);
+        
+        // DSi paths
+        strncpy(Config::DSiBIOS7Path, self.dsiBIOS7URL.lastPathComponent.UTF8String, self.dsiBIOS7URL.lastPathComponent.length);
+        strncpy(Config::DSiBIOS9Path, self.dsiBIOS9URL.lastPathComponent.UTF8String, self.dsiBIOS9URL.lastPathComponent.length);
+        strncpy(Config::DSiFirmwarePath, self.dsiFirmwareURL.lastPathComponent.UTF8String, self.dsiFirmwareURL.lastPathComponent.length);
+        strncpy(Config::DSiNANDPath, self.dsiNANDURL.lastPathComponent.UTF8String, self.dsiNANDURL.lastPathComponent.length);
     }
     
+    NDS::SetConsoleType((int)self.systemType);
+
     NDS::Init();
     self.initialized = YES;
         
@@ -382,6 +390,26 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 - (NSURL *)firmwareURL
 {
     return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"firmware.bin"];
+}
+
+- (NSURL *)dsiBIOS7URL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsibios7.bin"];
+}
+
+- (NSURL *)dsiBIOS9URL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsibios9.bin"];
+}
+
+- (NSURL *)dsiFirmwareURL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsifirmware.bin"];
+}
+
+- (NSURL *)dsiNANDURL
+{
+    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsinand.bin"];
 }
 
 @end
