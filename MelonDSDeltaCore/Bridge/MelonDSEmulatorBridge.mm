@@ -29,6 +29,8 @@
 
 #include <memory>
 
+#import <notify.h>
+
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
 {
@@ -92,7 +94,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @property (nonatomic) uint32_t activatedInputs;
 @property (nonatomic) CGPoint touchScreenPoint;
 
-@property (nonatomic, assign) std::shared_ptr<ARCodeFile> cheatCodes;
+@property (nonatomic, readonly) std::shared_ptr<ARCodeFile> cheatCodes;
+@property (nonatomic, readonly) int notifyToken;
 
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
@@ -147,6 +150,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         strncpy(Config::DSiBIOS9Path, self.dsiBIOS9URL.lastPathComponent.UTF8String, self.dsiBIOS9URL.lastPathComponent.length);
         strncpy(Config::DSiFirmwarePath, self.dsiFirmwareURL.lastPathComponent.UTF8String, self.dsiFirmwareURL.lastPathComponent.length);
         strncpy(Config::DSiNANDPath, self.dsiNANDURL.lastPathComponent.UTF8String, self.dsiNANDURL.lastPathComponent.length);
+        
+        [self registerForNotifications];
     }
     
     NDS::SetConsoleType((int)self.systemType);
@@ -200,8 +205,11 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         return;
     }
     
+    uint32_t inputs = self.activatedInputs;
+    inputs &= ~(MelonDSGameInputTouchScreenX | MelonDSGameInputTouchScreenY | MelonDSGameInputLid);
+    
     uint32_t inputsMask = 0x007F03FF; // 0b110000001111111111;
-    uint16_t sanitizedInputs = inputsMask ^ self.activatedInputs;
+    uint16_t sanitizedInputs = inputsMask ^ inputs;
     NDS::SetKeyMask(sanitizedInputs);
     
     if (self.activatedInputs & MelonDSGameInputTouchScreenX || self.activatedInputs & MelonDSGameInputTouchScreenY)
@@ -211,6 +219,15 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     else
     {
         NDS::ReleaseScreen();
+    }
+    
+    if (self.activatedInputs & MelonDSGameInputLid)
+    {
+        NDS::SetLidClosed(true);
+    }
+    else if (NDS::IsLidClosed())
+    {
+        NDS::SetLidClosed(false);
     }
     
     NDS::RunFrame();
@@ -370,6 +387,35 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     AREngine::SetCodeFile(self.cheatCodes.get());
 }
 
+#pragma mark - Notifications -
+
+- (void)registerForNotifications
+{
+    int status = notify_register_dispatch("com.apple.springboard.hasBlankedScreen", &_notifyToken, dispatch_get_main_queue(), ^(int t) {
+        uint64_t state;
+        int result = notify_get_state(self.notifyToken, &state);
+        NSLog(@"Lock screen state = %llu", state);
+        
+        if (state == 0)
+        {
+            [self deactivateInput:MelonDSGameInputLid];
+        }
+        else
+        {
+            [self activateInput:MelonDSGameInputLid value:1];
+        }
+        
+        if (result != NOTIFY_STATUS_OK)
+        {
+            NSLog(@"Lock screen notification returned: %d", result);
+        }
+    });
+    
+    if (status != NOTIFY_STATUS_OK)
+    {
+        NSLog(@"Lock screen notification registration returned: %d", status);
+    }
+}
 #pragma mark - Getters/Setters -
 
 - (NSTimeInterval)frameDuration

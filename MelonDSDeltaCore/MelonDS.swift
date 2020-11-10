@@ -41,6 +41,8 @@ public extension CheatType
     case touchScreenX = 4096
     case touchScreenY = 8192
     
+    case lid = 16_384
+    
     public var type: InputType {
         return .game(.ds)
     }
