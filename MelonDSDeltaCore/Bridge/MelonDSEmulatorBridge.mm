@@ -134,6 +134,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 - (void)startWithGameURL:(NSURL *)gameURL
 {
+    self.gameURL = gameURL;
+    
     if ([self isInitialized])
     {
         NDS::DeInit();
