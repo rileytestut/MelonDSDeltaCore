@@ -208,9 +208,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     }
     
     uint32_t inputs = self.activatedInputs;
-    inputs &= ~(MelonDSGameInputTouchScreenX | MelonDSGameInputTouchScreenY | MelonDSGameInputLid);
+    uint32_t inputsMask = 0xFFF; // 0b000000111111111111;
     
-    uint32_t inputsMask = 0x007F03FF; // 0b110000001111111111;
     uint16_t sanitizedInputs = inputsMask ^ inputs;
     NDS::SetKeyMask(sanitizedInputs);
     
