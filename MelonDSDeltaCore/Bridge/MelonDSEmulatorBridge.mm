@@ -100,12 +100,19 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
 
+@property (nonatomic, readonly) AVAudioEngine *audioEngine;
+@property (nonatomic, readonly) AVAudioUnitEQ *audioEQEffect;
+@property (nonatomic, readonly) AVAudioConverter *audioConverter;
+@property (nonatomic, readonly) DLTARingBuffer *microphoneBuffer;
+@property (nonatomic, readonly) dispatch_queue_t microphoneQueue;
+
 @end
 
 @implementation MelonDSEmulatorBridge
 @synthesize audioRenderer = _audioRenderer;
 @synthesize videoRenderer = _videoRenderer;
 @synthesize saveUpdateHandler = _saveUpdateHandler;
+@synthesize audioConverter = _audioConverter;
 
 + (instancetype)sharedBridge
 {
@@ -125,6 +132,12 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     {
         _cheatCodes = std::make_shared<ARCodeFile>("");
         _activatedInputs = 0;
+        
+        _audioEngine = [[AVAudioEngine alloc] init];
+        _audioEQEffect = [[AVAudioUnitEQ alloc] initWithNumberOfBands:2];
+        
+        _microphoneBuffer = [[DLTARingBuffer alloc] initWithPreferredBufferSize:100 * 1024];
+        _microphoneQueue = dispatch_queue_create("com.rileytestut.MelonDSDeltaCore.Microphone", DISPATCH_QUEUE_SERIAL);
     }
     
     return self;
@@ -154,6 +167,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         strncpy(Config::DSiNANDPath, self.dsiNANDURL.lastPathComponent.UTF8String, self.dsiNANDURL.lastPathComponent.length);
         
         [self registerForNotifications];
+        [self prepareAudioEngine];
     }
     
     NDS::SetConsoleType((int)self.systemType);
@@ -188,10 +202,13 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     self.stopping = YES;
     
     NDS::Stop();
+    
+    [self.audioEngine stop];
 }
 
 - (void)pause
 {
+    [self.audioEngine pause];
 }
 
 - (void)resume
@@ -229,6 +246,15 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     else if (NDS::IsLidClosed())
     {
         NDS::SetLidClosed(false);
+    }
+    
+    static int16_t micBuffer[735];
+    NSInteger readBytes = (NSInteger)[self.microphoneBuffer readIntoBuffer:micBuffer preferredSize:735 * sizeof(int16_t)];
+    NSInteger readFrames = readBytes / sizeof(int16_t);
+    
+    if (readFrames > 0)
+    {
+        NDS::MicInputFrame(micBuffer, (int)readFrames);
     }
     
     NDS::RunFrame();
@@ -417,6 +443,66 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         NSLog(@"Lock screen notification registration returned: %d", status);
     }
 }
+
+#pragma mark - Microphone -
+
+- (void)prepareAudioEngine
+{
+    self.audioEQEffect.globalGain = 3;
+    
+    // Experimentally-determined values. Focuses on ensuring blows are registered correctly.
+    self.audioEQEffect.bands[0].filterType = AVAudioUnitEQFilterTypeLowShelf;
+    self.audioEQEffect.bands[0].frequency = 100;
+    self.audioEQEffect.bands[0].gain = 20;
+    self.audioEQEffect.bands[0].bypass = NO;
+
+    self.audioEQEffect.bands[1].filterType = AVAudioUnitEQFilterTypeHighShelf;
+    self.audioEQEffect.bands[1].frequency = 10000;
+    self.audioEQEffect.bands[1].gain = -30;
+    self.audioEQEffect.bands[1].bypass = NO;
+    
+    [self.audioEngine attachNode:self.audioEQEffect];
+    [self.audioEngine connect:self.audioEngine.inputNode to:self.audioEQEffect format:self.audioConverter.inputFormat];
+    
+    NSInteger bufferSize = 1024 * self.audioConverter.inputFormat.streamDescription->mBytesPerFrame;
+    [self.audioEQEffect installTapOnBus:0 bufferSize:bufferSize format:self.audioConverter.inputFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
+        dispatch_async(self.microphoneQueue, ^{
+            [self processMicrophoneBuffer:buffer];
+        });
+    }];
+}
+
+- (void)processMicrophoneBuffer:(AVAudioPCMBuffer *)inputBuffer
+{
+    static AVAudioPCMBuffer *outputBuffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:self.audioConverter.outputFormat frameCapacity:5000];
+    outputBuffer.frameLength = 5000;
+    
+    __block BOOL didReturnBuffer = NO;
+    
+    NSError *error = nil;
+    AVAudioConverterOutputStatus status = [self.audioConverter convertToBuffer:outputBuffer error:&error
+                                                            withInputFromBlock:^AVAudioBuffer * _Nullable(AVAudioPacketCount packetCount, AVAudioConverterInputStatus * _Nonnull outStatus) {
+        if (didReturnBuffer)
+        {
+            *outStatus = AVAudioConverterInputStatus_NoDataNow;
+            return nil;
+        }
+        else
+        {
+            didReturnBuffer = YES;
+            *outStatus = AVAudioConverterInputStatus_HaveData;
+            return inputBuffer;
+        }
+    }];
+
+    if (status == AVAudioConverterOutputStatus_Error)
+    {
+        NSLog(@"Conversion error: %@", error);
+    }
+    
+    NSInteger outputSize = outputBuffer.frameLength * outputBuffer.format.streamDescription->mBytesPerFrame;
+    [self.microphoneBuffer writeBuffer:outputBuffer.int16ChannelData[0] size:outputSize];
+}
 #pragma mark - Getters/Setters -
 
 - (NSTimeInterval)frameDuration
@@ -457,6 +543,19 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 - (NSURL *)dsiNANDURL
 {
     return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsinand.bin"];
+}
+
+- (AVAudioConverter *)audioConverter
+{
+    if (_audioConverter == nil)
+    {
+        // Lazily initialize so we don't cause microphone permission alert to appear prematurely.
+        AVAudioFormat *inputFormat = [_audioEngine.inputNode inputFormatForBus:0];
+        AVAudioFormat *outputFormat = [[AVAudioFormat alloc] initWithCommonFormat:AVAudioPCMFormatInt16 sampleRate:44100 channels:1 interleaved:NO];
+        _audioConverter = [[AVAudioConverter alloc] initFromFormat:inputFormat toFormat:outputFormat];
+    }
+    
+    return _audioConverter;
 }
 
 @end
@@ -579,6 +678,20 @@ namespace Platform
     int LAN_RecvPacket(u8* data)
     {
         return 0;
+    }
+
+    void Mic_Prepare()
+    {
+        if ([MelonDSEmulatorBridge.sharedBridge.audioEngine isRunning])
+        {
+            return;
+        }
+        
+        NSError *error = nil;
+        if (![MelonDSEmulatorBridge.sharedBridge.audioEngine startAndReturnError:&error])
+        {
+            NSLog(@"Failed to start listening to microphone. %@", error);
+        }
     }
 }
 
