@@ -181,6 +181,9 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     GPU::InitRenderer(0);
     GPU::SetRenderSettings(0, settings);
     
+    Config::JIT_Enable = [self isJITEnabled];
+    Config::JIT_FastMemory = NO;
+    
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
     {

@@ -50,6 +50,16 @@
 		BF38C9EF2494133F005AFA8D /* Standard.deltamapping in Resources */ = {isa = PBXBuildFile; fileRef = BF38C9EE2494133F005AFA8D /* Standard.deltamapping */; };
 		BF39AFDF2534D2B500800781 /* Standard.deltaskin in Resources */ = {isa = PBXBuildFile; fileRef = BF39AFDE2534D2B500800781 /* Standard.deltaskin */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF74CC622553756B00060964 /* ARMJIT_LoadStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */; };
+		BF74CC632553756B00060964 /* ARMJIT_Linkage.s in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */; };
+		BF74CC642553756B00060964 /* ARMJIT_ALU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5E2553756B00060964 /* ARMJIT_ALU.cpp */; };
+		BF74CC652553756B00060964 /* ARMJIT_Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */; };
+		BF74CC662553756B00060964 /* ARMJIT_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */; };
+		BF74CC692553769C00060964 /* ARMJIT_Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC682553769B00060964 /* ARMJIT_Memory.cpp */; };
+		BF74CC6D25537D7C00060964 /* Arm64Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC6B25537D7C00060964 /* Arm64Emitter.cpp */; };
+		BF925D0B255E07E00088EFF2 /* ARMJIT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D09255E07E00088EFF2 /* ARMJIT.cpp */; };
+		BF925D0E255E07F90088EFF2 /* ARM_InstrInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D0D255E07F80088EFF2 /* ARM_InstrInfo.cpp */; };
+		BF925D13255E080D0088EFF2 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = BF925D12255E080C0088EFF2 /* xxhash.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +174,23 @@
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_LoadStore.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_LoadStore.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ARMJIT_Linkage.s; path = melonDS/src/ARMJIT_A64/ARMJIT_Linkage.s; sourceTree = SOURCE_ROOT; };
+		BF74CC5E2553756B00060964 /* ARMJIT_ALU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_ALU.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_ALU.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_Branch.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_Branch.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_Compiler.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_Compiler.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC612553756B00060964 /* ARMJIT_Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMJIT_Compiler.h; path = melonDS/src/ARMJIT_A64/ARMJIT_Compiler.h; sourceTree = SOURCE_ROOT; };
+		BF74CC672553769B00060964 /* ARMJIT_Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMJIT_Memory.h; path = melonDS/src/ARMJIT_Memory.h; sourceTree = SOURCE_ROOT; };
+		BF74CC682553769B00060964 /* ARMJIT_Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_Memory.cpp; path = melonDS/src/ARMJIT_Memory.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC6B25537D7C00060964 /* Arm64Emitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Arm64Emitter.cpp; path = melonDS/src/dolphin/Arm64Emitter.cpp; sourceTree = SOURCE_ROOT; };
+		BF74CC6C25537D7C00060964 /* Arm64Emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arm64Emitter.h; path = melonDS/src/dolphin/Arm64Emitter.h; sourceTree = SOURCE_ROOT; };
+		BF925D09255E07E00088EFF2 /* ARMJIT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT.cpp; path = melonDS/src/ARMJIT.cpp; sourceTree = SOURCE_ROOT; };
+		BF925D0A255E07E00088EFF2 /* ARMJIT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMJIT.h; path = melonDS/src/ARMJIT.h; sourceTree = SOURCE_ROOT; };
+		BF925D0C255E07F80088EFF2 /* ARM_InstrInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARM_InstrInfo.h; path = melonDS/src/ARM_InstrInfo.h; sourceTree = SOURCE_ROOT; };
+		BF925D0D255E07F80088EFF2 /* ARM_InstrInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARM_InstrInfo.cpp; path = melonDS/src/ARM_InstrInfo.cpp; sourceTree = SOURCE_ROOT; };
+		BF925D10255E080C0088EFF2 /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = melonDS/src/xxhash/xxhash.h; sourceTree = SOURCE_ROOT; };
+		BF925D11255E080C0088EFF2 /* xxh3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxh3.h; path = melonDS/src/xxhash/xxh3.h; sourceTree = SOURCE_ROOT; };
+		BF925D12255E080C0088EFF2 /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = melonDS/src/xxhash/xxhash.c; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,9 +219,12 @@
 				BF062A9125436E920010FF6D /* ARCodeFile.h */,
 				BF02B2B924366EF6001B4E65 /* AREngine.cpp */,
 				BF02B2A724366EF5001B4E65 /* AREngine.h */,
+				BF925D0D255E07F80088EFF2 /* ARM_InstrInfo.cpp */,
+				BF925D0C255E07F80088EFF2 /* ARM_InstrInfo.h */,
 				BF02B2BA24366EF6001B4E65 /* ARM_InstrTable.h */,
 				BF02B29F24366EF4001B4E65 /* ARM.cpp */,
 				BF02B29224366EF4001B4E65 /* ARM.h */,
+				BF74CC5B2553754700060964 /* ARMJIT_A64 */,
 				BF02B29E24366EF4001B4E65 /* ARMInterpreter_ALU.cpp */,
 				BF02B2A424366EF5001B4E65 /* ARMInterpreter_ALU.h */,
 				BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */,
@@ -203,11 +233,16 @@
 				BF02B2B524366EF5001B4E65 /* ARMInterpreter_LoadStore.h */,
 				BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */,
 				BF02B29524366EF4001B4E65 /* ARMInterpreter.h */,
+				BF925D09255E07E00088EFF2 /* ARMJIT.cpp */,
+				BF925D0A255E07E00088EFF2 /* ARMJIT.h */,
+				BF74CC682553769B00060964 /* ARMJIT_Memory.cpp */,
+				BF74CC672553769B00060964 /* ARMJIT_Memory.h */,
 				BF02B2AC24366EF5001B4E65 /* Config.cpp */,
 				BF02B2B024366EF5001B4E65 /* Config.h */,
 				BF02B2B424366EF5001B4E65 /* CP15.cpp */,
 				BF02B2A824366EF5001B4E65 /* CRC32.cpp */,
 				BF02B2B124366EF5001B4E65 /* CRC32.h */,
+				BF74CC6A25537D6300060964 /* dolphin */,
 				BF02B2B724366EF6001B4E65 /* DMA.cpp */,
 				BF02B29D24366EF4001B4E65 /* DMA.h */,
 				BF062A9825436F440010FF6D /* DSi_AES.cpp */,
@@ -263,6 +298,7 @@
 				BF02B2B224366EF5001B4E65 /* Wifi.h */,
 				BF02B2A524366EF5001B4E65 /* WifiAP.cpp */,
 				BF02B2C124366EF6001B4E65 /* WifiAP.h */,
+				BF925D0F255E08000088EFF2 /* xxhash */,
 			);
 			path = libMelonDS;
 			sourceTree = "<group>";
@@ -358,6 +394,38 @@
 				BF02B30724368320001B4E65 /* Supporting Files */,
 			);
 			path = MelonDSDeltaCore;
+			sourceTree = "<group>";
+		};
+		BF74CC5B2553754700060964 /* ARMJIT_A64 */ = {
+			isa = PBXGroup;
+			children = (
+				BF74CC5E2553756B00060964 /* ARMJIT_ALU.cpp */,
+				BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */,
+				BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */,
+				BF74CC612553756B00060964 /* ARMJIT_Compiler.h */,
+				BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */,
+				BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */,
+			);
+			name = ARMJIT_A64;
+			sourceTree = "<group>";
+		};
+		BF74CC6A25537D6300060964 /* dolphin */ = {
+			isa = PBXGroup;
+			children = (
+				BF74CC6B25537D7C00060964 /* Arm64Emitter.cpp */,
+				BF74CC6C25537D7C00060964 /* Arm64Emitter.h */,
+			);
+			name = dolphin;
+			sourceTree = "<group>";
+		};
+		BF925D0F255E08000088EFF2 /* xxhash */ = {
+			isa = PBXGroup;
+			children = (
+				BF925D11255E080C0088EFF2 /* xxh3.h */,
+				BF925D12255E080C0088EFF2 /* xxhash.c */,
+				BF925D10255E080C0088EFF2 /* xxhash.h */,
+			);
+			name = xxhash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,14 +538,18 @@
 				BF062AA925436F440010FF6D /* DSi_AES.cpp in Sources */,
 				BF062AB5254370050010FF6D /* aes.c in Sources */,
 				BF02B2C724366EF6001B4E65 /* Savestate.cpp in Sources */,
+				BF74CC6D25537D7C00060964 /* Arm64Emitter.cpp in Sources */,
 				BF02B2D224366EF6001B4E65 /* RTC.cpp in Sources */,
 				BF062AAA25436F440010FF6D /* DSi_Camera.cpp in Sources */,
 				BF062ABA2543708E0010FF6D /* PlatformConfig.cpp in Sources */,
+				BF925D13255E080D0088EFF2 /* xxhash.c in Sources */,
 				BF062AAB25436F440010FF6D /* DSiCrypto.cpp in Sources */,
 				BF02B2C824366EF6001B4E65 /* GPU2D.cpp in Sources */,
 				BF02B2D824366EF6001B4E65 /* CP15.cpp in Sources */,
+				BF74CC692553769C00060964 /* ARMJIT_Memory.cpp in Sources */,
 				BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */,
 				BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */,
+				BF74CC632553756B00060964 /* ARMJIT_Linkage.s in Sources */,
 				BF062AB025436F440010FF6D /* DSi_I2C.cpp in Sources */,
 				BF02B2C424366EF6001B4E65 /* SPI.cpp in Sources */,
 				BF02B2CE24366EF6001B4E65 /* ARMInterpreter_LoadStore.cpp in Sources */,
@@ -495,10 +567,16 @@
 				BF02B2D924366EF6001B4E65 /* DMA.cpp in Sources */,
 				BF02B2D124366EF6001B4E65 /* CRC32.cpp in Sources */,
 				BF02B2C924366EF6001B4E65 /* GPU3D_Soft.cpp in Sources */,
+				BF74CC662553756B00060964 /* ARMJIT_Compiler.cpp in Sources */,
+				BF74CC622553756B00060964 /* ARMJIT_LoadStore.cpp in Sources */,
 				BF02B2D424366EF6001B4E65 /* Config.cpp in Sources */,
+				BF74CC642553756B00060964 /* ARMJIT_ALU.cpp in Sources */,
 				BF02B2D624366EF6001B4E65 /* GPU3D.cpp in Sources */,
 				BF02B2CC24366EF6001B4E65 /* SPU.cpp in Sources */,
+				BF925D0E255E07F90088EFF2 /* ARM_InstrInfo.cpp in Sources */,
 				BF062AAE25436F440010FF6D /* DSi_NDMA.cpp in Sources */,
+				BF74CC652553756B00060964 /* ARMJIT_Branch.cpp in Sources */,
+				BF925D0B255E07E00088EFF2 /* ARMJIT.cpp in Sources */,
 				BF062AAD25436F440010FF6D /* DSi.cpp in Sources */,
 				BF02B2C324366EF6001B4E65 /* Wifi.cpp in Sources */,
 				BF02B2DC24366EF6001B4E65 /* NDS.cpp in Sources */,
@@ -531,6 +609,11 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"JIT_ENABLED=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -688,6 +771,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"JIT_ENABLED=1",
+				);
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -717,6 +805,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "JIT_ENABLED=1";
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;

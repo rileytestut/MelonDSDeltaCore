@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, MelonDSSystemType)
 @property (class, nonatomic, readonly) MelonDSEmulatorBridge *sharedBridge;
 
 @property (nonatomic) MelonDSSystemType systemType;
+@property (nonatomic, getter=isJITEnabled) BOOL jitEnabled;
 
 @property (nonatomic, readonly) NSURL *bios7URL;
 @property (nonatomic, readonly) NSURL *bios9URL;
