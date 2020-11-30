@@ -172,6 +172,9 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     
     NDS::SetConsoleType((int)self.systemType);
 
+    Config::JIT_Enable = [self isJITEnabled];
+    Config::JIT_FastMemory = NO;
+    
     NDS::Init();
     self.initialized = YES;
         
@@ -179,10 +182,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     settings.Soft_Threaded = NO;
 
     GPU::InitRenderer(0);
-    GPU::SetRenderSettings(0, settings);
-    
-    Config::JIT_Enable = [self isJITEnabled];
-    Config::JIT_FastMemory = NO;
+    GPU::SetRenderSettings(0, settings);    
     
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
