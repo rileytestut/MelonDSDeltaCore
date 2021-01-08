@@ -30,6 +30,7 @@
 #include <memory>
 
 #import <notify.h>
+#import <pthread.h>
 
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
@@ -168,6 +169,9 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         [self registerForNotifications];
         [self prepareAudioEngine];
+        
+        // Renderer is not deinitialized in NDS::DeInit, so initialize it only once.
+        GPU::InitRenderer(0);
     }
     
     NDS::SetConsoleType((int)self.systemType);
@@ -179,10 +183,9 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     self.initialized = YES;
         
     GPU::RenderSettings settings;
-    settings.Soft_Threaded = NO;
+    settings.Soft_Threaded = YES;
 
-    GPU::InitRenderer(0);
-    GPU::SetRenderSettings(0, settings);    
+    GPU::SetRenderSettings(0, settings);
     
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
@@ -260,6 +263,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         NDS::MicInputFrame(micBuffer, (int)readFrames);
     }
     
+    NDS::SetSkipFrame(!processVideo);
     NDS::RunFrame();
     
     static int16_t buffer[0x1000];
@@ -608,53 +612,94 @@ namespace Platform
     
     Thread *Thread_Create(void (*func)())
     {
-        return NULL;
+        NSThread *thread = [[NSThread alloc] initWithBlock:^{
+            func();
+        }];
+        
+        thread.name = @"MelonDS - Rendering";
+        thread.qualityOfService = NSQualityOfServiceUserInitiated;
+        
+        [thread start];
+        
+        return (Thread *)CFBridgingRetain(thread);
     }
     
     void Thread_Free(Thread *thread)
     {
+        NSThread *nsThread = (NSThread *)CFBridgingRelease(thread);
+        [nsThread cancel];
     }
     
     void Thread_Wait(Thread *thread)
     {
+        NSThread *nsThread = (__bridge NSThread *)thread;
+        while (nsThread.isExecuting)
+        {
+            continue;
+        }
     }
     
     Semaphore *Semaphore_Create()
     {
-        return NULL;
+        dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
+        return (Semaphore *)CFBridgingRetain(dispatchSemaphore);
     }
     
     void Semaphore_Free(Semaphore *semaphore)
     {
+        CFRelease(semaphore);
     }
     
     void Semaphore_Reset(Semaphore *semaphore)
     {
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        while (dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_NOW) == 0)
+        {
+            continue;
+        }
     }
     
     void Semaphore_Wait(Semaphore *semaphore)
     {
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_FOREVER);
     }
 
     void Semaphore_Post(Semaphore *semaphore, int count)
     {
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        for (int i = 0; i < count; i++)
+        {
+            dispatch_semaphore_signal(dispatchSemaphore);
+        }
     }
 
     Mutex *Mutex_Create()
     {
-        return NULL;
+        // NSLock is too slow for real-time audio, so use pthread_mutex_t directly.
+        
+        pthread_mutex_t *mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+        pthread_mutex_init(mutex, NULL);
+        return (Mutex *)mutex;
     }
 
     void Mutex_Free(Mutex *m)
     {
+        pthread_mutex_t *mutex = (pthread_mutex_t *)m;
+        pthread_mutex_destroy(mutex);
+        free(mutex);
     }
 
     void Mutex_Lock(Mutex *m)
     {
+        pthread_mutex_t *mutex = (pthread_mutex_t *)m;
+        pthread_mutex_lock(mutex);
     }
 
     void Mutex_Unlock(Mutex *m)
     {
+        pthread_mutex_t *mutex = (pthread_mutex_t *)m;
+        pthread_mutex_unlock(mutex);
     }
     
     void *GL_GetProcAddress(const char* proc)
