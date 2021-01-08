@@ -606,37 +606,54 @@ namespace Platform
         return OpenFile(fileURL.fileSystemRepresentation, "rb");
     }
     
-    void *Thread_Create(void (*func)())
+    Thread *Thread_Create(void (*func)())
     {
         return NULL;
     }
     
-    void Thread_Free(void* thread)
+    void Thread_Free(Thread *thread)
     {
     }
     
-    void Thread_Wait(void* thread)
+    void Thread_Wait(Thread *thread)
     {
     }
     
-    void *Semaphore_Create()
+    Semaphore *Semaphore_Create()
     {
         return NULL;
     }
     
-    void Semaphore_Free(void *semaphore)
+    void Semaphore_Free(Semaphore *semaphore)
     {
     }
     
-    void Semaphore_Reset(void *semaphore)
+    void Semaphore_Reset(Semaphore *semaphore)
     {
     }
     
-    void Semaphore_Wait(void *semaphore)
+    void Semaphore_Wait(Semaphore *semaphore)
     {
     }
 
-    void Semaphore_Post(void *semaphore)
+    void Semaphore_Post(Semaphore *semaphore, int count)
+    {
+    }
+
+    Mutex *Mutex_Create()
+    {
+        return NULL;
+    }
+
+    void Mutex_Free(Mutex *m)
+    {
+    }
+
+    void Mutex_Lock(Mutex *m)
+    {
+    }
+
+    void Mutex_Unlock(Mutex *m)
     {
     }
     
@@ -696,45 +713,4 @@ namespace Platform
             NSLog(@"Failed to start listening to microphone. %@", error);
         }
     }
-}
-
-namespace GPU3D
-{
-namespace GLRenderer
-{
-    bool Init()
-    {
-        return false;
-    }
-    
-    void DeInit()
-    {
-    }
-    
-    void Reset()
-    {
-    }
-
-    void UpdateDisplaySettings()
-    {
-    }
-
-    void RenderFrame()
-    {
-    }
-    
-    void PrepareCaptureFrame()
-    {
-    }
-    
-    u32* GetLine(int line)
-    {
-        return NULL;
-    }
-    
-    void SetupAccelFrame()
-    {
-        return;
-    }
-}
 }
