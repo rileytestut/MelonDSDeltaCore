@@ -101,7 +101,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
 
-@property (nonatomic, readonly) AVAudioEngine *audioEngine;
+@property (nonatomic, nullable) AVAudioEngine *audioEngine;
 @property (nonatomic, readonly) AVAudioUnitEQ *audioEQEffect;
 @property (nonatomic, readonly) AVAudioConverter *audioConverter;
 @property (nonatomic, readonly) DLTARingBuffer *microphoneBuffer;
@@ -134,7 +134,6 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         _cheatCodes = std::make_shared<ARCodeFile>("");
         _activatedInputs = 0;
         
-        _audioEngine = [[AVAudioEngine alloc] init];
         _audioEQEffect = [[AVAudioUnitEQ alloc] initWithNumberOfBands:2];
         
         _microphoneBuffer = [[DLTARingBuffer alloc] initWithPreferredBufferSize:100 * 1024];
@@ -168,11 +167,12 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         strncpy(Config::DSiNANDPath, self.dsiNANDURL.lastPathComponent.UTF8String, self.dsiNANDURL.lastPathComponent.length);
         
         [self registerForNotifications];
-        [self prepareAudioEngine];
         
         // Renderer is not deinitialized in NDS::DeInit, so initialize it only once.
         GPU::InitRenderer(0);
     }
+    
+    [self prepareAudioEngine];
     
     NDS::SetConsoleType((int)self.systemType);
 
@@ -210,6 +210,10 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     NDS::Stop();
     
     [self.audioEngine stop];
+    
+    // Assign to nil to prevent microphone indicator
+    // staying on after returning from background.
+    self.audioEngine = nil;
 }
 
 - (void)pause
@@ -455,7 +459,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 - (void)prepareAudioEngine
 {
-    self.audioEQEffect.globalGain = 3;
+    self.audioEngine = [[AVAudioEngine alloc] init];
     
     // Experimentally-determined values. Focuses on ensuring blows are registered correctly.
     self.audioEQEffect.bands[0].filterType = AVAudioUnitEQFilterTypeLowShelf;
@@ -467,6 +471,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     self.audioEQEffect.bands[1].frequency = 10000;
     self.audioEQEffect.bands[1].gain = -30;
     self.audioEQEffect.bands[1].bypass = NO;
+    
+    self.audioEQEffect.globalGain = 3;
     
     [self.audioEngine attachNode:self.audioEQEffect];
     [self.audioEngine connect:self.audioEngine.inputNode to:self.audioEQEffect format:self.audioConverter.inputFormat];
