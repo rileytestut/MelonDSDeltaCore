@@ -100,10 +100,11 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
+@property (nonatomic, getter=isMicrophoneEnabled) BOOL microphoneEnabled;
 
 @property (nonatomic, nullable) AVAudioEngine *audioEngine;
+@property (nonatomic, nullable, readonly) AVAudioConverter *audioConverter; // May be nil while microphone is being used by another app.
 @property (nonatomic, readonly) AVAudioUnitEQ *audioEQEffect;
-@property (nonatomic, readonly) AVAudioConverter *audioConverter;
 @property (nonatomic, readonly) DLTARingBuffer *microphoneBuffer;
 @property (nonatomic, readonly) dispatch_queue_t microphoneQueue;
 
@@ -138,6 +139,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         _microphoneBuffer = [[DLTARingBuffer alloc] initWithPreferredBufferSize:100 * 1024];
         _microphoneQueue = dispatch_queue_create("com.rileytestut.MelonDSDeltaCore.Microphone", DISPATCH_QUEUE_SERIAL);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAudioSessionInterruption:) name:AVAudioSessionInterruptionNotification object:nil];
     }
     
     return self;
@@ -460,7 +463,15 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 - (void)prepareAudioEngine
 {
     self.audioEngine = [[AVAudioEngine alloc] init];
+    if ([self.audioEngine.inputNode inputFormatForBus:0].sampleRate == 0)
+    {
+        // Microphone is being used by another application.
+        self.microphoneEnabled = NO;
+        return;
+    }
     
+    self.microphoneEnabled = YES;
+        
     // Experimentally-determined values. Focuses on ensuring blows are registered correctly.
     self.audioEQEffect.bands[0].filterType = AVAudioUnitEQFilterTypeLowShelf;
     self.audioEQEffect.bands[0].frequency = 100;
@@ -516,6 +527,32 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     NSInteger outputSize = outputBuffer.frameLength * outputBuffer.format.streamDescription->mBytesPerFrame;
     [self.microphoneBuffer writeBuffer:outputBuffer.int16ChannelData[0] size:outputSize];
 }
+
+- (void)handleAudioSessionInterruption:(NSNotification *)notification
+{
+    AVAudioSessionInterruptionType interruptionType = (AVAudioSessionInterruptionType)[notification.userInfo[AVAudioSessionInterruptionTypeKey] integerValue];
+    
+    switch (interruptionType)
+    {
+        case AVAudioSessionInterruptionTypeBegan:
+        {
+            self.microphoneEnabled = NO;
+            break;
+        }
+            
+        case AVAudioSessionInterruptionTypeEnded:
+        {
+            if (self.audioEngine)
+            {
+                // Only reset audio engine if there is currently an active one.
+                [self prepareAudioEngine];
+            }
+            
+            break;
+        }
+    }
+}
+
 #pragma mark - Getters/Setters -
 
 - (NSTimeInterval)frameDuration
@@ -753,7 +790,7 @@ namespace Platform
 
     void Mic_Prepare()
     {
-        if ([MelonDSEmulatorBridge.sharedBridge.audioEngine isRunning])
+        if (![MelonDSEmulatorBridge.sharedBridge isMicrophoneEnabled] || [MelonDSEmulatorBridge.sharedBridge.audioEngine isRunning])
         {
             return;
         }
