@@ -270,7 +270,13 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         NDS::MicInputFrame(micBuffer, (int)readFrames);
     }
     
-    NDS::SetSkipFrame(!processVideo);
+    if ([self isJITEnabled])
+    {
+        // Skipping frames with JIT disabled can cause graphical bugs,
+        // so limit frame skip to devices that support JIT (for now).
+        NDS::SetSkipFrame(!processVideo);
+    }
+    
     NDS::RunFrame();
     
     static int16_t buffer[0x1000];
