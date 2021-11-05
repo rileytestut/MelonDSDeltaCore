@@ -64,6 +64,10 @@ public struct MelonDS: DeltaCoreProtocol
     
     public var emulatorBridge: EmulatorBridging { MelonDSEmulatorBridge.shared as! EmulatorBridging }
     
+    #if SWIFT_PACKAGE
+    public var resourceBundle: Bundle { Bundle.module }
+    #endif
+    
     private init()
     {
         MelonDSEmulatorBridge.shared.coreDirectoryURL = self.directoryURL
