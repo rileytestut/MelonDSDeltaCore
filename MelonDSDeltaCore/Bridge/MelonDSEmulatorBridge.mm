@@ -8,8 +8,16 @@
 
 #import "MelonDSEmulatorBridge.h"
 
-#import <UIKit/UIKit.h> // Prevent undeclared symbols in below headers
+#if SWIFT_PACKAGE
 
+@import DeltaCore;
+@import MelonDSSwift;
+
+@import AVFoundation;
+
+#else
+
+#import <UIKit/UIKit.h> // Prevent undeclared symbols in below headers
 #import <DeltaCore/DeltaCore.h>
 #import <DeltaCore/DeltaCore-Swift.h>
 
@@ -17,6 +25,8 @@
 #import "MelonDSDeltaCore-Swift.h"
 #else
 #import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
+#endif
+
 #endif
 
 #include "melonDS/src/Platform.h"
@@ -568,37 +578,37 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 - (NSURL *)bios7URL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"bios7.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"bios7.bin"];
 }
 
 - (NSURL *)bios9URL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"bios9.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"bios9.bin"];
 }
 
 - (NSURL *)firmwareURL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"firmware.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"firmware.bin"];
 }
 
 - (NSURL *)dsiBIOS7URL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsibios7.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"dsibios7.bin"];
 }
 
 - (NSURL *)dsiBIOS9URL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsibios9.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"dsibios9.bin"];
 }
 
 - (NSURL *)dsiFirmwareURL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsifirmware.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"dsifirmware.bin"];
 }
 
 - (NSURL *)dsiNANDURL
 {
-    return [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@"dsinand.bin"];
+    return [self.coreDirectoryURL URLByAppendingPathComponent:@"dsinand.bin"];
 }
 
 - (AVAudioConverter *)audioConverter
@@ -646,7 +656,7 @@ namespace Platform
     
     FILE* OpenLocalFile(const char* path, const char* mode)
     {
-        NSURL *fileURL = [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@(path)];
+        NSURL *fileURL = [MelonDSEmulatorBridge.sharedBridge.coreDirectoryURL URLByAppendingPathComponent:@(path)];
         return OpenFile(fileURL.fileSystemRepresentation, mode);
     }
     
@@ -655,7 +665,7 @@ namespace Platform
         NSString *resourceName = [@(path) stringByDeletingPathExtension];
         NSString *extension = [@(path) pathExtension];
         
-        NSURL *fileURL = [MelonDSEmulatorBridge.dsResources URLForResource:resourceName withExtension:extension];
+        NSURL *fileURL = [MelonDSEmulatorBridge.sharedBridge.coreResourcesBundle URLForResource:resourceName withExtension:extension];
         return OpenFile(fileURL.fileSystemRepresentation, "rb");
     }
     
