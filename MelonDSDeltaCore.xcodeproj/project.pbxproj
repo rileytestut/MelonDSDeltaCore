@@ -60,6 +60,7 @@
 		BF925D0B255E07E00088EFF2 /* ARMJIT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D09255E07E00088EFF2 /* ARMJIT.cpp */; };
 		BF925D0E255E07F90088EFF2 /* ARM_InstrInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D0D255E07F80088EFF2 /* ARM_InstrInfo.cpp */; };
 		BF925D13255E080D0088EFF2 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = BF925D12255E080C0088EFF2 /* xxhash.c */; };
+		D59A90E02735E85700E8D5CD /* MelonDSGameInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59A90DF2735E85700E8D5CD /* MelonDSGameInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,7 @@
 		BF925D10255E080C0088EFF2 /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = melonDS/src/xxhash/xxhash.h; sourceTree = SOURCE_ROOT; };
 		BF925D11255E080C0088EFF2 /* xxh3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxh3.h; path = melonDS/src/xxhash/xxh3.h; sourceTree = SOURCE_ROOT; };
 		BF925D12255E080C0088EFF2 /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = melonDS/src/xxhash/xxhash.c; sourceTree = SOURCE_ROOT; };
+		D59A90DF2735E85700E8D5CD /* MelonDSGameInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MelonDSGameInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 			children = (
 				BF7317882356624000774F10 /* MelonDSDeltaCore.h */,
 				BF02B2EC24367486001B4E65 /* MelonDS.swift */,
+				D59A90DF2735E85700E8D5CD /* MelonDSGameInput.swift */,
 				BF02B2FB24367CE7001B4E65 /* Types */,
 				BF02B2FA24367CCA001B4E65 /* Bridge */,
 				BF02B30724368320001B4E65 /* Supporting Files */,
@@ -588,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */,
+				D59A90E02735E85700E8D5CD /* MelonDSGameInput.swift in Sources */,
 				BF02B2ED24367486001B4E65 /* MelonDS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
