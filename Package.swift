@@ -11,6 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "MelonDSDeltaCore",
+            type: .dynamic,
             targets: ["MelonDSDeltaCore"]),
     ],
     dependencies: [
