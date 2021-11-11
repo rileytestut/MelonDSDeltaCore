@@ -116,7 +116,9 @@ let package = Package(
             ],
             cSettings: [
                 .headerSearchPath("src"),
-                .define("JIT_ENABLED", to: "1")
+                .define("JIT_ENABLED", to: "1"),
+                
+                .unsafeFlags(["-fvisibility-inlines-hidden"])
 //                .headerSearchPath("Genesis-Plus-GX/core/m68k"),
 //                .headerSearchPath("Genesis-Plus-GX/core/z80"),
 //                .headerSearchPath("Genesis-Plus-GX/core/sound"),
