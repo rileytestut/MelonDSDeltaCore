@@ -74,7 +74,6 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("../.."),
                 .define("JIT_ENABLED", to: "1"),
-                .unsafeFlags(["-fmodules", "-fcxx-modules"])
             ]
         ),
         .target(

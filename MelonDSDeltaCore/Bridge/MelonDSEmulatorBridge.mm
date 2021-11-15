@@ -6,14 +6,13 @@
 //  Copyright © 2019 Riley Testut. All rights reserved.
 //
 
-#import "MelonDSEmulatorBridge.h"
+#import "MelonDSEmulatorBridge+Private.h"
+#import "MelonDSEmulatorBridge+DeltaCore.h"
 
 #if SWIFT_PACKAGE
 
-@import DeltaCore;
-@import MelonDSSwift;
-
-@import AVFoundation;
+#import <AVFoundation/AVFoundation.h>
+#import "DeltaCoreObjC.h"
 
 #else
 
@@ -102,11 +101,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 @property (nonatomic, copy, nullable, readwrite) NSURL *gameURL;
 
-@property (nonatomic) uint32_t activatedInputs;
-@property (nonatomic) CGPoint touchScreenPoint;
-
 @property (nonatomic, readonly) std::shared_ptr<ARCodeFile> cheatCodes;
-@property (nonatomic, readonly) int notifyToken;
 
 @property (nonatomic, getter=isInitialized) BOOL initialized;
 @property (nonatomic, getter=isStopping) BOOL stopping;
@@ -253,7 +248,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     uint16_t sanitizedInputs = inputsMask ^ inputs;
     NDS::SetKeyMask(sanitizedInputs);
     
-    if (self.activatedInputs & MelonDSGameInputTouchScreenX || self.activatedInputs & MelonDSGameInputTouchScreenY)
+    if ([self inputsContainsTouchscreen:self.activatedInputs])
     {
         NDS::TouchScreen(self.touchScreenPoint.x, self.touchScreenPoint.y);
     }
@@ -262,7 +257,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         NDS::ReleaseScreen();
     }
     
-    if (self.activatedInputs & MelonDSGameInputLid)
+    if ([self inputsContainsLid:self.activatedInputs])
     {
         NDS::SetLidClosed(true);
     }
@@ -305,58 +300,6 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         [self.videoRenderer processFrame];
     }
-}
-
-#pragma mark - Inputs -
-
-- (void)activateInput:(NSInteger)input value:(double)value
-{
-    self.activatedInputs |= (uint32_t)input;
-    
-    CGPoint touchPoint = self.touchScreenPoint;
-    
-    switch ((MelonDSGameInput)input)
-    {
-    case MelonDSGameInputTouchScreenX:
-        touchPoint.x = value * (256 - 1);
-        break;
-        
-    case MelonDSGameInputTouchScreenY:
-        touchPoint.y = value * (192 - 1);
-        break;
-            
-    default: break;
-    }
-
-    self.touchScreenPoint = touchPoint;
-}
-
-- (void)deactivateInput:(NSInteger)input
-{
-    self.activatedInputs &= ~((uint32_t)input);
-    
-    CGPoint touchPoint = self.touchScreenPoint;
-    
-    switch ((MelonDSGameInput)input)
-    {
-        case MelonDSGameInputTouchScreenX:
-            touchPoint.x = 0;
-            break;
-            
-        case MelonDSGameInputTouchScreenY:
-            touchPoint.y = 0;
-            break;
-            
-        default: break;
-    }
-    
-    self.touchScreenPoint = touchPoint;
-}
-
-- (void)resetInputs
-{
-    self.activatedInputs = 0;
-    self.touchScreenPoint = CGPointZero;
 }
 
 #pragma mark - Game Saves -
@@ -442,36 +385,6 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 - (void)updateCheats
 {
     AREngine::SetCodeFile(self.cheatCodes.get());
-}
-
-#pragma mark - Notifications -
-
-- (void)registerForNotifications
-{
-    int status = notify_register_dispatch("com.apple.springboard.hasBlankedScreen", &_notifyToken, dispatch_get_main_queue(), ^(int t) {
-        uint64_t state;
-        int result = notify_get_state(self.notifyToken, &state);
-        NSLog(@"Lock screen state = %llu", state);
-        
-        if (state == 0)
-        {
-            [self deactivateInput:MelonDSGameInputLid];
-        }
-        else
-        {
-            [self activateInput:MelonDSGameInputLid value:1];
-        }
-        
-        if (result != NOTIFY_STATUS_OK)
-        {
-            NSLog(@"Lock screen notification returned: %d", result);
-        }
-    });
-    
-    if (status != NOTIFY_STATUS_OK)
-    {
-        NSLog(@"Lock screen notification registration returned: %d", status);
-    }
 }
 
 #pragma mark - Microphone -
