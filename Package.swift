@@ -25,6 +25,15 @@ let package = Package(
             dependencies: ["DeltaCore", "MelonDS", "MelonDSSwift", "MelonDSBridge"],
             path: "",
             exclude: [
+                "melonDS",
+                "MelonDSDeltaCore.podspec",
+                "MelonDSDeltaCore.xcodeproj",
+                
+                "MelonDSDeltaCore/Bridge",
+                "MelonDSDeltaCore/Types",
+                "MelonDSDeltaCore/MelonDSGameInput.swift",
+                "MelonDSDeltaCore/Info.plist",
+                
                 "MelonDSDeltaCore/Controller Skin/info.json",
                 "MelonDSDeltaCore/Controller Skin/iphone_portrait.pdf",
                 "MelonDSDeltaCore/Controller Skin/iphone_landscape.pdf",
@@ -43,7 +52,19 @@ let package = Package(
             name: "MelonDSSwift",
             dependencies: ["DeltaCore"],
             path: "MelonDSDeltaCore",
-            sources: ["MelonDSGameInput.swift"]
+            exclude: [
+                "Bridge",
+                "Controller Skin",
+                "Types",
+                
+                "MelonDS.swift",
+                
+                "Info.plist",
+                "Standard.deltamapping",
+            ],
+            sources: [
+                "MelonDSGameInput.swift"
+            ]
         ),
         .target(
             name: "MelonDSBridge",
@@ -54,85 +75,65 @@ let package = Package(
                 .headerSearchPath("../.."),
                 .define("JIT_ENABLED", to: "1"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"])
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/m68k"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/z80"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/sound"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/cart_hw"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/cart_hw/svp"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/cd_hw"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/input_hw"),
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/core/ntsc"),
-//
-//                .headerSearchPath("../GenesisPlusGX/Genesis-Plus-GX/psp2"),
-//
-//                .define("USE_32BPP_RENDERING"),
-//                .define("FLAC__HAS_OGG", to: "0"),
-//                .define("HAVE_SYS_PARAM_H"),
-//                .define("HAVE_LROUND"),
-//                .define("PACKAGE_VERSION", to: "\"1.3.2\""),
-//                .define("_7ZIP_ST"),
-//                .define("LSB_FIRST")
             ]
         ),
         .target(
             name: "MelonDS",
-            path: "melonDS",
+            path: "melonDS/src",
             exclude: [
-                "src/GPU3D_OpenGL.cpp",
-                "src/OpenGLSupport.cpp",
-                "src/GPU_OpenGL.cpp",
+                "GPU3D_OpenGL.cpp",
+                "OpenGLSupport.cpp",
+                "GPU_OpenGL.cpp",
                 
-                "src/ARMJIT_x64",
+                "CMakeLists.txt",
                 
-                "src/dolphin/CommonFuncs.cpp",
-                "src/dolphin/MathUtil.cpp",
-                "src/dolphin/x64ABI.cpp",
-                "src/dolphin/x64CPUDetect.cpp",
-                "src/dolphin/x64Emitter.cpp",
+                "ARMJIT_x64",
                 
-                "src/frontend/Util_Audio.cpp",
-                "src/frontend/Util_ROM.cpp",
-                "src/frontend/Util_Video.cpp",
+                "dolphin/CommonFuncs.cpp",
+                "dolphin/MathUtil.cpp",
+                "dolphin/x64ABI.cpp",
+                "dolphin/x64CPUDetect.cpp",
+                "dolphin/x64Emitter.cpp",
+                "dolphin/license_dolphin.txt",
                 
-                "src/frontend/qt_sdl/pcap",
-                "src/frontend/qt_sdl/AudioSettingsDialog.cpp",
-                "src/frontend/qt_sdl/CheatsDialog.cpp",
-                "src/frontend/qt_sdl/EmuSettingsDialog.cpp",
-                "src/frontend/qt_sdl/Input.cpp",
-                "src/frontend/qt_sdl/InputConfigDialog.cpp",
-                "src/frontend/qt_sdl/LAN_PCap.cpp",
-                "src/frontend/qt_sdl/LAN_Socket.cpp",
-                "src/frontend/qt_sdl/main.cpp",
-                "src/frontend/qt_sdl/OSD.cpp",
-                "src/frontend/qt_sdl/Platform.cpp",
-                "src/frontend/qt_sdl/VideoSettingsDialog.cpp",
-                "src/frontend/qt_sdl/WifiSettingsDialog.cpp",
+                "frontend/Util_Audio.cpp",
+                "frontend/Util_ROM.cpp",
+                "frontend/Util_Video.cpp",
                 
-                "src/sha1",
+                "frontend/qt_sdl/AudioSettingsDialog.ui",
+                "frontend/qt_sdl/CheatsDialog.ui",
+                "frontend/qt_sdl/CMakeLists.txt",
+                "frontend/qt_sdl/EmuSettingsDialog.ui",
+                "frontend/qt_sdl/InputConfigDialog.ui",
+                "frontend/qt_sdl/VideoSettingsDialog.ui",
+                "frontend/qt_sdl/WifiSettingsDialog.ui",
+                
+                "frontend/qt_sdl/pcap",
+                
+                "frontend/qt_sdl/AudioSettingsDialog.cpp",
+                "frontend/qt_sdl/CheatsDialog.cpp",
+                "frontend/qt_sdl/EmuSettingsDialog.cpp",
+                "frontend/qt_sdl/Input.cpp",
+                "frontend/qt_sdl/InputConfigDialog.cpp",
+                "frontend/qt_sdl/LAN_PCap.cpp",
+                "frontend/qt_sdl/LAN_Socket.cpp",
+                "frontend/qt_sdl/main.cpp",
+                "frontend/qt_sdl/OSD.cpp",
+                "frontend/qt_sdl/Platform.cpp",
+                "frontend/qt_sdl/VideoSettingsDialog.cpp",
+                "frontend/qt_sdl/WifiSettingsDialog.cpp",
+                
+                "sha1",
+                
+                "tiny-AES-c/README.md",
+                "tiny-AES-c/unlicense.txt"
             ],
             sources: [
-                "src"
+                ""
             ],
             cSettings: [
-                .headerSearchPath("src"),
+                .headerSearchPath(""),
                 .define("JIT_ENABLED", to: "1"),
-                
-                .unsafeFlags(["-fvisibility-inlines-hidden"])
-//                .headerSearchPath("Genesis-Plus-GX/core/m68k"),
-//                .headerSearchPath("Genesis-Plus-GX/core/z80"),
-//                .headerSearchPath("Genesis-Plus-GX/core/sound"),
-//                .headerSearchPath("Genesis-Plus-GX/core/cart_hw"),
-//                .headerSearchPath("Genesis-Plus-GX/core/cart_hw/svp"),
-//                .headerSearchPath("Genesis-Plus-GX/core/cd_hw"),
-//                .headerSearchPath("Genesis-Plus-GX/core/cd_hw/libchdr/deps/lzma"),
-//                .headerSearchPath("Genesis-Plus-GX/core/cd_hw/libchdr/deps/libFLAC/include"),
-//                .headerSearchPath("Genesis-Plus-GX/core/input_hw"),
-//                .headerSearchPath("Genesis-Plus-GX/core/ntsc"),
-//
-//                .headerSearchPath("Genesis-Plus-GX/psp2"),
-                
-//                .define("JIT_ENABLED")
             ]
         )
     ],
