@@ -3,26 +3,41 @@
 
 import PackageDescription
 
+let targets: [String]
+let dependencies: [Target.Dependency]
+let defines: String
+
+#if os(iOS)
+targets = ["MelonDSDeltaCore"]
+dependencies = ["DeltaCore"]
+defines = "JAVASCRIPT"
+#else
+targets = ["MelonDSDeltaCore", "MelonDSBridge"]
+dependencies = ["DeltaCore", "MelonDSBridge"]
+defines = "NATIVE"
+#endif
+
 let package = Package(
     name: "MelonDSDeltaCore",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v13)
     ],
     products: [
         .library(
             name: "MelonDSDeltaCore",
-            targets: ["MelonDSDeltaCore"]),
+            targets: targets
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/rileytestut/DeltaCore.git", .branch("swiftpm"))
+        .package(name: "DeltaCore", url: "https://github.com/rileytestut/DeltaCore.git", .upToNextMajor(from: "0.1.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "MelonDSDeltaCore",
-            dependencies: ["DeltaCore", "MelonDS", "MelonDSSwift", "MelonDSBridge"],
+            dependencies: dependencies,
             path: "",
             exclude: [
                 "melonDS",
@@ -30,8 +45,8 @@ let package = Package(
                 "MelonDSDeltaCore.xcodeproj",
                 
                 "MelonDSDeltaCore/Bridge",
+                "MelonDSDeltaCore/Bridge2",
                 "MelonDSDeltaCore/Types",
-                "MelonDSDeltaCore/MelonDSGameInput.swift",
                 "MelonDSDeltaCore/Info.plist",
                 
                 "MelonDSDeltaCore/Controller Skin/info.json",
@@ -41,35 +56,44 @@ let package = Package(
                 "MelonDSDeltaCore/Controller Skin/iphone_edgetoedge_landscape.pdf"
             ],
             sources: [
-                "MelonDSDeltaCore/MelonDS.swift"
+                "MelonDSDeltaCore/MelonDS.swift",
+                "MelonDSDeltaCore/MelonDSGameInput.swift",
+                "MelonDSDeltaCore/MelonDSEmulatorBridge.swift"
             ],
             resources: [
                 .copy("MelonDSDeltaCore/Controller Skin/Standard.deltaskin"),
                 .copy("MelonDSDeltaCore/Standard.deltamapping"),
-            ]
-        ),
-        .target(
-            name: "MelonDSSwift",
-            dependencies: ["DeltaCore"],
-            path: "MelonDSDeltaCore",
-            exclude: [
-                "Bridge",
-                "Controller Skin",
-                "Types",
-                
-                "MelonDS.swift",
-                
-                "Info.plist",
-                "Standard.deltamapping",
+                .copy("MelonDSDeltaCore/biosnds7.rom"),
+                .copy("MelonDSDeltaCore/biosnds9.rom"),
+                .copy("MelonDSDeltaCore/firmware.bin"),
             ],
-            sources: [
-                "MelonDSGameInput.swift"
+            swiftSettings: [
+                .define("SWIFT_PACKAGE"),
+                .define(defines)
             ]
         ),
+//        .target(
+//            name: "MelonDSSwift",
+//            dependencies: ["DeltaCore"],
+//            path: "MelonDSDeltaCore",
+//            exclude: [
+//                "Bridge",
+//                "Controller Skin",
+//                "Types",
+//
+//                "MelonDS.swift",
+//
+//                "Info.plist",
+//                "Standard.deltamapping",
+//            ],
+//            sources: [
+//                "MelonDSGameInput.swift"
+//            ]
+//        ),
         .target(
             name: "MelonDSBridge",
-            dependencies: ["DeltaCore", "MelonDS", "MelonDSSwift"],
-            path: "MelonDSDeltaCore/Bridge",
+            dependencies: ["MelonDS"/*, "MelonDSSwift"*/],
+            path: "MelonDSDeltaCore/Bridge2",
             publicHeadersPath: "",
             cSettings: [
                 .headerSearchPath("../.."),
@@ -133,6 +157,7 @@ let package = Package(
             cSettings: [
                 .headerSearchPath(""),
                 .define("JIT_ENABLED", to: "1"),
+                .unsafeFlags(["-O3"])
             ]
         )
     ],

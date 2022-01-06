@@ -11,9 +11,9 @@ import AVFoundation
 
 import DeltaCore
 
-#if SWIFT_PACKAGE
+#if NATIVE
 @_exported import MelonDSBridge
-@_exported import MelonDSSwift
+//@_exported import MelonDSSwift
 #endif
 
 extension MelonDSGameInput: Input
@@ -62,7 +62,7 @@ public struct MelonDS: DeltaCoreProtocol
         return [actionReplayFormat]
     }
     
-    public var emulatorBridge: EmulatorBridging { MelonDSEmulatorBridge.shared as! EmulatorBridging }
+    public var emulatorBridge: EmulatorBridging { MelonDSEmulatorBridge.shared }
     
     #if SWIFT_PACKAGE
     public var resourceBundle: Bundle { Bundle.module }
@@ -71,7 +71,7 @@ public struct MelonDS: DeltaCoreProtocol
     private init()
     {
         MelonDSEmulatorBridge.shared.coreDirectoryURL = self.directoryURL
-        MelonDSEmulatorBridge.shared.coreResourcesBundle = self.resourceBundle
+        MelonDSEmulatorBridge.shared.coreResourcesURL = self.resourceBundle.bundleURL
     }
 }
 

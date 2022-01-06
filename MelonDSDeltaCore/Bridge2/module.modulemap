@@ -1,0 +1,4 @@
+module MelonDSBridge {
+    header "MelonDSEmulatorBridge.hpp"
+    export *
+}
