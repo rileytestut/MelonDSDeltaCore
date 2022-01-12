@@ -8,6 +8,14 @@
 
 #include "MelonDSEmulatorBridge.hpp"
 
+#if __OBJC__ && __cplusplus
+#define __OBJCPP__ 1
+#endif
+
+#ifdef __OBJCPP__
+#import <Foundation/Foundation.h>
+#endif
+
 //#if SWIFT_PACKAGE
 //
 //#import <AVFoundation/AVFoundation.h>
@@ -454,67 +462,86 @@ namespace Platform
     
     Thread *Thread_Create(void (*func)())
     {
+#ifdef __OBJCPP__
+        NSThread *thread = [[NSThread alloc] initWithBlock:^{
+            func();
+        }];
+
+        thread.name = @"MelonDS - Rendering";
+        thread.qualityOfService = NSQualityOfServiceUserInitiated;
+
+        [thread start];
+
+        return (Thread *)CFBridgingRetain(thread);
+#else
         return NULL;
-//        NSThread *thread = [[NSThread alloc] initWithBlock:^{
-//            func();
-//        }];
-//
-//        thread.name = @"MelonDS - Rendering";
-//        thread.qualityOfService = NSQualityOfServiceUserInitiated;
-//
-//        [thread start];
-//
-//        return (Thread *)CFBridgingRetain(thread);
+#endif
     }
     
     void Thread_Free(Thread *thread)
     {
-//        NSThread *nsThread = (NSThread *)CFBridgingRelease(thread);
-//        [nsThread cancel];
+#ifdef __OBJCPP__
+        NSThread *nsThread = (NSThread *)CFBridgingRelease(thread);
+        [nsThread cancel];
+#endif
     }
     
     void Thread_Wait(Thread *thread)
     {
-//        NSThread *nsThread = (__bridge NSThread *)thread;
-//        while (nsThread.isExecuting)
-//        {
-//            continue;
-//        }
+#ifdef __OBJCPP__
+        NSThread *nsThread = (__bridge NSThread *)thread;
+        while (nsThread.isExecuting)
+        {
+            continue;
+        }
+#endif
     }
     
     Semaphore *Semaphore_Create()
     {
-//        dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
-//        return (Semaphore *)CFBridgingRetain(dispatchSemaphore);
+#ifdef __OBJCPP__
+        dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
+        return (Semaphore *)CFBridgingRetain(dispatchSemaphore);
+#else
+        return NULL;
+#endif
     }
     
     void Semaphore_Free(Semaphore *semaphore)
     {
-//        CFRelease(semaphore);
+#ifdef __OBJCPP__
+        CFRelease(semaphore);
+#endif
     }
     
     void Semaphore_Reset(Semaphore *semaphore)
     {
-//        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
-//        while (dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_NOW) == 0)
-//        {
-//            continue;
-//        }
+#ifdef __OBJCPP__
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        while (dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_NOW) == 0)
+        {
+            continue;
+        }
+#endif
     }
     
     void Semaphore_Wait(Semaphore *semaphore)
     {
-//        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
-//        dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_FOREVER);
+#ifdef __OBJCPP__
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_FOREVER);
+#endif
     }
 
     void Semaphore_Post(Semaphore *semaphore, int count)
     {
-//        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
-//        for (int i = 0; i < count; i++)
-//        {
-//            dispatch_semaphore_signal(dispatchSemaphore);
-//        }
+#ifdef __OBJCPP__
+        dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
+        for (int i = 0; i < count; i++)
+        {
+            dispatch_semaphore_signal(dispatchSemaphore);
+        }
+#endif
     }
 
     Mutex *Mutex_Create()

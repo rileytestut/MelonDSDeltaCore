@@ -157,7 +157,7 @@ let package = Package(
             cSettings: [
                 .headerSearchPath(""),
                 .define("JIT_ENABLED", to: "1"),
-                .unsafeFlags(["-O3"])
+                .unsafeFlags(["-Ofast"])
             ]
         )
     ],
