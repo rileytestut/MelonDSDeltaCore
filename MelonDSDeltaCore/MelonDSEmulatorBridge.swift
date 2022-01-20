@@ -24,7 +24,7 @@ class MelonDSEmulatorBridge: AdaptableDeltaBridge
         
     override var adapter: EmulatorBridging {
 #if !NATIVE
-        let scriptURL = Bundle.module.url(forResource: "nestopia", withExtension: "html")!
+        let scriptURL = Bundle.module.url(forResource: "melonds", withExtension: "html")!
         
         let adapter = JSCoreAdapter(prefix: "MelonDS", fileURL: scriptURL)
         adapter.emulatorCore = self.emulatorCore

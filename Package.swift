@@ -45,9 +45,13 @@ let package = Package(
                 "MelonDSDeltaCore.xcodeproj",
                 
                 "MelonDSDeltaCore/Bridge",
-                "MelonDSDeltaCore/Bridge2",
                 "MelonDSDeltaCore/Types",
                 "MelonDSDeltaCore/Info.plist",
+                
+                "MelonDSDeltaCore/Bridge2/MelonDSEmulatorBridge.cpp",
+                
+                "MelonDSDeltaCore/Bridge2/JS/build",
+                "MelonDSDeltaCore/Bridge2/JS/post.js",
                 
                 "MelonDSDeltaCore/Controller Skin/info.json",
                 "MelonDSDeltaCore/Controller Skin/iphone_portrait.pdf",
@@ -66,6 +70,12 @@ let package = Package(
                 .copy("MelonDSDeltaCore/biosnds7.rom"),
                 .copy("MelonDSDeltaCore/biosnds9.rom"),
                 .copy("MelonDSDeltaCore/firmware.bin"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.js"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.html"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.html.mem"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.wasm"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.worker.js"),
+                .copy("MelonDSDeltaCore/Bridge2/JS/melonds.data"),
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
@@ -97,7 +107,7 @@ let package = Package(
             publicHeadersPath: "",
             cSettings: [
                 .headerSearchPath("../.."),
-                .define("JIT_ENABLED", to: "1"),
+//                .define("JIT_ENABLED", to: "1"),
             ]
         ),
         .target(
@@ -108,8 +118,12 @@ let package = Package(
                 "OpenGLSupport.cpp",
                 "GPU_OpenGL.cpp",
                 
+                "ARMJIT.cpp",
+                "ARMJIT_Memory.cpp",
+                
                 "CMakeLists.txt",
                 
+                "ARMJIT_A64",
                 "ARMJIT_x64",
                 
                 "dolphin/CommonFuncs.cpp",
@@ -156,7 +170,7 @@ let package = Package(
             ],
             cSettings: [
                 .headerSearchPath(""),
-                .define("JIT_ENABLED", to: "1"),
+//                .define("JIT_ENABLED", to: "1"),
                 .unsafeFlags(["-Ofast"])
             ]
         )

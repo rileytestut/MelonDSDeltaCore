@@ -14,6 +14,9 @@
 
 #ifdef __OBJCPP__
 #import <Foundation/Foundation.h>
+#import <notify.h>
+#else
+#include <semaphore.h>
 #endif
 
 //#if SWIFT_PACKAGE
@@ -45,10 +48,13 @@
 
 #include <memory>
 
-#import <notify.h>
 #import <pthread.h>
 
 #import <filesystem>
+
+#if __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
 
 namespace fs = std::__fs::filesystem;
 
@@ -73,6 +79,59 @@ static uint8_t videoBuffer[256 * 384 * 4];
 const int32_t MelonDSGameInputTouchScreenX = 4096;
 const int32_t MelonDSGameInputTouchScreenY = 8192;
 const int32_t MelonDSGameInputLid = 16384;
+
+#if __EMSCRIPTEN__
+
+#define USE_WEBSOCKETS 0
+
+#include <emscripten.h>
+#include <emscripten/websocket.h>
+
+EMSCRIPTEN_WEBSOCKET_T audioSocket;
+EMSCRIPTEN_WEBSOCKET_T videoSocket;
+EMSCRIPTEN_WEBSOCKET_T readySocket;
+
+EM_BOOL onopen(int eventType, const EmscriptenWebSocketOpenEvent *websocketEvent, void *userData) {
+    printf("[RSTLog] On Open: %s\n", userData);
+    
+    if (userData != NULL, *((char *)userData) == 'r')
+    {
+        emscripten_websocket_send_utf8_text(readySocket, "ready");
+    }
+
+//    EMSCRIPTEN_RESULT result;
+//    result = emscripten_websocket_send_utf8_text(websocketEvent->socket, "hoge");
+//    if (result) {
+//        printf("Failed to emscripten_websocket_send_utf8_text(): %d\n", result);
+//    }
+    return EM_TRUE;
+}
+EM_BOOL onerror(int eventType, const EmscriptenWebSocketErrorEvent *websocketEvent, void *userData) {
+    printf("[RSTLog] On Error: %s\n", userData);
+
+    return EM_TRUE;
+}
+EM_BOOL onclose(int eventType, const EmscriptenWebSocketCloseEvent *websocketEvent, void *userData) {
+    printf("[RSTLog] On Close: %s\n", userData);
+
+    return EM_TRUE;
+}
+EM_BOOL onmessage(int eventType, const EmscriptenWebSocketMessageEvent *websocketEvent, void *userData) {
+    printf("[RSTLog] On Message: %s\n", userData);
+//    if (websocketEvent->isText) {
+//        // For only ascii chars.
+//        printf("message: %s\n", websocketEvent->data);
+//    }
+//
+//    EMSCRIPTEN_RESULT result;
+//    result = emscripten_websocket_close(websocketEvent->socket, 1000, "no reason");
+//    if (result) {
+//        printf("Failed to emscripten_websocket_close(): %d\n", result);
+//    }
+    return EM_TRUE;
+}
+
+#endif
 
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
@@ -149,6 +208,10 @@ void MelonDSInitialize(const char *_Nonnull directoryPath, const char *_Nonnull 
     auto bios9Filename = fs::path(bios9Path).filename().string();
     auto firmwareFilename = fs::path(firmwarePath).filename().string();
     
+    printf("[RSTLog] Directory Path2: %s\n", directoryPath);
+    printf("[RSTLog] BIOS9 Path: %s\n", bios9Path);
+    printf("[RSTLog] BIOS9 Name: %s\n", bios9Filename.c_str());
+    
     // DS paths
     strncpy(Config::BIOS7Path, bios7Filename.c_str(), bios7Filename.length());
     strncpy(Config::BIOS9Path, bios9Filename.c_str(), bios9Filename.length());
@@ -184,8 +247,10 @@ bool MelonDSStartEmulation(const char *_Nonnull gamePath)
     
     NDS::SetConsoleType(0);
 
+#ifdef JIT_ENABLED
     Config::JIT_Enable = false;
     Config::JIT_FastMemory = false;
+#endif
     
     NDS::Init();
     initialized = true;
@@ -209,6 +274,12 @@ bool MelonDSStartEmulation(const char *_Nonnull gamePath)
     }
     
     stopping = false;
+    
+#if __EMSCRIPTEN__
+        emscripten_set_canvas_element_size("#canvas", 256, 384);
+#endif
+    
+    return true;
 }
 
 void MelonDSStopEmulation()
@@ -233,6 +304,36 @@ void MelonDSResumeEmulation()
 }
 
 #pragma mark - Game Loop -
+
+#if __EMSCRIPTEN__
+
+//void Copy_ToCanvas(uint8_t* ptr, int w, int h) {
+//  EM_ASM_({
+//      let data = Module.HEAPU8.slice($0, $0 + $1 * $2 * 4);
+//      let context = Module['canvas'].getContext('2d');
+//      let imageData = context.getImageData(0, 0, $1, $2);
+//      imageData.data.set(data);
+//      context.putImageData(imageData, 0, 0);
+//      console.log("[RSTLog] Updating Canvas...");
+//    }, ptr, w, h);
+//}
+
+EM_JS(void, Copy_ToCanvas, (uint8_t* ptr, int w, int h), {
+    const data = new Uint8ClampedArray(HEAPU8.buffer, ptr, w * h * 4);
+//    let data = Module.HEAPU8.subarray(ptr, ptr + w * h * 4);
+//    let data = Module.HEAPU16.subarray(ptr/2, ptr/2 + w * h * 2);
+//    let imageData = ctx.getImageData(0, 0, w, h);
+    var imageData = new ImageData(data, w, h);
+    createImageBitmap(imageData).then( (bitmap) => {
+        let ctx = document.getElementById("canvas").getContext('2d');
+        ctx.drawImage(bitmap, 0, 0);
+    });
+//    imageData.data.set(data);
+//    ctx.putImageData(imageData, 0, 0);
+//    console.log("[RSTLog] Updating Canvas Done...");
+});
+
+#endif
 
 void MelonDSRunFrame(bool processVideo)
 {
@@ -281,6 +382,8 @@ void MelonDSRunFrame(bool processVideo)
 //        NDS::SetSkipFrame(!processVideo);
 //    }
     
+    NDS::SetSkipFrame(!processVideo);
+    
     NDS::RunFrame();
     
     static int16_t buffer[0x1000];
@@ -288,7 +391,12 @@ void MelonDSRunFrame(bool processVideo)
     availableBytes = std::max(availableBytes, (u32)(sizeof(buffer) / (2 * sizeof(int16_t))));
        
     int samples = SPU::ReadOutput(buffer, availableBytes);
+    
+#if USE_WEBSOCKETS
+    emscripten_websocket_send_binary(audioSocket, (void *)buffer, samples * 4);
+#else
     audioCallback((unsigned char *)buffer, samples * 4);
+#endif
     
     if (processVideo)
     {
@@ -297,7 +405,32 @@ void MelonDSRunFrame(bool processVideo)
         memcpy(videoBuffer, GPU::Framebuffer[GPU::FrontBuffer][0], screenBufferSize);
         memcpy(videoBuffer + screenBufferSize, GPU::Framebuffer[GPU::FrontBuffer][1], screenBufferSize);
         
+//#if USE_WEBSOCKETS
+//        uint8_t pixel1 = videoBuffer[0];
+//        uint8_t pixel2 = videoBuffer[1024];
+//        uint8_t pixel3 = videoBuffer[2048];
+//        uint8_t pixel4 = videoBuffer[4097];
+//
+////        if (pixel1 != 255 && pixel2 != 255 && pixel3 != 255 && pixel4 != 255)
+//        {
+//            emscripten_websocket_send_utf8_text(
+//            emscripten_websocket_send_binary(videoSocket, (void *)videoBuffer, screenBufferSize * 2);
+//        }
+//
+//#else
+//        videoCallback(videoBuffer, screenBufferSize * 2);
+//#endif
+                                                
         videoCallback(videoBuffer, screenBufferSize * 2);
+        
+#if __EMSCRIPTEN__
+//        Copy_ToCanvas(videoBuffer, 256, 384);
+#endif
+        
+    }
+    else
+    {
+        printf("[RSTLog] Skipping frame...\n");
     }
 }
 
@@ -459,6 +592,14 @@ namespace Platform
         
         return OpenFile(filePath.c_str(), "rb");
     }
+
+void * StartThread(void *args)
+{
+    printf("[RSTLog] Starting Thread: %p\n", args);
+    
+    ((void (*)(void)) args)();
+    return NULL;
+}
     
     Thread *Thread_Create(void (*func)())
     {
@@ -474,7 +615,16 @@ namespace Platform
 
         return (Thread *)CFBridgingRetain(thread);
 #else
-        return NULL;
+        pthread_t *threadId = (pthread_t *)malloc(sizeof(pthread_t));
+        
+        pthread_t tempID = 0;
+        
+        int err = pthread_create(&tempID, NULL, StartThread, (void *)func);
+        printf("[RSTLog] Created PThread: %d (%lu)\n", err, tempID);
+        
+        *threadId = tempID;
+        
+        return (Thread *)threadId;
 #endif
     }
     
@@ -483,6 +633,10 @@ namespace Platform
 #ifdef __OBJCPP__
         NSThread *nsThread = (NSThread *)CFBridgingRelease(thread);
         [nsThread cancel];
+#else
+        pthread_t threadID = *((pthread_t *)thread);
+        pthread_cancel(threadID);
+        free(thread);
 #endif
     }
     
@@ -494,6 +648,9 @@ namespace Platform
         {
             continue;
         }
+#else
+        pthread_t threadID = *((pthread_t *)thread);
+        pthread_join(threadID, NULL);
 #endif
     }
     
@@ -503,7 +660,10 @@ namespace Platform
         dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
         return (Semaphore *)CFBridgingRetain(dispatchSemaphore);
 #else
-        return NULL;
+        sem_t *semaphore = (sem_t *)malloc(sizeof(sem_t));
+        int result = sem_init(semaphore, 0, 0);
+        printf("[RSTLog] Created Semaphore: %d (%p)\n", result, semaphore);
+        return (Semaphore *)semaphore;
 #endif
     }
     
@@ -511,6 +671,11 @@ namespace Platform
     {
 #ifdef __OBJCPP__
         CFRelease(semaphore);
+#else
+        sem_t *sem = (sem_t *)semaphore;
+        printf("[RSTLog] Free Semaphore: (%p)\n", sem);
+        sem_destroy(sem);
+        free(sem);
 #endif
     }
     
@@ -522,6 +687,13 @@ namespace Platform
         {
             continue;
         }
+#else
+        sem_t *sem = (sem_t *)semaphore;
+        printf("[RSTLog] Reset Semaphore: (%p)\n", sem);
+        while (sem_trywait(sem) == 0)
+        {
+            continue;
+        }
 #endif
     }
     
@@ -530,6 +702,10 @@ namespace Platform
 #ifdef __OBJCPP__
         dispatch_semaphore_t dispatchSemaphore = (__bridge dispatch_semaphore_t)semaphore;
         dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_FOREVER);
+#else
+        sem_t *sem = (sem_t *)semaphore;
+        printf("[RSTLog] Wait Semaphore: (%p)\n", sem);
+        sem_wait(sem);
 #endif
     }
 
@@ -540,6 +716,13 @@ namespace Platform
         for (int i = 0; i < count; i++)
         {
             dispatch_semaphore_signal(dispatchSemaphore);
+        }
+#else
+        sem_t *sem = (sem_t *)semaphore;
+        printf("[RSTLog] Post Semaphore: (%p) %d\n", sem, count);
+        for (int i = 0; i < count; i++)
+        {
+            sem_post(sem);
         }
 #endif
     }
@@ -629,3 +812,65 @@ namespace Platform
 //        }
     }
 }
+
+#pragma mark - Emscripten -
+
+#if __EMSCRIPTEN__
+
+int main(int argc, char **argv)
+{
+    printf("[RSTLog] Running Main...\n");
+    
+    EM_ASM(
+        MelonDSPrepareCore();
+    );
+    
+#if USE_WEBSOCKETS
+    
+    EmscriptenWebSocketCreateAttributes ws_attrs = {
+            "ws://localhost:8080/audio",
+            NULL,
+            EM_TRUE
+        };
+    
+    void *audioUserInfo = (void *)"audio";
+    audioSocket = emscripten_websocket_new(&ws_attrs);
+    emscripten_websocket_set_onopen_callback(audioSocket, audioUserInfo, onopen);
+    emscripten_websocket_set_onerror_callback(audioSocket, audioUserInfo, onerror);
+    emscripten_websocket_set_onclose_callback(audioSocket, audioUserInfo, onclose);
+    emscripten_websocket_set_onmessage_callback(audioSocket, audioUserInfo, onmessage);
+    
+    EmscriptenWebSocketCreateAttributes ws_attrs2 = {
+            "ws://localhost:8080/video",
+            NULL,
+            EM_TRUE
+        };
+    
+    void *videoUserInfo = (void *)"video";
+    videoSocket = emscripten_websocket_new(&ws_attrs2);
+    emscripten_websocket_set_onopen_callback(videoSocket, videoUserInfo, onopen);
+    emscripten_websocket_set_onerror_callback(videoSocket, videoUserInfo, onerror);
+    emscripten_websocket_set_onclose_callback(videoSocket, videoUserInfo, onclose);
+    emscripten_websocket_set_onmessage_callback(videoSocket, videoUserInfo, onmessage);
+    
+    EmscriptenWebSocketCreateAttributes ws_attrs3 = {
+            "ws://localhost:8080/ready",
+            NULL,
+            EM_TRUE
+        };
+    
+    void *readyUserInfo = (void *)"ready";
+    readySocket = emscripten_websocket_new(&ws_attrs3);
+    emscripten_websocket_set_onopen_callback(readySocket, readyUserInfo, onopen);
+    emscripten_websocket_set_onerror_callback(readySocket, readyUserInfo, onerror);
+    emscripten_websocket_set_onclose_callback(readySocket, readyUserInfo, onclose);
+    emscripten_websocket_set_onmessage_callback(readySocket, readyUserInfo, onmessage);
+    
+    printf("[RSTLog] Using Web Sockets! %p %p %p\n", audioSocket, videoSocket, readySocket);
+    
+#endif
+    
+    return 0;
+}
+
+#endif
