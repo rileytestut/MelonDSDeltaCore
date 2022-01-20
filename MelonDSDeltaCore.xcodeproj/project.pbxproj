@@ -457,6 +457,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		D5D11DF4278F6E5E00F249A6 /* melonJS */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = D5D11DF5278F6E5E00F249A6 /* Build configuration list for PBXLegacyTarget "melonJS" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "$(SRCROOT)/MelonDSDeltaCore/Bridge2/JS";
+			dependencies = (
+			);
+			name = melonJS;
+			passBuildSettingsInEnvironment = 1;
+			productName = melonJS;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		BF02B28224366DDF001B4E65 /* libMelonDS */ = {
 			isa = PBXNativeTarget;
@@ -511,6 +528,9 @@
 						CreatedOnToolsVersion = 11.1;
 						LastSwiftMigration = 1140;
 					};
+					D5D11DF4278F6E5E00F249A6 = {
+						CreatedOnToolsVersion = 13.2;
+					};
 				};
 			};
 			buildConfigurationList = BF73177F2356624000774F10 /* Build configuration list for PBXProject "MelonDSDeltaCore" */;
@@ -528,6 +548,7 @@
 			targets = (
 				BF7317842356624000774F10 /* MelonDSDeltaCore */,
 				BF02B28224366DDF001B4E65 /* libMelonDS */,
+				D5D11DF4278F6E5E00F249A6 /* melonJS */,
 			);
 		};
 /* End PBXProject section */
@@ -840,6 +861,37 @@
 			};
 			name = Release;
 		};
+		D5D11DF6278F6E5E00F249A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D5D11DF7278F6E5E00F249A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -866,6 +918,15 @@
 			buildConfigurations = (
 				BF73178E2356624000774F10 /* Debug */,
 				BF73178F2356624000774F10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D11DF5278F6E5E00F249A6 /* Build configuration list for PBXLegacyTarget "melonJS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D11DF6278F6E5E00F249A6 /* Debug */,
+				D5D11DF7278F6E5E00F249A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
