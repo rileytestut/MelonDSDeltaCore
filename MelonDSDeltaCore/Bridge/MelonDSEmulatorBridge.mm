@@ -299,7 +299,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 #pragma mark - Inputs -
 
-- (void)activateInput:(NSInteger)input value:(double)value
+- (void)activateInput:(NSInteger)input value:(double)value playerIndex:(NSInteger)playerIndex
 {
     self.activatedInputs |= (uint32_t)input;
     
@@ -321,7 +321,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     self.touchScreenPoint = touchPoint;
 }
 
-- (void)deactivateInput:(NSInteger)input
+- (void)deactivateInput:(NSInteger)input playerIndex:(NSInteger)playerIndex
 {
     self.activatedInputs &= ~((uint32_t)input);
     
@@ -445,11 +445,11 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         if (state == 0)
         {
-            [self deactivateInput:MelonDSGameInputLid];
+            [self deactivateInput:MelonDSGameInputLid playerIndex:0];
         }
         else
         {
-            [self activateInput:MelonDSGameInputLid value:1];
+            [self activateInput:MelonDSGameInputLid value:1 playerIndex:0];
         }
         
         if (result != NOTIFY_STATUS_OK)
