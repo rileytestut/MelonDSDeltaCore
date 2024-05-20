@@ -21,11 +21,12 @@
 
 #include "melonDS/src/Platform.h"
 #include "melonDS/src/NDS.h"
+//#include "melonDS/src/NDSCart.h"
 #include "melonDS/src/SPU.h"
 #include "melonDS/src/GPU.h"
 #include "melonDS/src/AREngine.h"
 
-#include "melonDS/src/Config.h"
+#include "melonDS/src/frontend/qt_sdl/Config.h"
 
 #include <memory>
 
@@ -91,6 +92,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @interface MelonDSEmulatorBridge ()
 
 @property (nonatomic, copy, nullable, readwrite) NSURL *gameURL;
+
+@property (nonatomic, nullable) NSData *gameSaveData;
 
 @property (nonatomic) uint32_t activatedInputs;
 @property (nonatomic) CGPoint touchScreenPoint;
@@ -159,15 +162,17 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     else
     {
         // DS paths
-        strncpy(Config::BIOS7Path, self.bios7URL.lastPathComponent.UTF8String, self.bios7URL.lastPathComponent.length);
-        strncpy(Config::BIOS9Path, self.bios9URL.lastPathComponent.UTF8String, self.bios9URL.lastPathComponent.length);
-        strncpy(Config::FirmwarePath, self.firmwareURL.lastPathComponent.UTF8String, self.firmwareURL.lastPathComponent.length);
+        Config::Load();
+        
+        Config::BIOS7Path = self.bios7URL.lastPathComponent.UTF8String;
+        Config::BIOS9Path = self.bios9URL.lastPathComponent.UTF8String;
+        Config::FirmwarePath = self.firmwareURL.lastPathComponent.UTF8String;
         
         // DSi paths
-        strncpy(Config::DSiBIOS7Path, self.dsiBIOS7URL.lastPathComponent.UTF8String, self.dsiBIOS7URL.lastPathComponent.length);
-        strncpy(Config::DSiBIOS9Path, self.dsiBIOS9URL.lastPathComponent.UTF8String, self.dsiBIOS9URL.lastPathComponent.length);
-        strncpy(Config::DSiFirmwarePath, self.dsiFirmwareURL.lastPathComponent.UTF8String, self.dsiFirmwareURL.lastPathComponent.length);
-        strncpy(Config::DSiNANDPath, self.dsiNANDURL.lastPathComponent.UTF8String, self.dsiNANDURL.lastPathComponent.length);
+        Config::DSiBIOS7Path = self.dsiBIOS7URL.lastPathComponent.UTF8String;
+        Config::DSiBIOS9Path = self.dsiBIOS9URL.lastPathComponent.UTF8String;
+        Config::DSiFirmwarePath = self.dsiFirmwareURL.lastPathComponent.UTF8String;
+        Config::DSiNANDPath = self.dsiNANDURL.lastPathComponent.UTF8String;
         
         [self registerForNotifications];
         
@@ -178,9 +183,10 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     [self prepareAudioEngine];
     
     NDS::SetConsoleType((int)self.systemType);
-
-    Config::JIT_Enable = [self isJITEnabled];
-    Config::JIT_FastMemory = NO;
+    
+    // AltJIT does not yet support melonDS 0.9.5.
+    // Config::JIT_Enable = [self isJITEnabled];
+    // Config::JIT_FastMemory = NO;
     
     NDS::Init();
     self.initialized = YES;
@@ -190,13 +196,25 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
     GPU::SetRenderSettings(0, settings);
     
+    NDS::Reset();
+    
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
     {
-        if (!NDS::LoadROM(gameURL.fileSystemRepresentation, "", YES))
+        NSError *error = nil;
+        NSData *romData = [NSData dataWithContentsOfURL:gameURL options:0 error:&error];
+        if (romData == nil)
+        {
+            NSLog(@"Failed to load Nintendo DS ROM. %@", error);
+            return;
+        }
+        
+        if (!NDS::LoadCart((const u8 *)romData.bytes, romData.length, NULL, 0))
         {
             NSLog(@"Failed to load Nintendo DS ROM.");
         }
+        
+        NDS::SetupDirectBoot(gameURL.lastPathComponent.UTF8String);
     }
     else
     {
@@ -204,6 +222,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     }
     
     self.stopping = NO;
+    
+    NDS::Start();
 }
 
 - (void)stop
@@ -274,7 +294,9 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     {
         // Skipping frames with JIT disabled can cause graphical bugs,
         // so limit frame skip to devices that support JIT (for now).
-        NDS::SetSkipFrame(!processVideo);
+        
+        // JIT not currently supported with melonDS 0.9.5.
+        // NDS::SetSkipFrame(!processVideo);
     }
     
     NDS::RunFrame();
@@ -351,19 +373,34 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 #pragma mark - Game Saves -
 
-- (void)saveGameSaveToURL:(NSURL *)URL
+- (void)saveGameSaveToURL:(NSURL *)fileURL
 {
-    NDS::RelocateSave(URL.fileSystemRepresentation, true);
+    if (self.gameSaveData.length > 0)
+    {
+        NSError *error = nil;
+        if (![self.gameSaveData writeToURL:fileURL options:NSDataWritingAtomic error:&error])
+        {
+            NSLog(@"Failed write save data. %@", error);
+        }
+    }
 }
 
-- (void)loadGameSaveFromURL:(NSURL *)URL
+- (void)loadGameSaveFromURL:(NSURL *)fileURL
 {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:URL.path])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
     {
         return;
     }
     
-    NDS::RelocateSave(URL.fileSystemRepresentation, false);
+    NSError *error = nil;
+    NSData *saveData = [NSData dataWithContentsOfURL:fileURL options:0 error:&error];
+    if (saveData == nil)
+    {
+        NSLog(@"Failed load save data. %@", error);
+        return;
+    }
+    
+    NDS::LoadSave((const u8 *)saveData.bytes, saveData.length);
 }
 
 #pragma mark - Save States -
@@ -407,15 +444,13 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     int codeLength = (sanitizedCode.length / 8);
     
     ARCode code;
-    memset(code.Name, 0, 128);
-    memset(code.Code, 0, 128);
-    memcpy(code.Name, sanitizedCode.UTF8String, MIN(128, sanitizedCode.length));
+    code.Name = sanitizedCode.UTF8String;
     ParseTextCode((char *)sanitizedCode.UTF8String, (int)[sanitizedCode lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &code.Code[0], 128);
     code.Enabled = YES;
     code.CodeLen = codeLength;
 
     ARCodeCat category;
-    memcpy(category.Name, sanitizedCode.UTF8String, MIN(128, sanitizedCode.length));
+    category.Name = sanitizedCode.UTF8String;
     category.Codes.push_back(code);
 
     self.cheatCodes->Categories.push_back(category);
@@ -620,6 +655,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 namespace Platform
 {
+    int IPCInstanceID;
+
     void StopEmu()
     {
         if ([MelonDSEmulatorBridge.sharedBridge isStopping])
@@ -630,38 +667,170 @@ namespace Platform
         MelonDSEmulatorBridge.sharedBridge.stopping = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:DLTAEmulatorCore.emulationDidQuitNotification object:nil];
     }
+
+    int InstanceID()
+    {
+        return IPCInstanceID;
+    }
+
+    std::string InstanceFileSuffix()
+    {
+        int inst = IPCInstanceID;
+        if (inst == 0) return "";
+
+        char suffix[16] = {0};
+        snprintf(suffix, 15, ".%d", inst+1);
+        return suffix;
+    }
+
+    int GetConfigInt(ConfigEntry entry)
+    {
+        const int imgsizes[] = {0, 256, 512, 1024, 2048, 4096};
+
+        switch (entry)
+        {
+    #ifdef JIT_ENABLED
+        case JIT_MaxBlockSize: return Config::JIT_MaxBlockSize;
+    #endif
+
+        case DLDI_ImageSize: return imgsizes[Config::DLDISize];
+
+        case DSiSD_ImageSize: return imgsizes[Config::DSiSDSize];
+
+        case Firm_Language: return Config::FirmwareLanguage;
+        case Firm_BirthdayMonth: return Config::FirmwareBirthdayMonth;
+        case Firm_BirthdayDay: return Config::FirmwareBirthdayDay;
+        case Firm_Color: return Config::FirmwareFavouriteColour;
+
+        case AudioBitrate: return Config::AudioBitrate;
+        }
+
+        return 0;
+    }
+
+    bool GetConfigBool(ConfigEntry entry)
+    {
+        switch (entry)
+        {
+    #ifdef JIT_ENABLED
+        case JIT_Enable: return Config::JIT_Enable != 0;
+        case JIT_LiteralOptimizations: return Config::JIT_LiteralOptimisations != 0;
+        case JIT_BranchOptimizations: return Config::JIT_BranchOptimisations != 0;
+        case JIT_FastMemory: return Config::JIT_FastMemory != 0;
+    #endif
+
+        case ExternalBIOSEnable: return Config::ExternalBIOSEnable != 0;
+
+        case DLDI_Enable: return Config::DLDIEnable != 0;
+        case DLDI_ReadOnly: return Config::DLDIReadOnly != 0;
+        case DLDI_FolderSync: return Config::DLDIFolderSync != 0;
+
+        case DSiSD_Enable: return Config::DSiSDEnable != 0;
+        case DSiSD_ReadOnly: return Config::DSiSDReadOnly != 0;
+        case DSiSD_FolderSync: return Config::DSiSDFolderSync != 0;
+
+        case Firm_OverrideSettings: return Config::FirmwareOverrideSettings != 0;
+        }
+
+        return false;
+    }
+
+    std::string GetConfigString(ConfigEntry entry)
+    {
+        switch (entry)
+        {
+        case BIOS9Path: return Config::BIOS9Path;
+        case BIOS7Path: return Config::BIOS7Path;
+        case FirmwarePath: return Config::FirmwarePath;
+
+        case DSi_BIOS9Path: return Config::DSiBIOS9Path;
+        case DSi_BIOS7Path: return Config::DSiBIOS7Path;
+        case DSi_FirmwarePath: return Config::DSiFirmwarePath;
+        case DSi_NANDPath: return Config::DSiNANDPath;
+
+        case DLDI_ImagePath: return Config::DLDISDPath;
+        case DLDI_FolderPath: return Config::DLDIFolderPath;
+
+        case DSiSD_ImagePath: return Config::DSiSDPath;
+        case DSiSD_FolderPath: return Config::DSiSDFolderPath;
+
+        case Firm_Username: return Config::FirmwareUsername;
+        case Firm_Message: return Config::FirmwareMessage;
+        }
+
+        return "";
+    }
+
+    bool GetConfigArray(ConfigEntry entry, void* data)
+    {
+        switch (entry)
+        {
+        case Firm_MAC:
+            {
+                std::string& mac_in = Config::FirmwareMAC;
+                u8* mac_out = (u8*)data;
+
+                int o = 0;
+                u8 tmp = 0;
+                for (int i = 0; i < 18; i++)
+                {
+                    char c = mac_in[i];
+                    if (c == '\0') break;
+
+                    int n;
+                    if      (c >= '0' && c <= '9') n = c - '0';
+                    else if (c >= 'a' && c <= 'f') n = c - 'a' + 10;
+                    else if (c >= 'A' && c <= 'F') n = c - 'A' + 10;
+                    else continue;
+
+                    if (!(o & 1))
+                        tmp = n;
+                    else
+                        mac_out[o >> 1] = n | (tmp << 4);
+
+                    o++;
+                    if (o >= 12) return true;
+                }
+            }
+            return false;
+        }
+
+        return false;
+    }
     
-    FILE* OpenFile(const char* path, const char* mode, bool mustexist)
+    FILE* OpenFile(std::string path, std::string mode, bool mustexist)
     {
         FILE* ret;
         
         if (mustexist)
         {
-            ret = fopen(path, "rb");
-            if (ret) ret = freopen(path, mode, ret);
+            ret = fopen(path.c_str(), "rb");
+            if (ret) ret = freopen(path.c_str(), mode.c_str(), ret);
         }
         else
-            ret = fopen(path, mode);
+            ret = fopen(path.c_str(), mode.c_str());
         
         return ret;
     }
     
-    FILE* OpenLocalFile(const char* path, const char* mode)
+    FILE* OpenLocalFile(std::string path, std::string mode)
     {
-        NSURL *fileURL = [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@(path)];
-        return OpenFile(fileURL.fileSystemRepresentation, mode);
-    }
-    
-    FILE* OpenDataFile(const char* path)
-    {
-        NSString *resourceName = [@(path) stringByDeletingPathExtension];
-        NSString *extension = [@(path) pathExtension];
+        NSURL *relativeURL = [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@(path.c_str())];
         
-        NSURL *fileURL = [MelonDSEmulatorBridge.dsResources URLForResource:resourceName withExtension:extension];
-        return OpenFile(fileURL.fileSystemRepresentation, "rb");
+        NSURL *fileURL = nil;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:relativeURL.path])
+        {
+            fileURL = relativeURL;
+        }
+        else
+        {
+            fileURL = [NSURL fileURLWithPath:@(path.c_str())];
+        }
+        
+        return OpenFile(fileURL.fileSystemRepresentation, mode.c_str());
     }
     
-    Thread *Thread_Create(void (*func)())
+    Thread* Thread_Create(std::function<void()> func)
     {
         NSThread *thread = [[NSThread alloc] initWithBlock:^{
             func();
@@ -766,13 +935,46 @@ namespace Platform
     void MP_DeInit()
     {
     }
+
+    void MP_Begin()
+    {
+    }
+
+    void MP_End()
+    {
+    }
     
-    int MP_SendPacket(u8* bytes, int len)
+    int MP_SendPacket(u8* data, int len, u64 timestamp)
     {
         return 0;
     }
     
-    int MP_RecvPacket(u8* bytes, bool block)
+    int MP_RecvPacket(u8* data, u64* timestamp)
+    {
+        return 0;
+    }
+
+    int MP_SendCmd(u8* data, int len, u64 timestamp)
+    {
+        return 0;
+    }
+
+    int MP_SendReply(u8* data, int len, u64 timestamp, u16 aid)
+    {
+        return 0;
+    }
+
+    int MP_SendAck(u8* data, int len, u64 timestamp)
+    {
+        return 0;
+    }
+
+    int MP_RecvHostPacket(u8* data, u64* timestamp)
+    {
+        return 0;
+    }
+
+    u16 MP_RecvReplies(u8* data, u64 timestamp, u16 aidmask)
     {
         return 0;
     }
@@ -808,5 +1010,28 @@ namespace Platform
         {
             NSLog(@"Failed to start listening to microphone. %@", error);
         }
+    }
+
+    void WriteNDSSave(const u8* savebytes, u32 savelen, u32 writeoffset, u32 writelen)
+    {
+        //TODO: Flush to disk automatically
+        NSData *saveData = [NSData dataWithBytes:savebytes length:savelen];
+        MelonDSEmulatorBridge.sharedBridge.gameSaveData = saveData;
+    }
+
+    void WriteGBASave(const u8* savedata, u32 savelen, u32 writeoffset, u32 writelen)
+    {
+    }
+
+    void Camera_Start(int num)
+    {
+    }
+
+    void Camera_Stop(int num)
+    {
+    }
+
+    void Camera_CaptureFrame(int num, u32* frame, int width, int height, bool yuv)
+    {
     }
 }
