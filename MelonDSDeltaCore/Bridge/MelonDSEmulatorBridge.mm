@@ -161,9 +161,13 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     }
     else
     {
-        // DS paths
         Config::Load();
         
+        Config::FirmwareUsername = "Delta";
+        Config::FirmwareBirthdayDay = 7;
+        Config::FirmwareBirthdayMonth = 10;
+        
+        // DS paths
         Config::BIOS7Path = self.bios7URL.lastPathComponent.UTF8String;
         Config::BIOS9Path = self.bios9URL.lastPathComponent.UTF8String;
         Config::FirmwarePath = self.firmwareURL.lastPathComponent.UTF8String;
@@ -188,6 +192,19 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     // Config::JIT_Enable = [self isJITEnabled];
     // Config::JIT_FastMemory = NO;
     
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.bios7URL.path] &&
+        [[NSFileManager defaultManager] fileExistsAtPath:self.bios9URL.path] &&
+        [[NSFileManager defaultManager] fileExistsAtPath:self.firmwareURL.path])
+    {
+        // User has provided BIOS files, so prefer using them.
+        Config::ExternalBIOSEnable = true;
+    }
+    else
+    {
+        // External BIOS files don't exist, so fall back to internal BIOS.
+        Config::ExternalBIOSEnable = false;
+    }
+    
     NDS::Init();
     self.initialized = YES;
         
@@ -201,6 +218,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     BOOL isDirectory = NO;
     if ([[NSFileManager defaultManager] fileExistsAtPath:gameURL.path isDirectory:&isDirectory] && !isDirectory)
     {
+        // Game exists and is not a directory.
+        
         NSError *error = nil;
         NSData *romData = [NSData dataWithContentsOfURL:gameURL options:0 error:&error];
         if (romData == nil)
@@ -209,12 +228,15 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
             return;
         }
         
-        if (!NDS::LoadCart((const u8 *)romData.bytes, romData.length, NULL, 0))
+        if (NDS::LoadCart((const u8 *)romData.bytes, romData.length, NULL, 0))
+        {
+            NDS::SetupDirectBoot(gameURL.lastPathComponent.UTF8String);
+        }
+        else
         {
             NSLog(@"Failed to load Nintendo DS ROM.");
         }
         
-        NDS::SetupDirectBoot(gameURL.lastPathComponent.UTF8String);
     }
     else
     {
