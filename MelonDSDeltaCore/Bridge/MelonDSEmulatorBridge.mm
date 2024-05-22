@@ -93,7 +93,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 @property (nonatomic, copy, nullable, readwrite) NSURL *gameURL;
 
-@property (nonatomic, nullable) NSData *gameSaveData;
+@property (nonatomic, nullable) NSData *saveData;
+@property (nonatomic, nullable) NSData *gbaSaveData;
 
 @property (nonatomic) uint32_t activatedInputs;
 @property (nonatomic) CGPoint touchScreenPoint;
@@ -110,6 +111,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @property (nonatomic, readonly) AVAudioUnitEQ *audioEQEffect;
 @property (nonatomic, readonly) DLTARingBuffer *microphoneBuffer;
 @property (nonatomic, readonly) dispatch_queue_t microphoneQueue;
+
+@property (nonatomic, nullable, readonly) NSURL *gbaSaveURL;
 
 @end
 
@@ -237,6 +240,25 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
             NSLog(@"Failed to load Nintendo DS ROM.");
         }
         
+        if (self.gbaGameURL != nil)
+        {
+            NSData *gbaROMData = [NSData dataWithContentsOfURL:self.gbaGameURL options:0 error:&error];
+            if (gbaROMData)
+            {
+                NSData *saveData = [NSData dataWithContentsOfURL:self.gbaSaveURL options:0 error:&error];
+                if (saveData == nil && !([error.domain isEqualToString:NSCocoaErrorDomain] && error.code == NSFileReadNoSuchFileError))
+                {
+                    // Ignore "file not found" errors.
+                    NSLog(@"Failed to load inserted GBA ROM save data. %@", error);
+                }
+                
+                NDS::LoadGBACart((const u8 *)gbaROMData.bytes, gbaROMData.length, (const u8 *)saveData.bytes, saveData.length);
+            }
+            else
+            {
+                NSLog(@"Failed to load inserted GBA ROM. %@", error);
+            }
+        }
     }
     else
     {
@@ -397,12 +419,21 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 - (void)saveGameSaveToURL:(NSURL *)fileURL
 {
-    if (self.gameSaveData.length > 0)
+    if (self.saveData.length > 0)
     {
         NSError *error = nil;
-        if (![self.gameSaveData writeToURL:fileURL options:NSDataWritingAtomic error:&error])
+        if (![self.saveData writeToURL:fileURL options:NSDataWritingAtomic error:&error])
         {
             NSLog(@"Failed write save data. %@", error);
+        }
+    }
+    
+    if (self.gbaSaveData.length > 0)
+    {
+        NSError *error = nil;
+        if (![self.gbaSaveData writeToURL:self.gbaSaveURL options:NSDataWritingAtomic error:&error])
+        {
+            NSLog(@"Failed write GBA save data. %@", error);
         }
     }
 }
@@ -671,6 +702,17 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     }
     
     return _audioConverter;
+}
+
+- (NSURL *)gbaSaveURL
+{
+    if (self.gbaGameURL == nil)
+    {
+        return nil;
+    }
+    
+    NSURL *gbaSaveURL = [[self.gbaGameURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"sav"];
+    return gbaSaveURL;
 }
 
 @end
@@ -1038,11 +1080,14 @@ namespace Platform
     {
         //TODO: Flush to disk automatically
         NSData *saveData = [NSData dataWithBytes:savebytes length:savelen];
-        MelonDSEmulatorBridge.sharedBridge.gameSaveData = saveData;
+        MelonDSEmulatorBridge.sharedBridge.saveData = saveData;
     }
 
-    void WriteGBASave(const u8* savedata, u32 savelen, u32 writeoffset, u32 writelen)
+    void WriteGBASave(const u8* savebytes, u32 savelen, u32 writeoffset, u32 writelen)
     {
+        //TODO: Flush to disk automatically
+        NSData *saveData = [NSData dataWithBytes:savebytes length:savelen];
+        MelonDSEmulatorBridge.sharedBridge.gbaSaveData = saveData;
     }
 
     void Camera_Start(int num)
