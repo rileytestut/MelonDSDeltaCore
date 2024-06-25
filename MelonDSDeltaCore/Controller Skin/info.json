@@ -1359,7 +1359,7 @@
       "splitView": {
         "portrait": {
           "assets": {
-            "large": "ipad_splitview_portrait.png"
+            "large": "ipad_portrait_splitview.png"
           },
           "items": [
             {
@@ -1481,8 +1481,6 @@
                 "height": 31
               },
               "extendedEdges": {
-                "top": 10,
-                "bottom": 10,
                 "right": 83
               }
             },
@@ -1497,7 +1495,6 @@
                 "height": 31
               },
               "extendedEdges": {
-                "top": 10,
                 "right": 83
               }
             },
@@ -1512,7 +1509,6 @@
                 "height": 31
               },
               "extendedEdges": {
-                "bottom": 10,
                 "right": 83
               }
             },
@@ -1581,7 +1577,7 @@
         },
         "landscape": {
           "assets": {
-            "resizable": "ipad_splitview_landscape.pdf"
+            "large": "ipad_landscape_splitview.png"
           },
           "items": [
             {
@@ -1592,14 +1588,13 @@
                 "right": "right"
               },
               "frame": {
-                "x": 17,
-                "y": 171,
-                "width": 193,
-                "height": 194
+                "x": 85,
+                "y": 148,
+                "width": 214,
+                "height": 214
               },
               "extendedEdges": {
-                "top": 30,
-                "right": 30
+                "left": 85
               }
             },
             {
@@ -1607,16 +1602,16 @@
                 "a"
               ],
               "frame": {
-                "x": 916,
-                "y": 218,
-                "width": 69,
-                "height": 64
+                "x": 1201,
+                "y": 215,
+                "width": 80,
+                "height": 80
               },
               "extendedEdges": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 42
+                "top": 8,
+                "bottom": 8,
+                "left": 8,
+                "right": 85
               }
             },
             {
@@ -1624,16 +1619,15 @@
                 "b"
               ],
               "frame": {
-                "x": 857,
-                "y": 278,
-                "width": 69,
-                "height": 64
+                "x": 1124,
+                "y": 293,
+                "width": 80,
+                "height": 80
               },
               "extendedEdges": {
-                "top": 0,
-                "bottom": 42,
-                "left": 0,
-                "right": 0
+                "top": 8,
+                "left": 8,
+                "right": 8
               }
             },
             {
@@ -1641,15 +1635,15 @@
                 "x"
               ],
               "frame": {
-                "x": 856,
-                "y": 159,
-                "width": 69,
-                "height": 64
+                "x": 1124,
+                "y": 137,
+                "width": 80,
+                "height": 80
               },
               "extendedEdges": {
-                "bottom": 0,
-                "left": 0,
-                "right": 0
+                "bottom": 8,
+                "left": 8,
+                "right": 8
               }
             },
             {
@@ -1657,15 +1651,15 @@
                 "y"
               ],
               "frame": {
-                "x": 797,
-                "y": 219,
-                "width": 69,
-                "height": 64
+                "x": 1045,
+                "y": 215,
+                "width": 80,
+                "height": 80
               },
               "extendedEdges": {
-                "top": 0,
-                "bottom": 0,
-                "right": 0
+                "top": 8,
+                "bottom": 8,
+                "right": 8
               }
             },
             {
@@ -1673,10 +1667,10 @@
                 "l"
               ],
               "frame": {
-                "x": 17,
-                "y": 17,
-                "width": 120,
-                "height": 48
+                "x": 0,
+                "y": 0,
+                "width": 198,
+                "height": 70
               }
             },
             {
@@ -1684,10 +1678,10 @@
                 "r"
               ],
               "frame": {
-                "x": 886,
-                "y": 17,
-                "width": 120,
-                "height": 48
+                "x": 1168,
+                "y": 0,
+                "width": 198,
+                "height": 70
               }
             },
             {
@@ -1695,14 +1689,14 @@
                 "start"
               ],
               "frame": {
-                "x": 524,
-                "y": 335,
-                "width": 86,
-                "height": 31
+                "x": 954,
+                "y": 362,
+                "width": 25,
+                "height": 26
               },
               "extendedEdges": {
-                "top": 10,
-                "left": 12
+                "bottom": 10,
+                "right": 80
               }
             },
             {
@@ -1710,14 +1704,15 @@
                 "select"
               ],
               "frame": {
-                "x": 412,
-                "y": 335,
-                "width": 86,
-                "height": 31
+                "x": 954,
+                "y": 415,
+                "width": 25,
+                "height": 26
               },
               "extendedEdges": {
                 "top": 10,
-                "right": 12
+                "bottom": 32,
+                "right": 80
               }
             },
             {
@@ -1725,13 +1720,15 @@
                 "menu"
               ],
               "frame": {
-                "x": 469,
-                "y": 17,
-                "width": 86,
-                "height": 31
+                "x": 29,
+                "y": 415,
+                "width": 26,
+                "height": 26
               },
               "extendedEdges": {
-                "bottom": 10
+                "bottom": 32,
+                "left": 30,
+                "right": 80
               }
             },
             {
@@ -1740,10 +1737,10 @@
                 "y": "touchScreenY"
               },
               "frame": {
-                "x": 338,
-                "y": 59,
-                "width": 350,
-                "height": 266
+                "x": 463,
+                "y": 90,
+                "width": 440,
+                "height": 330
               },
               "extendedEdges": {
                 "top": 0,
@@ -1772,17 +1769,17 @@
                 "height": 192
               },
               "outputFrame": {
-                "x": 338,
-                "y": 59,
-                "width": 350,
-                "height": 266
+                "x": 463,
+                "y": 90,
+                "width": 440,
+                "height": 330
               },
               "placement": "controller"
             }
           ],
           "mappingSize": {
-            "width": 1024,
-            "height": 384
+            "width": 1366,
+            "height": 472
           },
           "extendedEdges": {
             "top": 20,
