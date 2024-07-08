@@ -918,7 +918,9 @@
       "standard": {
         "portrait": {
           "assets": {
-            "large": "ipad_portrait.png"
+            "small": "ipad_portrait_small.png",
+            "medium": "ipad_portrait_medium.png",
+            "large": "ipad_portrait_large.png"
           },
           "items": [
             {
@@ -1136,7 +1138,9 @@
         },
         "landscape": {
           "assets": {
-            "large": "ipad_landscape.png"
+            "small": "ipad_landscape_small.png",
+            "medium": "ipad_landscape_medium.png",
+            "large": "ipad_landscape_large.png"
           },
           "items": [
             {
@@ -1357,7 +1361,9 @@
       "splitView": {
         "portrait": {
           "assets": {
-            "large": "ipad_portrait_splitview.png"
+            "small": "ipad_portrait_splitview_small.png",
+            "medium": "ipad_portrait_splitview_medium.png",
+            "large": "ipad_portrait_splitview_large.png"
           },
           "items": [
             {
@@ -1575,7 +1581,9 @@
         },
         "landscape": {
           "assets": {
-            "large": "ipad_landscape_splitview.png"
+            "small": "ipad_landscape_splitview_small.png",
+            "medium": "ipad_landscape_splitview_medium.png",
+            "large": "ipad_landscape_splitview_large.png"
           },
           "items": [
             {
