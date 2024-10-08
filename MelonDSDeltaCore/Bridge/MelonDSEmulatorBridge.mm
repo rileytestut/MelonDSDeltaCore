@@ -27,6 +27,7 @@
 #include "melonDS/src/AREngine.h"
 
 #include "melonDS/src/frontend/qt_sdl/Config.h"
+#include "melonDS/src/frontend/qt_sdl/LAN_Socket.h"
 
 #include <memory>
 
@@ -1044,21 +1045,27 @@ namespace Platform
     
     bool LAN_Init()
     {
-        return false;
+        if (!LAN_Socket::Init())
+        {
+            return false;
+        }
+        
+        return true;
     }
     
     void LAN_DeInit()
     {
+        LAN_Socket::DeInit();
     }
     
     int LAN_SendPacket(u8* data, int len)
     {
-        return 0;
+        return LAN_Socket::SendPacket(data, len);
     }
     
     int LAN_RecvPacket(u8* data)
     {
-        return 0;
+        return LAN_Socket::RecvPacket(data);
     }
 
     void Mic_Prepare()
