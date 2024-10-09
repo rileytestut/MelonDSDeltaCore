@@ -728,7 +728,7 @@ namespace Platform
         }
         
         MelonDSEmulatorBridge.sharedBridge.stopping = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:DLTAEmulatorCore.emulationDidQuitNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DLTAEmulatorCore.emulationDidQuitNotification object:MelonDSEmulatorBridge.sharedBridge];
     }
 
     int InstanceID()
