@@ -11,3 +11,6 @@
 GameType const GameTypeDS = @"com.rileytestut.delta.game.ds";
 
 CheatType const CheatTypeActionReplay = @"ActionReplay";
+
+NSNotificationName const MelonDSDidConnectToWFCNotification = @"MelonDSDidConnectToWFCNotification";
+NSNotificationName const MelonDSDidDisconnectFromWFCNotification = @"MelonDSDidDisconnectFromWFCNotification";

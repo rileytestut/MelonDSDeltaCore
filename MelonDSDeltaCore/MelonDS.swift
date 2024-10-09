@@ -23,6 +23,12 @@ public extension CheatType
 }
 #endif
 
+public extension MelonDS
+{
+    static let didConnectToWFCNotification = NSNotification.Name.__MelonDSDidConnectToWFC
+    static let didDisconnectFromWFCNotification = NSNotification.Name.__MelonDSDidDisconnectFromWFC
+}
+
 @objc public enum MelonDSGameInput: Int, Input
 {
     case a = 1

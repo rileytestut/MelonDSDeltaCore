@@ -15,6 +15,7 @@
 
 #if STATIC_LIBRARY
 #import "MelonDSDeltaCore-Swift.h"
+#import "MelonDSTypes.h"
 #else
 #import <MelonDSDeltaCore/MelonDSDeltaCore-Swift.h>
 #endif
@@ -33,6 +34,11 @@
 
 #import <notify.h>
 #import <pthread.h>
+
+namespace WifiAP
+{
+extern int ClientStatus;
+}
 
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
@@ -312,6 +318,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         return;
     }
     
+    int previousClientStatus = WifiAP::ClientStatus;
+    
     uint32_t inputs = self.activatedInputs;
     uint32_t inputsMask = 0xFFF; // 0b000000111111111111;
     
@@ -371,6 +379,20 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         memcpy(self.videoRenderer.videoBuffer + screenBufferSize, GPU::Framebuffer[GPU::FrontBuffer][1], screenBufferSize);
         
         [self.videoRenderer processFrame];
+    }
+    
+    if (WifiAP::ClientStatus != previousClientStatus)
+    {
+        if (WifiAP::ClientStatus == 0)
+        {
+            // Disconnected
+            [[NSNotificationCenter defaultCenter] postNotificationName:MelonDSDidDisconnectFromWFCNotification object:self];
+        }
+        else if (WifiAP::ClientStatus == 2)
+        {
+            // Connected
+            [[NSNotificationCenter defaultCenter] postNotificationName:MelonDSDidConnectToWFCNotification object:self];
+        }
     }
 }
 
