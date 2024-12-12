@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, MelonDSSystemType)
 
 @property (nonatomic) MelonDSSystemType systemType;
 @property (nonatomic, getter=isJITEnabled) BOOL jitEnabled;
+@property (nonatomic, getter=isWFCEnabled) BOOL wfcEnabled;
 
 @property (nonatomic, readonly) NSURL *bios7URL;
 @property (nonatomic, readonly) NSURL *bios9URL;

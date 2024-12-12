@@ -1067,6 +1067,11 @@ namespace Platform
     
     bool LAN_Init()
     {
+        if (![[MelonDSEmulatorBridge sharedBridge] isWFCEnabled])
+        {
+            return false;
+        }
+        
         if (!LAN_Socket::Init())
         {
             return false;
