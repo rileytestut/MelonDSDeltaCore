@@ -904,7 +904,7 @@ namespace Platform
         NSURL *relativeURL = [MelonDSEmulatorBridge.coreDirectoryURL URLByAppendingPathComponent:@(path.c_str())];
         
         NSURL *fileURL = nil;
-        if ([[NSFileManager defaultManager] fileExistsAtPath:relativeURL.path])
+        if ([[NSFileManager defaultManager] fileExistsAtPath:relativeURL.path] || path.find(".bak") != std::string::npos)
         {
             fileURL = relativeURL;
         }
