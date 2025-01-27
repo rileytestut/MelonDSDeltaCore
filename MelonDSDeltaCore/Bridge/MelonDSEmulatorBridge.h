@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, MelonDSSystemType)
 @property (nonatomic, readonly) NSURL *dsiNANDURL;
 
 @property (nonatomic, copy, nullable) NSURL *gbaGameURL;
+@property (nonatomic, copy, nullable) NSString *wfcDNS;
 
 @end
 

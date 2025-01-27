@@ -40,6 +40,11 @@ namespace WifiAP
 extern int ClientStatus;
 }
 
+namespace SPI_Firmware
+{
+extern std::array<u8, 4> DNS;
+}
+
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
 {
@@ -162,6 +167,23 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 
 - (void)startWithGameURL:(NSURL *)gameURL
 {
+    if (self.wfcDNS != nil)
+    {
+        NSArray *components = [self.wfcDNS componentsSeparatedByString:@"."];
+        if (components.count == 4)
+        {
+            SPI_Firmware::DNS = { (u8)[components[0] intValue], (u8)[components[1] intValue], (u8)[components[2] intValue], (u8)[components[3] intValue] };
+        }
+        else
+        {
+            SPI_Firmware::DNS = { 0, 0, 0, 0 };
+        }
+    }
+    else
+    {
+        SPI_Firmware::DNS = { 0, 0, 0, 0 };
+    }
+    
     self.gameURL = gameURL;
     
     if ([self isInitialized])
