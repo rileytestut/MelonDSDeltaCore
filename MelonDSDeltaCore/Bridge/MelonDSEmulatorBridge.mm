@@ -42,8 +42,17 @@ extern int ClientStatus;
 
 namespace SPI_Firmware
 {
+extern u8* Firmware;
+extern u32 FirmwareLength;
+extern u32 FirmwareMask;
+
 extern std::array<u8, 4> DNS;
+extern int64_t wfcID;
+extern int64_t wfcFlags; // Required to ensure we don't generate invalid WFC ID after erasing WFC configuration
 }
+
+NSString *WFCIDKey = @"MelonDSDeltaCore.WFC.ID";
+NSString *WFCFlagsKey = @"MelonDSDeltaCore.WFC.Flags";
 
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
@@ -182,6 +191,15 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     else
     {
         SPI_Firmware::DNS = { 0, 0, 0, 0 };
+    }
+    
+    int64_t wfcID = [[[NSUserDefaults standardUserDefaults] objectForKey:WFCIDKey] longLongValue];
+    int64_t wfcFlags = [[[NSUserDefaults standardUserDefaults] objectForKey:WFCFlagsKey] longLongValue];
+    
+    if (wfcID != 0)
+    {
+        SPI_Firmware::wfcID = wfcID;
+        SPI_Firmware::wfcFlags = wfcFlags;
     }
     
     self.gameURL = gameURL;
@@ -489,6 +507,31 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         if (![self.gbaSaveData writeToURL:self.gbaSaveURL options:NSDataWritingAtomic error:&error])
         {
             NSLog(@"Failed write GBA save data. %@", error);
+        }
+    }
+    
+    if (SPI_Firmware::Firmware)
+    {
+        // Save WFC ID to NSUserDefaults
+        
+        u32 userdata = 0x7FE00 & SPI_Firmware::FirmwareMask;
+        u32 apdata = userdata - 0x400;
+        
+        int64_t wfcID = 0;
+        int64_t wfcFlags = 0;
+        
+        memcpy(&wfcID, &SPI_Firmware::Firmware[apdata + 0xF0], 6);
+        memcpy(&wfcFlags, &SPI_Firmware::Firmware[apdata + 0xF6], 8);
+        
+        if (wfcID != 0)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:@(wfcID) forKey:WFCIDKey];
+            [[NSUserDefaults standardUserDefaults] setObject:@(wfcFlags) forKey:WFCFlagsKey];
+        }
+        else
+        {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:WFCIDKey];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:WFCFlagsKey];
         }
     }
 }
