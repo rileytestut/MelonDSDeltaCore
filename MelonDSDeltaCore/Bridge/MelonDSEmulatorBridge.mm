@@ -198,6 +198,11 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         SPI_Firmware::wfcID = wfcID;
         SPI_Firmware::wfcFlags = wfcFlags;
     }
+    else
+    {
+        SPI_Firmware::wfcID = 0;
+        SPI_Firmware::wfcFlags = 0;
+    }
     
     self.gameURL = gameURL;
     
