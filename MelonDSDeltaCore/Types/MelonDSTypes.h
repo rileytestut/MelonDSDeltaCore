@@ -15,3 +15,6 @@ FOUNDATION_EXPORT CheatType const CheatTypeActionReplay;
 
 FOUNDATION_EXPORT NSNotificationName const MelonDSDidConnectToWFCNotification NS_REFINED_FOR_SWIFT;
 FOUNDATION_EXPORT NSNotificationName const MelonDSDidDisconnectFromWFCNotification NS_REFINED_FOR_SWIFT;
+
+FOUNDATION_EXPORT NSString *MelonDSWFCIDUserDefaultsKey NS_REFINED_FOR_SWIFT;
+FOUNDATION_EXPORT NSString *MelonDSWFCFlagsUserDefaultsKey NS_REFINED_FOR_SWIFT;

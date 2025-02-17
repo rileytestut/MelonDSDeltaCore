@@ -14,3 +14,6 @@ CheatType const CheatTypeActionReplay = @"ActionReplay";
 
 NSNotificationName const MelonDSDidConnectToWFCNotification = @"MelonDSDidConnectToWFCNotification";
 NSNotificationName const MelonDSDidDisconnectFromWFCNotification = @"MelonDSDidDisconnectFromWFCNotification";
+
+NSString *MelonDSWFCIDUserDefaultsKey = @"MelonDSDeltaCore.WFC.ID";
+NSString *MelonDSWFCFlagsUserDefaultsKey = @"MelonDSDeltaCore.WFC.Flags";

@@ -51,9 +51,6 @@ extern int64_t wfcID;
 extern int64_t wfcFlags; // Required to ensure we don't generate invalid WFC ID after erasing WFC configuration
 }
 
-NSString *WFCIDKey = @"MelonDSDeltaCore.WFC.ID";
-NSString *WFCFlagsKey = @"MelonDSDeltaCore.WFC.Flags";
-
 // Copied from melonDS source (no longer exists in HEAD)
 void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever this should be named?
 {
@@ -193,8 +190,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         SPI_Firmware::DNS = { 0, 0, 0, 0 };
     }
     
-    int64_t wfcID = [[[NSUserDefaults standardUserDefaults] objectForKey:WFCIDKey] longLongValue];
-    int64_t wfcFlags = [[[NSUserDefaults standardUserDefaults] objectForKey:WFCFlagsKey] longLongValue];
+    int64_t wfcID = [[[NSUserDefaults standardUserDefaults] objectForKey:MelonDSWFCIDUserDefaultsKey] longLongValue];
+    int64_t wfcFlags = [[[NSUserDefaults standardUserDefaults] objectForKey:MelonDSWFCFlagsUserDefaultsKey] longLongValue];
     
     if (wfcID != 0)
     {
@@ -525,13 +522,13 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         if (wfcID != 0)
         {
-            [[NSUserDefaults standardUserDefaults] setObject:@(wfcID) forKey:WFCIDKey];
-            [[NSUserDefaults standardUserDefaults] setObject:@(wfcFlags) forKey:WFCFlagsKey];
+            [[NSUserDefaults standardUserDefaults] setObject:@(wfcID) forKey:MelonDSWFCIDUserDefaultsKey];
+            [[NSUserDefaults standardUserDefaults] setObject:@(wfcFlags) forKey:MelonDSWFCFlagsUserDefaultsKey];
         }
         else
         {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:WFCIDKey];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:WFCFlagsKey];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:MelonDSWFCIDUserDefaultsKey];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:MelonDSWFCFlagsUserDefaultsKey];
         }
     }
 }

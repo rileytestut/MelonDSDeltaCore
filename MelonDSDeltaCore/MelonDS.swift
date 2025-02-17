@@ -27,6 +27,9 @@ public extension MelonDS
 {
     static let didConnectToWFCNotification = NSNotification.Name.__MelonDSDidConnectToWFC
     static let didDisconnectFromWFCNotification = NSNotification.Name.__MelonDSDidDisconnectFromWFC
+    
+    static let wfcIDUserDefaultsKey = __MelonDSWFCIDUserDefaultsKey
+    static let wfcFlagsUserDefaultsKey = __MelonDSWFCFlagsUserDefaultsKey
 }
 
 @objc public enum MelonDSGameInput: Int, Input
