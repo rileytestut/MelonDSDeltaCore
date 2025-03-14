@@ -131,6 +131,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
 @property (nonatomic, readonly) DLTARingBuffer *microphoneBuffer;
 @property (nonatomic, readonly) dispatch_queue_t microphoneQueue;
 
+@property (nonatomic) int closedLidFrameCount;
+
 @end
 
 @implementation MelonDSEmulatorBridge
@@ -162,6 +164,8 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         
         _microphoneBuffer = [[DLTARingBuffer alloc] initWithPreferredBufferSize:100 * 1024];
         _microphoneQueue = dispatch_queue_create("com.rileytestut.MelonDSDeltaCore.Microphone", DISPATCH_QUEUE_SERIAL);
+        
+        _closedLidFrameCount = 0;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAudioSessionInterruption:) name:AVAudioSessionInterruptionNotification object:nil];
     }
@@ -380,10 +384,19 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     if (self.activatedInputs & MelonDSGameInputLid)
     {
         NDS::SetLidClosed(true);
+        self.closedLidFrameCount = 0;
     }
     else if (NDS::IsLidClosed())
     {
-        NDS::SetLidClosed(false);
+        if (self.closedLidFrameCount >= 7) // Derived from quick experiments - 6 is too low for resuming iPad Pro from background non-AirPlay
+        {
+            NDS::SetLidClosed(false);
+            self.closedLidFrameCount = 0;
+        }
+        else
+        {
+            self.closedLidFrameCount += 1;
+        }
     }
     
     static int16_t micBuffer[735];
