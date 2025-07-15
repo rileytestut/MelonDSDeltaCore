@@ -22,7 +22,6 @@
 		BF02B2D124366EF6001B4E65 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A824366EF5001B4E65 /* CRC32.cpp */; };
 		BF02B2D224366EF6001B4E65 /* RTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2A924366EF5001B4E65 /* RTC.cpp */; };
 		BF02B2D324366EF6001B4E65 /* ARMInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */; };
-		BF02B2D424366EF6001B4E65 /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AC24366EF5001B4E65 /* Config.cpp */; };
 		BF02B2D524366EF6001B4E65 /* GBACart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AD24366EF5001B4E65 /* GBACart.cpp */; };
 		BF02B2D624366EF6001B4E65 /* GPU3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */; };
 		BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */; };
@@ -34,19 +33,18 @@
 		BF02B2F0243674AF001B4E65 /* MelonDSEmulatorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = BF02B2EE243674AF001B4E65 /* MelonDSEmulatorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2EF243674AF001B4E65 /* MelonDSEmulatorBridge.mm */; };
 		BF02B2F32436774E001B4E65 /* libMelonDS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF02B28324366DDF001B4E65 /* libMelonDS.a */; };
-		BF02B2FE24367CF5001B4E65 /* MelonDSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = BF02B2FC24367CF5001B4E65 /* MelonDSTypes.h */; };
+		BF02B2FE24367CF5001B4E65 /* MelonDSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = BF02B2FC24367CF5001B4E65 /* MelonDSTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF062A9225436E920010FF6D /* ARCodeFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9025436E920010FF6D /* ARCodeFile.cpp */; };
 		BF062AA825436F440010FF6D /* DSi_SD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9625436F440010FF6D /* DSi_SD.cpp */; };
 		BF062AA925436F440010FF6D /* DSi_AES.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9825436F440010FF6D /* DSi_AES.cpp */; };
 		BF062AAA25436F440010FF6D /* DSi_Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9925436F440010FF6D /* DSi_Camera.cpp */; };
-		BF062AAB25436F440010FF6D /* DSiCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9B25436F440010FF6D /* DSiCrypto.cpp */; };
 		BF062AAC25436F440010FF6D /* DSi_SPI_TSC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9C25436F440010FF6D /* DSi_SPI_TSC.cpp */; };
 		BF062AAD25436F440010FF6D /* DSi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062A9E25436F440010FF6D /* DSi.cpp */; };
 		BF062AAE25436F440010FF6D /* DSi_NDMA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062AA125436F440010FF6D /* DSi_NDMA.cpp */; };
 		BF062AAF25436F440010FF6D /* DSi_NWifi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062AA425436F440010FF6D /* DSi_NWifi.cpp */; };
 		BF062AB025436F440010FF6D /* DSi_I2C.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062AA525436F440010FF6D /* DSi_I2C.cpp */; };
 		BF062AB5254370050010FF6D /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = BF062AB4254370050010FF6D /* aes.c */; };
-		BF062ABA2543708E0010FF6D /* PlatformConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062AB82543708E0010FF6D /* PlatformConfig.cpp */; };
+		BF062ABA2543708E0010FF6D /* Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF062AB82543708E0010FF6D /* Config.cpp */; };
 		BF38C9EF2494133F005AFA8D /* Standard.deltamapping in Resources */ = {isa = PBXBuildFile; fileRef = BF38C9EE2494133F005AFA8D /* Standard.deltamapping */; };
 		BF39AFDF2534D2B500800781 /* Standard.deltaskin in Resources */ = {isa = PBXBuildFile; fileRef = BF39AFDE2534D2B500800781 /* Standard.deltaskin */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,9 +55,65 @@
 		BF74CC662553756B00060964 /* ARMJIT_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */; };
 		BF74CC692553769C00060964 /* ARMJIT_Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC682553769B00060964 /* ARMJIT_Memory.cpp */; };
 		BF74CC6D25537D7C00060964 /* Arm64Emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC6B25537D7C00060964 /* Arm64Emitter.cpp */; };
-		BF925D0B255E07E00088EFF2 /* ARMJIT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D09255E07E00088EFF2 /* ARMJIT.cpp */; };
 		BF925D0E255E07F90088EFF2 /* ARM_InstrInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF925D0D255E07F80088EFF2 /* ARM_InstrInfo.cpp */; };
 		BF925D13255E080D0088EFF2 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = BF925D12255E080C0088EFF2 /* xxhash.c */; };
+		D54FDB492E26D42C003B4D8A /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB482E26D42C003B4D8A /* timer.cpp */; };
+		D54FDB4A2E26D42C003B4D8A /* ahbm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB282E26D42C003B4D8A /* ahbm.cpp */; };
+		D54FDB4B2E26D42C003B4D8A /* memory_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB392E26D42C003B4D8A /* memory_interface.cpp */; };
+		D54FDB4C2E26D42C003B4D8A /* dma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB352E26D42C003B4D8A /* dma.cpp */; };
+		D54FDB4D2E26D42C003B4D8A /* test_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB462E26D42C003B4D8A /* test_generator.cpp */; };
+		D54FDB4E2E26D42C003B4D8A /* disassembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB322E26D42C003B4D8A /* disassembler.cpp */; };
+		D54FDB4F2E26D42C003B4D8A /* processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB402E26D42C003B4D8A /* processor.cpp */; };
+		D54FDB502E26D42C003B4D8A /* btdmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB2D2E26D42C003B4D8A /* btdmp.cpp */; };
+		D54FDB512E26D42C003B4D8A /* disassembler_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB332E26D42C003B4D8A /* disassembler_c.cpp */; };
+		D54FDB522E26D42C003B4D8A /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB3E2E26D42C003B4D8A /* parser.cpp */; };
+		D54FDB532E26D42C003B4D8A /* apbp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB2A2E26D42C003B4D8A /* apbp.cpp */; };
+		D54FDB542E26D42C003B4D8A /* teakra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB432E26D42C003B4D8A /* teakra.cpp */; };
+		D54FDB552E26D42C003B4D8A /* mmio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D54FDB3B2E26D42C003B4D8A /* mmio.cpp */; };
+		D5B723AD2E26D4EF00D3E5F3 /* DSi_DSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5B723AA2E26D4EF00D3E5F3 /* DSi_DSP.cpp */; };
+		D5B723AE2E26D4EF00D3E5F3 /* FATStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5B723AC2E26D4EF00D3E5F3 /* FATStorage.cpp */; };
+		D5B723B12E26D51E00D3E5F3 /* DSi_NAND.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5B723B02E26D51E00D3E5F3 /* DSi_NAND.cpp */; };
+		D5B723B42E26D55600D3E5F3 /* LAN_Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5B723B32E26D55600D3E5F3 /* LAN_Socket.cpp */; };
+		D5B723B82E26D8D900D3E5F3 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723B72E26D8D900D3E5F3 /* sha1.c */; };
+		D5B723C12E26D91900D3E5F3 /* ffunicode.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723C02E26D91900D3E5F3 /* ffunicode.c */; };
+		D5B723C22E26D91900D3E5F3 /* diskio.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723BB2E26D91900D3E5F3 /* diskio.c */; };
+		D5B723C32E26D91900D3E5F3 /* ffsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723BF2E26D91900D3E5F3 /* ffsystem.c */; };
+		D5B723C42E26D91900D3E5F3 /* ff.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723BD2E26D91900D3E5F3 /* ff.c */; };
+		D5B724042E26D9E100D3E5F3 /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723F12E26D9E100D3E5F3 /* stream.c */; };
+		D5B724052E26D9E100D3E5F3 /* ip6_icmp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723D92E26D9E100D3E5F3 /* ip6_icmp.c */; };
+		D5B724062E26D9E100D3E5F3 /* ip_output.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723D62E26D9E100D3E5F3 /* ip_output.c */; };
+		D5B724072E26D9E100D3E5F3 /* dhcpv6.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723CE2E26D9E100D3E5F3 /* dhcpv6.c */; };
+		D5B724082E26D9E100D3E5F3 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723FD2E26D9E100D3E5F3 /* udp.c */; };
+		D5B724092E26D9E100D3E5F3 /* mbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723E32E26D9E100D3E5F3 /* mbuf.c */; };
+		D5B7240A2E26D9E100D3E5F3 /* ncsi.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723E62E26D9E100D3E5F3 /* ncsi.c */; };
+		D5B7240B2E26D9E100D3E5F3 /* slirp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723EC2E26D9E100D3E5F3 /* slirp.c */; };
+		D5B7240C2E26D9E100D3E5F3 /* tftp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723FB2E26D9E100D3E5F3 /* tftp.c */; };
+		D5B7240D2E26D9E100D3E5F3 /* ip_input.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723D52E26D9E100D3E5F3 /* ip_input.c */; };
+		D5B7240E2E26D9E100D3E5F3 /* tcp_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723F72E26D9E100D3E5F3 /* tcp_timer.c */; };
+		D5B7240F2E26D9E100D3E5F3 /* udp6.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723FE2E26D9E100D3E5F3 /* udp6.c */; };
+		D5B724102E26D9E100D3E5F3 /* dnssearch.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723CF2E26D9E100D3E5F3 /* dnssearch.c */; };
+		D5B724112E26D9E100D3E5F3 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B724002E26D9E100D3E5F3 /* util.c */; };
+		D5B724122E26D9E100D3E5F3 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723E52E26D9E100D3E5F3 /* misc.c */; };
+		D5B724132E26D9E100D3E5F3 /* if.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723D12E26D9E100D3E5F3 /* if.c */; };
+		D5B724142E26D9E100D3E5F3 /* tcp_output.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723F42E26D9E100D3E5F3 /* tcp_output.c */; };
+		D5B724152E26D9E100D3E5F3 /* sbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723EA2E26D9E100D3E5F3 /* sbuf.c */; };
+		D5B724162E26D9E100D3E5F3 /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723CB2E26D9E100D3E5F3 /* cksum.c */; };
+		D5B724172E26D9E100D3E5F3 /* ip6_input.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723DA2E26D9E100D3E5F3 /* ip6_input.c */; };
+		D5B724182E26D9E100D3E5F3 /* tcp_input.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723F32E26D9E100D3E5F3 /* tcp_input.c */; };
+		D5B724192E26D9E100D3E5F3 /* state.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723EF2E26D9E100D3E5F3 /* state.c */; };
+		D5B7241A2E26D9E100D3E5F3 /* ip_icmp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723D42E26D9E100D3E5F3 /* ip_icmp.c */; };
+		D5B7241B2E26D9E100D3E5F3 /* ip6_output.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723DB2E26D9E100D3E5F3 /* ip6_output.c */; };
+		D5B7241C2E26D9E100D3E5F3 /* arp_table.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723C82E26D9E100D3E5F3 /* arp_table.c */; };
+		D5B7241D2E26D9E100D3E5F3 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B724012E26D9E100D3E5F3 /* version.c */; };
+		D5B7241E2E26D9E100D3E5F3 /* ndp_table.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723E82E26D9E100D3E5F3 /* ndp_table.c */; };
+		D5B7241F2E26D9E100D3E5F3 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723EE2E26D9E100D3E5F3 /* socket.c */; };
+		D5B724202E26D9E100D3E5F3 /* vmstate.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B724032E26D9E100D3E5F3 /* vmstate.c */; };
+		D5B724212E26D9E100D3E5F3 /* tcp_subr.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723F52E26D9E100D3E5F3 /* tcp_subr.c */; };
+		D5B724222E26D9E100D3E5F3 /* bootp.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B723CA2E26D9E100D3E5F3 /* bootp.c */; };
+		D5B724262E26DA5200D3E5F3 /* glib.c in Sources */ = {isa = PBXBuildFile; fileRef = D5B724252E26DA5200D3E5F3 /* glib.c */; };
+		D5B724292E26DAB600D3E5F3 /* GPU2D_Soft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5B724282E26DAB600D3E5F3 /* GPU2D_Soft.cpp */; };
+		D5B7242B2E26DAEE00D3E5F3 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B7242A2E26DAEE00D3E5F3 /* libresolv.tbd */; };
+		D5C7DD1B2E26D35A0048FF5C /* MelonDSTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = BF02B2FD24367CF5001B4E65 /* MelonDSTypes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,11 +169,9 @@
 		BF02B2A924366EF5001B4E65 /* RTC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RTC.cpp; path = melonDS/src/RTC.cpp; sourceTree = SOURCE_ROOT; };
 		BF02B2AA24366EF5001B4E65 /* ARMInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter.cpp; path = melonDS/src/ARMInterpreter.cpp; sourceTree = SOURCE_ROOT; };
 		BF02B2AB24366EF5001B4E65 /* SPU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPU.h; path = melonDS/src/SPU.h; sourceTree = SOURCE_ROOT; };
-		BF02B2AC24366EF5001B4E65 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Config.cpp; path = melonDS/src/Config.cpp; sourceTree = SOURCE_ROOT; };
 		BF02B2AD24366EF5001B4E65 /* GBACart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GBACart.cpp; path = melonDS/src/GBACart.cpp; sourceTree = SOURCE_ROOT; };
 		BF02B2AE24366EF5001B4E65 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = melonDS/src/types.h; sourceTree = SOURCE_ROOT; };
 		BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPU3D.cpp; path = melonDS/src/GPU3D.cpp; sourceTree = SOURCE_ROOT; };
-		BF02B2B024366EF5001B4E65 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = melonDS/src/Config.h; sourceTree = SOURCE_ROOT; };
 		BF02B2B124366EF5001B4E65 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = melonDS/src/CRC32.h; sourceTree = SOURCE_ROOT; };
 		BF02B2B224366EF5001B4E65 /* Wifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wifi.h; path = melonDS/src/Wifi.h; sourceTree = SOURCE_ROOT; };
 		BF02B2B324366EF5001B4E65 /* ARMInterpreter_Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMInterpreter_Branch.cpp; path = melonDS/src/ARMInterpreter_Branch.cpp; sourceTree = SOURCE_ROOT; };
@@ -151,11 +203,9 @@
 		BF062A9825436F440010FF6D /* DSi_AES.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_AES.cpp; path = melonDS/src/DSi_AES.cpp; sourceTree = SOURCE_ROOT; };
 		BF062A9925436F440010FF6D /* DSi_Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_Camera.cpp; path = melonDS/src/DSi_Camera.cpp; sourceTree = SOURCE_ROOT; };
 		BF062A9A25436F440010FF6D /* DSi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSi.h; path = melonDS/src/DSi.h; sourceTree = SOURCE_ROOT; };
-		BF062A9B25436F440010FF6D /* DSiCrypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSiCrypto.cpp; path = melonDS/src/DSiCrypto.cpp; sourceTree = SOURCE_ROOT; };
 		BF062A9C25436F440010FF6D /* DSi_SPI_TSC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_SPI_TSC.cpp; path = melonDS/src/DSi_SPI_TSC.cpp; sourceTree = SOURCE_ROOT; };
 		BF062A9D25436F440010FF6D /* DSi_SPI_TSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSi_SPI_TSC.h; path = melonDS/src/DSi_SPI_TSC.h; sourceTree = SOURCE_ROOT; };
 		BF062A9E25436F440010FF6D /* DSi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSi.cpp; path = melonDS/src/DSi.cpp; sourceTree = SOURCE_ROOT; };
-		BF062A9F25436F440010FF6D /* DSiCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSiCrypto.h; path = melonDS/src/DSiCrypto.h; sourceTree = SOURCE_ROOT; };
 		BF062AA025436F440010FF6D /* DSi_NWifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSi_NWifi.h; path = melonDS/src/DSi_NWifi.h; sourceTree = SOURCE_ROOT; };
 		BF062AA125436F440010FF6D /* DSi_NDMA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_NDMA.cpp; path = melonDS/src/DSi_NDMA.cpp; sourceTree = SOURCE_ROOT; };
 		BF062AA225436F440010FF6D /* DSi_SD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DSi_SD.h; path = melonDS/src/DSi_SD.h; sourceTree = SOURCE_ROOT; };
@@ -167,8 +217,8 @@
 		BF062AB2254370050010FF6D /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aes.h; path = "melonDS/src/tiny-AES-c/aes.h"; sourceTree = SOURCE_ROOT; };
 		BF062AB3254370050010FF6D /* aes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = aes.hpp; path = "melonDS/src/tiny-AES-c/aes.hpp"; sourceTree = SOURCE_ROOT; };
 		BF062AB4254370050010FF6D /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = aes.c; path = "melonDS/src/tiny-AES-c/aes.c"; sourceTree = SOURCE_ROOT; };
-		BF062AB82543708E0010FF6D /* PlatformConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformConfig.cpp; path = melonDS/src/frontend/qt_sdl/PlatformConfig.cpp; sourceTree = SOURCE_ROOT; };
-		BF062AB92543708E0010FF6D /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = melonDS/src/frontend/qt_sdl/PlatformConfig.h; sourceTree = SOURCE_ROOT; };
+		BF062AB82543708E0010FF6D /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Config.cpp; path = melonDS/src/frontend/qt_sdl/Config.cpp; sourceTree = SOURCE_ROOT; };
+		BF062AB92543708E0010FF6D /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = melonDS/src/frontend/qt_sdl/Config.h; sourceTree = SOURCE_ROOT; };
 		BF38C9EE2494133F005AFA8D /* Standard.deltamapping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Standard.deltamapping; sourceTree = "<group>"; };
 		BF39AFDE2534D2B500800781 /* Standard.deltaskin */ = {isa = PBXFileReference; lastKnownFileType = file; name = Standard.deltaskin; path = "Controller Skin/Standard.deltaskin"; sourceTree = "<group>"; };
 		BF7317852356624000774F10 /* MelonDSDeltaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MelonDSDeltaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +241,122 @@
 		BF925D10255E080C0088EFF2 /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = melonDS/src/xxhash/xxhash.h; sourceTree = SOURCE_ROOT; };
 		BF925D11255E080C0088EFF2 /* xxh3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxh3.h; path = melonDS/src/xxhash/xxh3.h; sourceTree = SOURCE_ROOT; };
 		BF925D12255E080C0088EFF2 /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = melonDS/src/xxhash/xxhash.c; sourceTree = SOURCE_ROOT; };
+		D54FDB272E26D42C003B4D8A /* ahbm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ahbm.h; path = melonDS/src/teakra/src/ahbm.h; sourceTree = SOURCE_ROOT; };
+		D54FDB282E26D42C003B4D8A /* ahbm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ahbm.cpp; path = melonDS/src/teakra/src/ahbm.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB292E26D42C003B4D8A /* apbp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = apbp.h; path = melonDS/src/teakra/src/apbp.h; sourceTree = SOURCE_ROOT; };
+		D54FDB2A2E26D42C003B4D8A /* apbp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = apbp.cpp; path = melonDS/src/teakra/src/apbp.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB2B2E26D42C003B4D8A /* bit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bit.h; path = melonDS/src/teakra/src/bit.h; sourceTree = SOURCE_ROOT; };
+		D54FDB2C2E26D42C003B4D8A /* btdmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = btdmp.h; path = melonDS/src/teakra/src/btdmp.h; sourceTree = SOURCE_ROOT; };
+		D54FDB2D2E26D42C003B4D8A /* btdmp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = btdmp.cpp; path = melonDS/src/teakra/src/btdmp.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB2E2E26D42C003B4D8A /* common_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = common_types.h; path = melonDS/src/teakra/src/common_types.h; sourceTree = SOURCE_ROOT; };
+		D54FDB2F2E26D42C003B4D8A /* core_timing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = core_timing.h; path = melonDS/src/teakra/src/core_timing.h; sourceTree = SOURCE_ROOT; };
+		D54FDB302E26D42C003B4D8A /* crash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crash.h; path = melonDS/src/teakra/src/crash.h; sourceTree = SOURCE_ROOT; };
+		D54FDB312E26D42C003B4D8A /* decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = decoder.h; path = melonDS/src/teakra/src/decoder.h; sourceTree = SOURCE_ROOT; };
+		D54FDB322E26D42C003B4D8A /* disassembler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = disassembler.cpp; path = melonDS/src/teakra/src/disassembler.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB332E26D42C003B4D8A /* disassembler_c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = disassembler_c.cpp; path = melonDS/src/teakra/src/disassembler_c.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB342E26D42C003B4D8A /* dma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dma.h; path = melonDS/src/teakra/src/dma.h; sourceTree = SOURCE_ROOT; };
+		D54FDB352E26D42C003B4D8A /* dma.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dma.cpp; path = melonDS/src/teakra/src/dma.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB362E26D42C003B4D8A /* interpreter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = interpreter.h; path = melonDS/src/teakra/src/interpreter.h; sourceTree = SOURCE_ROOT; };
+		D54FDB372E26D42C003B4D8A /* matcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = matcher.h; path = melonDS/src/teakra/src/matcher.h; sourceTree = SOURCE_ROOT; };
+		D54FDB382E26D42C003B4D8A /* memory_interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = memory_interface.h; path = melonDS/src/teakra/src/memory_interface.h; sourceTree = SOURCE_ROOT; };
+		D54FDB392E26D42C003B4D8A /* memory_interface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = memory_interface.cpp; path = melonDS/src/teakra/src/memory_interface.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB3A2E26D42C003B4D8A /* mmio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mmio.h; path = melonDS/src/teakra/src/mmio.h; sourceTree = SOURCE_ROOT; };
+		D54FDB3B2E26D42C003B4D8A /* mmio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mmio.cpp; path = melonDS/src/teakra/src/mmio.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB3C2E26D42C003B4D8A /* operand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = operand.h; path = melonDS/src/teakra/src/operand.h; sourceTree = SOURCE_ROOT; };
+		D54FDB3D2E26D42C003B4D8A /* parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = parser.h; path = melonDS/src/teakra/src/parser.h; sourceTree = SOURCE_ROOT; };
+		D54FDB3E2E26D42C003B4D8A /* parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = parser.cpp; path = melonDS/src/teakra/src/parser.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB3F2E26D42C003B4D8A /* processor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = processor.h; path = melonDS/src/teakra/src/processor.h; sourceTree = SOURCE_ROOT; };
+		D54FDB402E26D42C003B4D8A /* processor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = processor.cpp; path = melonDS/src/teakra/src/processor.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB412E26D42C003B4D8A /* register.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = register.h; path = melonDS/src/teakra/src/register.h; sourceTree = SOURCE_ROOT; };
+		D54FDB422E26D42C003B4D8A /* shared_memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = shared_memory.h; path = melonDS/src/teakra/src/shared_memory.h; sourceTree = SOURCE_ROOT; };
+		D54FDB432E26D42C003B4D8A /* teakra.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = teakra.cpp; path = melonDS/src/teakra/src/teakra.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB442E26D42C003B4D8A /* test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = test.h; path = melonDS/src/teakra/src/test.h; sourceTree = SOURCE_ROOT; };
+		D54FDB452E26D42C003B4D8A /* test_generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = test_generator.h; path = melonDS/src/teakra/src/test_generator.h; sourceTree = SOURCE_ROOT; };
+		D54FDB462E26D42C003B4D8A /* test_generator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = test_generator.cpp; path = melonDS/src/teakra/src/test_generator.cpp; sourceTree = SOURCE_ROOT; };
+		D54FDB472E26D42C003B4D8A /* timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = timer.h; path = melonDS/src/teakra/src/timer.h; sourceTree = SOURCE_ROOT; };
+		D54FDB482E26D42C003B4D8A /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = melonDS/src/teakra/src/timer.cpp; sourceTree = SOURCE_ROOT; };
+		D5B723A92E26D4EF00D3E5F3 /* DSi_DSP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DSi_DSP.h; path = melonDS/src/DSi_DSP.h; sourceTree = SOURCE_ROOT; };
+		D5B723AA2E26D4EF00D3E5F3 /* DSi_DSP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_DSP.cpp; path = melonDS/src/DSi_DSP.cpp; sourceTree = SOURCE_ROOT; };
+		D5B723AB2E26D4EF00D3E5F3 /* FATStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FATStorage.h; path = melonDS/src/FATStorage.h; sourceTree = SOURCE_ROOT; };
+		D5B723AC2E26D4EF00D3E5F3 /* FATStorage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FATStorage.cpp; path = melonDS/src/FATStorage.cpp; sourceTree = SOURCE_ROOT; };
+		D5B723AF2E26D51E00D3E5F3 /* DSi_NAND.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DSi_NAND.h; path = melonDS/src/DSi_NAND.h; sourceTree = SOURCE_ROOT; };
+		D5B723B02E26D51E00D3E5F3 /* DSi_NAND.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DSi_NAND.cpp; path = melonDS/src/DSi_NAND.cpp; sourceTree = SOURCE_ROOT; };
+		D5B723B22E26D55600D3E5F3 /* LAN_Socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LAN_Socket.h; path = melonDS/src/frontend/qt_sdl/LAN_Socket.h; sourceTree = SOURCE_ROOT; };
+		D5B723B32E26D55600D3E5F3 /* LAN_Socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LAN_Socket.cpp; path = melonDS/src/frontend/qt_sdl/LAN_Socket.cpp; sourceTree = SOURCE_ROOT; };
+		D5B723B62E26D8D900D3E5F3 /* sha1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = melonDS/src/sha1/sha1.h; sourceTree = SOURCE_ROOT; };
+		D5B723B72E26D8D900D3E5F3 /* sha1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = sha1.c; path = melonDS/src/sha1/sha1.c; sourceTree = SOURCE_ROOT; };
+		D5B723BA2E26D91900D3E5F3 /* diskio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = diskio.h; path = melonDS/src/fatfs/diskio.h; sourceTree = SOURCE_ROOT; };
+		D5B723BB2E26D91900D3E5F3 /* diskio.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = diskio.c; path = melonDS/src/fatfs/diskio.c; sourceTree = SOURCE_ROOT; };
+		D5B723BC2E26D91900D3E5F3 /* ff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ff.h; path = melonDS/src/fatfs/ff.h; sourceTree = SOURCE_ROOT; };
+		D5B723BD2E26D91900D3E5F3 /* ff.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ff.c; path = melonDS/src/fatfs/ff.c; sourceTree = SOURCE_ROOT; };
+		D5B723BE2E26D91900D3E5F3 /* ffconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ffconf.h; path = melonDS/src/fatfs/ffconf.h; sourceTree = SOURCE_ROOT; };
+		D5B723BF2E26D91900D3E5F3 /* ffsystem.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ffsystem.c; path = melonDS/src/fatfs/ffsystem.c; sourceTree = SOURCE_ROOT; };
+		D5B723C02E26D91900D3E5F3 /* ffunicode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ffunicode.c; path = melonDS/src/fatfs/ffunicode.c; sourceTree = SOURCE_ROOT; };
+		D5B723C82E26D9E100D3E5F3 /* arp_table.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = arp_table.c; path = melonDS/src/frontend/libslirp/src/arp_table.c; sourceTree = SOURCE_ROOT; };
+		D5B723C92E26D9E100D3E5F3 /* bootp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bootp.h; path = melonDS/src/frontend/libslirp/src/bootp.h; sourceTree = SOURCE_ROOT; };
+		D5B723CA2E26D9E100D3E5F3 /* bootp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bootp.c; path = melonDS/src/frontend/libslirp/src/bootp.c; sourceTree = SOURCE_ROOT; };
+		D5B723CB2E26D9E100D3E5F3 /* cksum.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = cksum.c; path = melonDS/src/frontend/libslirp/src/cksum.c; sourceTree = SOURCE_ROOT; };
+		D5B723CC2E26D9E100D3E5F3 /* debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = debug.h; path = melonDS/src/frontend/libslirp/src/debug.h; sourceTree = SOURCE_ROOT; };
+		D5B723CD2E26D9E100D3E5F3 /* dhcpv6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dhcpv6.h; path = melonDS/src/frontend/libslirp/src/dhcpv6.h; sourceTree = SOURCE_ROOT; };
+		D5B723CE2E26D9E100D3E5F3 /* dhcpv6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dhcpv6.c; path = melonDS/src/frontend/libslirp/src/dhcpv6.c; sourceTree = SOURCE_ROOT; };
+		D5B723CF2E26D9E100D3E5F3 /* dnssearch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = dnssearch.c; path = melonDS/src/frontend/libslirp/src/dnssearch.c; sourceTree = SOURCE_ROOT; };
+		D5B723D02E26D9E100D3E5F3 /* if.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = if.h; path = melonDS/src/frontend/libslirp/src/if.h; sourceTree = SOURCE_ROOT; };
+		D5B723D12E26D9E100D3E5F3 /* if.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = if.c; path = melonDS/src/frontend/libslirp/src/if.c; sourceTree = SOURCE_ROOT; };
+		D5B723D22E26D9E100D3E5F3 /* ip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ip.h; path = melonDS/src/frontend/libslirp/src/ip.h; sourceTree = SOURCE_ROOT; };
+		D5B723D32E26D9E100D3E5F3 /* ip_icmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ip_icmp.h; path = melonDS/src/frontend/libslirp/src/ip_icmp.h; sourceTree = SOURCE_ROOT; };
+		D5B723D42E26D9E100D3E5F3 /* ip_icmp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip_icmp.c; path = melonDS/src/frontend/libslirp/src/ip_icmp.c; sourceTree = SOURCE_ROOT; };
+		D5B723D52E26D9E100D3E5F3 /* ip_input.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip_input.c; path = melonDS/src/frontend/libslirp/src/ip_input.c; sourceTree = SOURCE_ROOT; };
+		D5B723D62E26D9E100D3E5F3 /* ip_output.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip_output.c; path = melonDS/src/frontend/libslirp/src/ip_output.c; sourceTree = SOURCE_ROOT; };
+		D5B723D72E26D9E100D3E5F3 /* ip6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ip6.h; path = melonDS/src/frontend/libslirp/src/ip6.h; sourceTree = SOURCE_ROOT; };
+		D5B723D82E26D9E100D3E5F3 /* ip6_icmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ip6_icmp.h; path = melonDS/src/frontend/libslirp/src/ip6_icmp.h; sourceTree = SOURCE_ROOT; };
+		D5B723D92E26D9E100D3E5F3 /* ip6_icmp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip6_icmp.c; path = melonDS/src/frontend/libslirp/src/ip6_icmp.c; sourceTree = SOURCE_ROOT; };
+		D5B723DA2E26D9E100D3E5F3 /* ip6_input.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip6_input.c; path = melonDS/src/frontend/libslirp/src/ip6_input.c; sourceTree = SOURCE_ROOT; };
+		D5B723DB2E26D9E100D3E5F3 /* ip6_output.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ip6_output.c; path = melonDS/src/frontend/libslirp/src/ip6_output.c; sourceTree = SOURCE_ROOT; };
+		D5B723DC2E26D9E100D3E5F3 /* libslirp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = libslirp.h; path = melonDS/src/frontend/libslirp/src/libslirp.h; sourceTree = SOURCE_ROOT; };
+		D5B723DD2E26D9E100D3E5F3 /* libslirp.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = libslirp.map; path = melonDS/src/frontend/libslirp/src/libslirp.map; sourceTree = SOURCE_ROOT; };
+		D5B723DE2E26D9E100D3E5F3 /* libslirp-version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "libslirp-version.h"; path = "melonDS/src/frontend/libslirp/src/libslirp-version.h"; sourceTree = SOURCE_ROOT; };
+		D5B723DF2E26D9E100D3E5F3 /* libslirp-version.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = "libslirp-version.h.in"; path = "melonDS/src/frontend/libslirp/src/libslirp-version.h.in"; sourceTree = SOURCE_ROOT; };
+		D5B723E02E26D9E100D3E5F3 /* libslirp.test.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = libslirp.test.map; path = melonDS/src/frontend/libslirp/src/libslirp.test.map; sourceTree = SOURCE_ROOT; };
+		D5B723E12E26D9E100D3E5F3 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = main.h; path = melonDS/src/frontend/libslirp/src/main.h; sourceTree = SOURCE_ROOT; };
+		D5B723E22E26D9E100D3E5F3 /* mbuf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mbuf.h; path = melonDS/src/frontend/libslirp/src/mbuf.h; sourceTree = SOURCE_ROOT; };
+		D5B723E32E26D9E100D3E5F3 /* mbuf.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mbuf.c; path = melonDS/src/frontend/libslirp/src/mbuf.c; sourceTree = SOURCE_ROOT; };
+		D5B723E42E26D9E100D3E5F3 /* misc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = misc.h; path = melonDS/src/frontend/libslirp/src/misc.h; sourceTree = SOURCE_ROOT; };
+		D5B723E52E26D9E100D3E5F3 /* misc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = misc.c; path = melonDS/src/frontend/libslirp/src/misc.c; sourceTree = SOURCE_ROOT; };
+		D5B723E62E26D9E100D3E5F3 /* ncsi.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ncsi.c; path = melonDS/src/frontend/libslirp/src/ncsi.c; sourceTree = SOURCE_ROOT; };
+		D5B723E72E26D9E100D3E5F3 /* ncsi-pkt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ncsi-pkt.h"; path = "melonDS/src/frontend/libslirp/src/ncsi-pkt.h"; sourceTree = SOURCE_ROOT; };
+		D5B723E82E26D9E100D3E5F3 /* ndp_table.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ndp_table.c; path = melonDS/src/frontend/libslirp/src/ndp_table.c; sourceTree = SOURCE_ROOT; };
+		D5B723E92E26D9E100D3E5F3 /* sbuf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sbuf.h; path = melonDS/src/frontend/libslirp/src/sbuf.h; sourceTree = SOURCE_ROOT; };
+		D5B723EA2E26D9E100D3E5F3 /* sbuf.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = sbuf.c; path = melonDS/src/frontend/libslirp/src/sbuf.c; sourceTree = SOURCE_ROOT; };
+		D5B723EB2E26D9E100D3E5F3 /* slirp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = slirp.h; path = melonDS/src/frontend/libslirp/src/slirp.h; sourceTree = SOURCE_ROOT; };
+		D5B723EC2E26D9E100D3E5F3 /* slirp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = slirp.c; path = melonDS/src/frontend/libslirp/src/slirp.c; sourceTree = SOURCE_ROOT; };
+		D5B723ED2E26D9E100D3E5F3 /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = socket.h; path = melonDS/src/frontend/libslirp/src/socket.h; sourceTree = SOURCE_ROOT; };
+		D5B723EE2E26D9E100D3E5F3 /* socket.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = socket.c; path = melonDS/src/frontend/libslirp/src/socket.c; sourceTree = SOURCE_ROOT; };
+		D5B723EF2E26D9E100D3E5F3 /* state.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = state.c; path = melonDS/src/frontend/libslirp/src/state.c; sourceTree = SOURCE_ROOT; };
+		D5B723F02E26D9E100D3E5F3 /* stream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stream.h; path = melonDS/src/frontend/libslirp/src/stream.h; sourceTree = SOURCE_ROOT; };
+		D5B723F12E26D9E100D3E5F3 /* stream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = stream.c; path = melonDS/src/frontend/libslirp/src/stream.c; sourceTree = SOURCE_ROOT; };
+		D5B723F22E26D9E100D3E5F3 /* tcp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tcp.h; path = melonDS/src/frontend/libslirp/src/tcp.h; sourceTree = SOURCE_ROOT; };
+		D5B723F32E26D9E100D3E5F3 /* tcp_input.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = tcp_input.c; path = melonDS/src/frontend/libslirp/src/tcp_input.c; sourceTree = SOURCE_ROOT; };
+		D5B723F42E26D9E100D3E5F3 /* tcp_output.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = tcp_output.c; path = melonDS/src/frontend/libslirp/src/tcp_output.c; sourceTree = SOURCE_ROOT; };
+		D5B723F52E26D9E100D3E5F3 /* tcp_subr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = tcp_subr.c; path = melonDS/src/frontend/libslirp/src/tcp_subr.c; sourceTree = SOURCE_ROOT; };
+		D5B723F62E26D9E100D3E5F3 /* tcp_timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tcp_timer.h; path = melonDS/src/frontend/libslirp/src/tcp_timer.h; sourceTree = SOURCE_ROOT; };
+		D5B723F72E26D9E100D3E5F3 /* tcp_timer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = tcp_timer.c; path = melonDS/src/frontend/libslirp/src/tcp_timer.c; sourceTree = SOURCE_ROOT; };
+		D5B723F82E26D9E100D3E5F3 /* tcp_var.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tcp_var.h; path = melonDS/src/frontend/libslirp/src/tcp_var.h; sourceTree = SOURCE_ROOT; };
+		D5B723F92E26D9E100D3E5F3 /* tcpip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tcpip.h; path = melonDS/src/frontend/libslirp/src/tcpip.h; sourceTree = SOURCE_ROOT; };
+		D5B723FA2E26D9E100D3E5F3 /* tftp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = tftp.h; path = melonDS/src/frontend/libslirp/src/tftp.h; sourceTree = SOURCE_ROOT; };
+		D5B723FB2E26D9E100D3E5F3 /* tftp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = tftp.c; path = melonDS/src/frontend/libslirp/src/tftp.c; sourceTree = SOURCE_ROOT; };
+		D5B723FC2E26D9E100D3E5F3 /* udp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = udp.h; path = melonDS/src/frontend/libslirp/src/udp.h; sourceTree = SOURCE_ROOT; };
+		D5B723FD2E26D9E100D3E5F3 /* udp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = udp.c; path = melonDS/src/frontend/libslirp/src/udp.c; sourceTree = SOURCE_ROOT; };
+		D5B723FE2E26D9E100D3E5F3 /* udp6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = udp6.c; path = melonDS/src/frontend/libslirp/src/udp6.c; sourceTree = SOURCE_ROOT; };
+		D5B723FF2E26D9E100D3E5F3 /* util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = util.h; path = melonDS/src/frontend/libslirp/src/util.h; sourceTree = SOURCE_ROOT; };
+		D5B724002E26D9E100D3E5F3 /* util.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = util.c; path = melonDS/src/frontend/libslirp/src/util.c; sourceTree = SOURCE_ROOT; };
+		D5B724012E26D9E100D3E5F3 /* version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = version.c; path = melonDS/src/frontend/libslirp/src/version.c; sourceTree = SOURCE_ROOT; };
+		D5B724022E26D9E100D3E5F3 /* vmstate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vmstate.h; path = melonDS/src/frontend/libslirp/src/vmstate.h; sourceTree = SOURCE_ROOT; };
+		D5B724032E26D9E100D3E5F3 /* vmstate.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vmstate.c; path = melonDS/src/frontend/libslirp/src/vmstate.c; sourceTree = SOURCE_ROOT; };
+		D5B724242E26DA5200D3E5F3 /* glib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = glib.h; path = melonDS/src/frontend/libslirp/glib/glib.h; sourceTree = SOURCE_ROOT; };
+		D5B724252E26DA5200D3E5F3 /* glib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = glib.c; path = melonDS/src/frontend/libslirp/glib/glib.c; sourceTree = SOURCE_ROOT; };
+		D5B724272E26DAB600D3E5F3 /* GPU2D_Soft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GPU2D_Soft.h; path = melonDS/src/GPU2D_Soft.h; sourceTree = SOURCE_ROOT; };
+		D5B724282E26DAB600D3E5F3 /* GPU2D_Soft.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GPU2D_Soft.cpp; path = melonDS/src/GPU2D_Soft.cpp; sourceTree = SOURCE_ROOT; };
+		D5B7242A2E26DAEE00D3E5F3 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/lib/libresolv.tbd; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +371,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B7242B2E26DAEE00D3E5F3 /* libresolv.tbd in Frameworks */,
 				BF02B2F32436774E001B4E65 /* libMelonDS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,8 +404,6 @@
 				BF925D0A255E07E00088EFF2 /* ARMJIT.h */,
 				BF74CC682553769B00060964 /* ARMJIT_Memory.cpp */,
 				BF74CC672553769B00060964 /* ARMJIT_Memory.h */,
-				BF02B2AC24366EF5001B4E65 /* Config.cpp */,
-				BF02B2B024366EF5001B4E65 /* Config.h */,
 				BF02B2B424366EF5001B4E65 /* CP15.cpp */,
 				BF02B2A824366EF5001B4E65 /* CRC32.cpp */,
 				BF02B2B124366EF5001B4E65 /* CRC32.h */,
@@ -249,8 +414,12 @@
 				BF062AA325436F440010FF6D /* DSi_AES.h */,
 				BF062A9925436F440010FF6D /* DSi_Camera.cpp */,
 				BF062AA625436F440010FF6D /* DSi_Camera.h */,
+				D5B723A92E26D4EF00D3E5F3 /* DSi_DSP.h */,
+				D5B723AA2E26D4EF00D3E5F3 /* DSi_DSP.cpp */,
 				BF062AA525436F440010FF6D /* DSi_I2C.cpp */,
 				BF062A9725436F440010FF6D /* DSi_I2C.h */,
+				D5B723AF2E26D51E00D3E5F3 /* DSi_NAND.h */,
+				D5B723B02E26D51E00D3E5F3 /* DSi_NAND.cpp */,
 				BF062AA125436F440010FF6D /* DSi_NDMA.cpp */,
 				BF062AA725436F440010FF6D /* DSi_NDMA.h */,
 				BF062AA425436F440010FF6D /* DSi_NWifi.cpp */,
@@ -261,8 +430,8 @@
 				BF062A9D25436F440010FF6D /* DSi_SPI_TSC.h */,
 				BF062A9E25436F440010FF6D /* DSi.cpp */,
 				BF062A9A25436F440010FF6D /* DSi.h */,
-				BF062A9B25436F440010FF6D /* DSiCrypto.cpp */,
-				BF062A9F25436F440010FF6D /* DSiCrypto.h */,
+				D5B723AB2E26D4EF00D3E5F3 /* FATStorage.h */,
+				D5B723AC2E26D4EF00D3E5F3 /* FATStorage.cpp */,
 				BF02B2BD24366EF6001B4E65 /* FIFO.h */,
 				BF062AB62543706C0010FF6D /* frontend */,
 				BF02B2AD24366EF5001B4E65 /* GBACart.cpp */,
@@ -271,11 +440,15 @@
 				BF02B2A224366EF5001B4E65 /* GPU.h */,
 				BF02B29624366EF4001B4E65 /* GPU2D.cpp */,
 				BF02B29424366EF4001B4E65 /* GPU2D.h */,
+				D5B724272E26DAB600D3E5F3 /* GPU2D_Soft.h */,
+				D5B724282E26DAB600D3E5F3 /* GPU2D_Soft.cpp */,
 				BF02B29924366EF4001B4E65 /* GPU3D_OpenGL_shaders.h */,
 				BF02B2BF24366EF6001B4E65 /* GPU3D_OpenGL.cpp */,
 				BF02B29724366EF4001B4E65 /* GPU3D_Soft.cpp */,
 				BF02B2AF24366EF5001B4E65 /* GPU3D.cpp */,
 				BF02B29824366EF4001B4E65 /* GPU3D.h */,
+				D5B723B22E26D55600D3E5F3 /* LAN_Socket.h */,
+				D5B723B32E26D55600D3E5F3 /* LAN_Socket.cpp */,
 				BF02B2C224366EF6001B4E65 /* NDS.cpp */,
 				BF02B2BB24366EF6001B4E65 /* NDS.h */,
 				BF02B28F24366EF4001B4E65 /* NDSCart.cpp */,
@@ -306,6 +479,7 @@
 		BF02B2F22436774E001B4E65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5B7242A2E26DAEE00D3E5F3 /* libresolv.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -359,8 +533,8 @@
 		BF062AB7254370740010FF6D /* qt_sdl */ = {
 			isa = PBXGroup;
 			children = (
-				BF062AB82543708E0010FF6D /* PlatformConfig.cpp */,
-				BF062AB92543708E0010FF6D /* PlatformConfig.h */,
+				BF062AB82543708E0010FF6D /* Config.cpp */,
+				BF062AB92543708E0010FF6D /* Config.h */,
 			);
 			name = qt_sdl;
 			sourceTree = "<group>";
@@ -391,6 +565,7 @@
 				BF02B2EC24367486001B4E65 /* MelonDS.swift */,
 				BF02B2FB24367CE7001B4E65 /* Types */,
 				BF02B2FA24367CCA001B4E65 /* Bridge */,
+				D54FDB242E26D3D9003B4D8A /* libMelonDS */,
 				BF02B30724368320001B4E65 /* Supporting Files */,
 			);
 			path = MelonDSDeltaCore;
@@ -426,6 +601,182 @@
 				BF925D10255E080C0088EFF2 /* xxhash.h */,
 			);
 			name = xxhash;
+			sourceTree = "<group>";
+		};
+		D54FDB242E26D3D9003B4D8A /* libMelonDS */ = {
+			isa = PBXGroup;
+			children = (
+				D5B723C52E26D9C000D3E5F3 /* frontend */,
+				D5B723B92E26D90400D3E5F3 /* fatfs */,
+				D5B723B52E26D8A800D3E5F3 /* sha1 */,
+				D54FDB252E26D3EA003B4D8A /* teakra */,
+			);
+			path = libMelonDS;
+			sourceTree = "<group>";
+		};
+		D54FDB252E26D3EA003B4D8A /* teakra */ = {
+			isa = PBXGroup;
+			children = (
+				D54FDB262E26D3F1003B4D8A /* src */,
+			);
+			path = teakra;
+			sourceTree = "<group>";
+		};
+		D54FDB262E26D3F1003B4D8A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D54FDB272E26D42C003B4D8A /* ahbm.h */,
+				D54FDB282E26D42C003B4D8A /* ahbm.cpp */,
+				D54FDB292E26D42C003B4D8A /* apbp.h */,
+				D54FDB2A2E26D42C003B4D8A /* apbp.cpp */,
+				D54FDB2B2E26D42C003B4D8A /* bit.h */,
+				D54FDB2C2E26D42C003B4D8A /* btdmp.h */,
+				D54FDB2D2E26D42C003B4D8A /* btdmp.cpp */,
+				D54FDB2E2E26D42C003B4D8A /* common_types.h */,
+				D54FDB2F2E26D42C003B4D8A /* core_timing.h */,
+				D54FDB302E26D42C003B4D8A /* crash.h */,
+				D54FDB312E26D42C003B4D8A /* decoder.h */,
+				D54FDB322E26D42C003B4D8A /* disassembler.cpp */,
+				D54FDB332E26D42C003B4D8A /* disassembler_c.cpp */,
+				D54FDB342E26D42C003B4D8A /* dma.h */,
+				D54FDB352E26D42C003B4D8A /* dma.cpp */,
+				D54FDB362E26D42C003B4D8A /* interpreter.h */,
+				D54FDB372E26D42C003B4D8A /* matcher.h */,
+				D54FDB382E26D42C003B4D8A /* memory_interface.h */,
+				D54FDB392E26D42C003B4D8A /* memory_interface.cpp */,
+				D54FDB3A2E26D42C003B4D8A /* mmio.h */,
+				D54FDB3B2E26D42C003B4D8A /* mmio.cpp */,
+				D54FDB3C2E26D42C003B4D8A /* operand.h */,
+				D54FDB3D2E26D42C003B4D8A /* parser.h */,
+				D54FDB3E2E26D42C003B4D8A /* parser.cpp */,
+				D54FDB3F2E26D42C003B4D8A /* processor.h */,
+				D54FDB402E26D42C003B4D8A /* processor.cpp */,
+				D54FDB412E26D42C003B4D8A /* register.h */,
+				D54FDB422E26D42C003B4D8A /* shared_memory.h */,
+				D54FDB432E26D42C003B4D8A /* teakra.cpp */,
+				D54FDB442E26D42C003B4D8A /* test.h */,
+				D54FDB452E26D42C003B4D8A /* test_generator.h */,
+				D54FDB462E26D42C003B4D8A /* test_generator.cpp */,
+				D54FDB472E26D42C003B4D8A /* timer.h */,
+				D54FDB482E26D42C003B4D8A /* timer.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D5B723B52E26D8A800D3E5F3 /* sha1 */ = {
+			isa = PBXGroup;
+			children = (
+				D5B723B62E26D8D900D3E5F3 /* sha1.h */,
+				D5B723B72E26D8D900D3E5F3 /* sha1.c */,
+			);
+			path = sha1;
+			sourceTree = "<group>";
+		};
+		D5B723B92E26D90400D3E5F3 /* fatfs */ = {
+			isa = PBXGroup;
+			children = (
+				D5B723BA2E26D91900D3E5F3 /* diskio.h */,
+				D5B723BB2E26D91900D3E5F3 /* diskio.c */,
+				D5B723BC2E26D91900D3E5F3 /* ff.h */,
+				D5B723BD2E26D91900D3E5F3 /* ff.c */,
+				D5B723BE2E26D91900D3E5F3 /* ffconf.h */,
+				D5B723BF2E26D91900D3E5F3 /* ffsystem.c */,
+				D5B723C02E26D91900D3E5F3 /* ffunicode.c */,
+			);
+			path = fatfs;
+			sourceTree = "<group>";
+		};
+		D5B723C52E26D9C000D3E5F3 /* frontend */ = {
+			isa = PBXGroup;
+			children = (
+				D5B723C62E26D9C600D3E5F3 /* libslirp */,
+			);
+			path = frontend;
+			sourceTree = "<group>";
+		};
+		D5B723C62E26D9C600D3E5F3 /* libslirp */ = {
+			isa = PBXGroup;
+			children = (
+				D5B724232E26DA4400D3E5F3 /* glib */,
+				D5B723C72E26D9CE00D3E5F3 /* src */,
+			);
+			path = libslirp;
+			sourceTree = "<group>";
+		};
+		D5B723C72E26D9CE00D3E5F3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D5B723C82E26D9E100D3E5F3 /* arp_table.c */,
+				D5B723C92E26D9E100D3E5F3 /* bootp.h */,
+				D5B723CA2E26D9E100D3E5F3 /* bootp.c */,
+				D5B723CB2E26D9E100D3E5F3 /* cksum.c */,
+				D5B723CC2E26D9E100D3E5F3 /* debug.h */,
+				D5B723CD2E26D9E100D3E5F3 /* dhcpv6.h */,
+				D5B723CE2E26D9E100D3E5F3 /* dhcpv6.c */,
+				D5B723CF2E26D9E100D3E5F3 /* dnssearch.c */,
+				D5B723D02E26D9E100D3E5F3 /* if.h */,
+				D5B723D12E26D9E100D3E5F3 /* if.c */,
+				D5B723D22E26D9E100D3E5F3 /* ip.h */,
+				D5B723D32E26D9E100D3E5F3 /* ip_icmp.h */,
+				D5B723D42E26D9E100D3E5F3 /* ip_icmp.c */,
+				D5B723D52E26D9E100D3E5F3 /* ip_input.c */,
+				D5B723D62E26D9E100D3E5F3 /* ip_output.c */,
+				D5B723D72E26D9E100D3E5F3 /* ip6.h */,
+				D5B723D82E26D9E100D3E5F3 /* ip6_icmp.h */,
+				D5B723D92E26D9E100D3E5F3 /* ip6_icmp.c */,
+				D5B723DA2E26D9E100D3E5F3 /* ip6_input.c */,
+				D5B723DB2E26D9E100D3E5F3 /* ip6_output.c */,
+				D5B723DC2E26D9E100D3E5F3 /* libslirp.h */,
+				D5B723DD2E26D9E100D3E5F3 /* libslirp.map */,
+				D5B723DE2E26D9E100D3E5F3 /* libslirp-version.h */,
+				D5B723DF2E26D9E100D3E5F3 /* libslirp-version.h.in */,
+				D5B723E02E26D9E100D3E5F3 /* libslirp.test.map */,
+				D5B723E12E26D9E100D3E5F3 /* main.h */,
+				D5B723E22E26D9E100D3E5F3 /* mbuf.h */,
+				D5B723E32E26D9E100D3E5F3 /* mbuf.c */,
+				D5B723E42E26D9E100D3E5F3 /* misc.h */,
+				D5B723E52E26D9E100D3E5F3 /* misc.c */,
+				D5B723E62E26D9E100D3E5F3 /* ncsi.c */,
+				D5B723E72E26D9E100D3E5F3 /* ncsi-pkt.h */,
+				D5B723E82E26D9E100D3E5F3 /* ndp_table.c */,
+				D5B723E92E26D9E100D3E5F3 /* sbuf.h */,
+				D5B723EA2E26D9E100D3E5F3 /* sbuf.c */,
+				D5B723EB2E26D9E100D3E5F3 /* slirp.h */,
+				D5B723EC2E26D9E100D3E5F3 /* slirp.c */,
+				D5B723ED2E26D9E100D3E5F3 /* socket.h */,
+				D5B723EE2E26D9E100D3E5F3 /* socket.c */,
+				D5B723EF2E26D9E100D3E5F3 /* state.c */,
+				D5B723F02E26D9E100D3E5F3 /* stream.h */,
+				D5B723F12E26D9E100D3E5F3 /* stream.c */,
+				D5B723F22E26D9E100D3E5F3 /* tcp.h */,
+				D5B723F32E26D9E100D3E5F3 /* tcp_input.c */,
+				D5B723F42E26D9E100D3E5F3 /* tcp_output.c */,
+				D5B723F52E26D9E100D3E5F3 /* tcp_subr.c */,
+				D5B723F62E26D9E100D3E5F3 /* tcp_timer.h */,
+				D5B723F72E26D9E100D3E5F3 /* tcp_timer.c */,
+				D5B723F82E26D9E100D3E5F3 /* tcp_var.h */,
+				D5B723F92E26D9E100D3E5F3 /* tcpip.h */,
+				D5B723FA2E26D9E100D3E5F3 /* tftp.h */,
+				D5B723FB2E26D9E100D3E5F3 /* tftp.c */,
+				D5B723FC2E26D9E100D3E5F3 /* udp.h */,
+				D5B723FD2E26D9E100D3E5F3 /* udp.c */,
+				D5B723FE2E26D9E100D3E5F3 /* udp6.c */,
+				D5B723FF2E26D9E100D3E5F3 /* util.h */,
+				D5B724002E26D9E100D3E5F3 /* util.c */,
+				D5B724012E26D9E100D3E5F3 /* version.c */,
+				D5B724022E26D9E100D3E5F3 /* vmstate.h */,
+				D5B724032E26D9E100D3E5F3 /* vmstate.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D5B724232E26DA4400D3E5F3 /* glib */ = {
+			isa = PBXGroup;
+			children = (
+				D5B724242E26DA5200D3E5F3 /* glib.h */,
+				D5B724252E26DA5200D3E5F3 /* glib.c */,
+			);
+			path = glib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,15 +886,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B723B82E26D8D900D3E5F3 /* sha1.c in Sources */,
 				BF062AA925436F440010FF6D /* DSi_AES.cpp in Sources */,
 				BF062AB5254370050010FF6D /* aes.c in Sources */,
 				BF02B2C724366EF6001B4E65 /* Savestate.cpp in Sources */,
 				BF74CC6D25537D7C00060964 /* Arm64Emitter.cpp in Sources */,
 				BF02B2D224366EF6001B4E65 /* RTC.cpp in Sources */,
 				BF062AAA25436F440010FF6D /* DSi_Camera.cpp in Sources */,
-				BF062ABA2543708E0010FF6D /* PlatformConfig.cpp in Sources */,
+				BF062ABA2543708E0010FF6D /* Config.cpp in Sources */,
 				BF925D13255E080D0088EFF2 /* xxhash.c in Sources */,
-				BF062AAB25436F440010FF6D /* DSiCrypto.cpp in Sources */,
 				BF02B2C824366EF6001B4E65 /* GPU2D.cpp in Sources */,
 				BF02B2D824366EF6001B4E65 /* CP15.cpp in Sources */,
 				BF74CC692553769C00060964 /* ARMJIT_Memory.cpp in Sources */,
@@ -556,28 +907,80 @@
 				BF02B2D324366EF6001B4E65 /* ARMInterpreter.cpp in Sources */,
 				BF062AA825436F440010FF6D /* DSi_SD.cpp in Sources */,
 				BF02B2D524366EF6001B4E65 /* GBACart.cpp in Sources */,
+				D5B724262E26DA5200D3E5F3 /* glib.c in Sources */,
 				BF062AAC25436F440010FF6D /* DSi_SPI_TSC.cpp in Sources */,
+				D5B724042E26D9E100D3E5F3 /* stream.c in Sources */,
+				D5B724052E26D9E100D3E5F3 /* ip6_icmp.c in Sources */,
+				D5B724062E26D9E100D3E5F3 /* ip_output.c in Sources */,
+				D5B724072E26D9E100D3E5F3 /* dhcpv6.c in Sources */,
+				D5B724082E26D9E100D3E5F3 /* udp.c in Sources */,
+				D5B724092E26D9E100D3E5F3 /* mbuf.c in Sources */,
+				D5B7240A2E26D9E100D3E5F3 /* ncsi.c in Sources */,
+				D5B7240B2E26D9E100D3E5F3 /* slirp.c in Sources */,
+				D5B7240C2E26D9E100D3E5F3 /* tftp.c in Sources */,
+				D5B7240D2E26D9E100D3E5F3 /* ip_input.c in Sources */,
+				D5B7240E2E26D9E100D3E5F3 /* tcp_timer.c in Sources */,
+				D5B7240F2E26D9E100D3E5F3 /* udp6.c in Sources */,
+				D5B724102E26D9E100D3E5F3 /* dnssearch.c in Sources */,
+				D5B724112E26D9E100D3E5F3 /* util.c in Sources */,
+				D5B724122E26D9E100D3E5F3 /* misc.c in Sources */,
+				D5B724132E26D9E100D3E5F3 /* if.c in Sources */,
+				D5B724142E26D9E100D3E5F3 /* tcp_output.c in Sources */,
+				D5B724152E26D9E100D3E5F3 /* sbuf.c in Sources */,
+				D5B724162E26D9E100D3E5F3 /* cksum.c in Sources */,
+				D5B724172E26D9E100D3E5F3 /* ip6_input.c in Sources */,
+				D5B724182E26D9E100D3E5F3 /* tcp_input.c in Sources */,
+				D5B724192E26D9E100D3E5F3 /* state.c in Sources */,
+				D5B7241A2E26D9E100D3E5F3 /* ip_icmp.c in Sources */,
+				D5B7241B2E26D9E100D3E5F3 /* ip6_output.c in Sources */,
+				D5B7241C2E26D9E100D3E5F3 /* arp_table.c in Sources */,
+				D5B7241D2E26D9E100D3E5F3 /* version.c in Sources */,
+				D5B7241E2E26D9E100D3E5F3 /* ndp_table.c in Sources */,
+				D5B7241F2E26D9E100D3E5F3 /* socket.c in Sources */,
+				D5B724202E26D9E100D3E5F3 /* vmstate.c in Sources */,
+				D5B724212E26D9E100D3E5F3 /* tcp_subr.c in Sources */,
+				D5B724222E26D9E100D3E5F3 /* bootp.c in Sources */,
 				BF02B2CA24366EF6001B4E65 /* ARMInterpreter_ALU.cpp in Sources */,
 				BF062AAF25436F440010FF6D /* DSi_NWifi.cpp in Sources */,
 				BF02B2C524366EF6001B4E65 /* NDSCart.cpp in Sources */,
 				BF02B2D024366EF6001B4E65 /* GPU.cpp in Sources */,
+				D5B723C12E26D91900D3E5F3 /* ffunicode.c in Sources */,
+				D5B723C22E26D91900D3E5F3 /* diskio.c in Sources */,
+				D5B723C32E26D91900D3E5F3 /* ffsystem.c in Sources */,
+				D5B723C42E26D91900D3E5F3 /* ff.c in Sources */,
+				D5B723AD2E26D4EF00D3E5F3 /* DSi_DSP.cpp in Sources */,
+				D5B723AE2E26D4EF00D3E5F3 /* FATStorage.cpp in Sources */,
+				D54FDB492E26D42C003B4D8A /* timer.cpp in Sources */,
+				D54FDB4A2E26D42C003B4D8A /* ahbm.cpp in Sources */,
+				D54FDB4B2E26D42C003B4D8A /* memory_interface.cpp in Sources */,
+				D54FDB4C2E26D42C003B4D8A /* dma.cpp in Sources */,
+				D54FDB4D2E26D42C003B4D8A /* test_generator.cpp in Sources */,
+				D54FDB4E2E26D42C003B4D8A /* disassembler.cpp in Sources */,
+				D54FDB4F2E26D42C003B4D8A /* processor.cpp in Sources */,
+				D54FDB502E26D42C003B4D8A /* btdmp.cpp in Sources */,
+				D54FDB512E26D42C003B4D8A /* disassembler_c.cpp in Sources */,
+				D54FDB522E26D42C003B4D8A /* parser.cpp in Sources */,
+				D54FDB532E26D42C003B4D8A /* apbp.cpp in Sources */,
+				D54FDB542E26D42C003B4D8A /* teakra.cpp in Sources */,
+				D54FDB552E26D42C003B4D8A /* mmio.cpp in Sources */,
 				BF062A9225436E920010FF6D /* ARCodeFile.cpp in Sources */,
 				BF02B2CF24366EF6001B4E65 /* WifiAP.cpp in Sources */,
+				D5B724292E26DAB600D3E5F3 /* GPU2D_Soft.cpp in Sources */,
 				BF02B2CB24366EF6001B4E65 /* ARM.cpp in Sources */,
 				BF02B2D924366EF6001B4E65 /* DMA.cpp in Sources */,
 				BF02B2D124366EF6001B4E65 /* CRC32.cpp in Sources */,
 				BF02B2C924366EF6001B4E65 /* GPU3D_Soft.cpp in Sources */,
 				BF74CC662553756B00060964 /* ARMJIT_Compiler.cpp in Sources */,
 				BF74CC622553756B00060964 /* ARMJIT_LoadStore.cpp in Sources */,
-				BF02B2D424366EF6001B4E65 /* Config.cpp in Sources */,
 				BF74CC642553756B00060964 /* ARMJIT_ALU.cpp in Sources */,
+				D5B723B12E26D51E00D3E5F3 /* DSi_NAND.cpp in Sources */,
 				BF02B2D624366EF6001B4E65 /* GPU3D.cpp in Sources */,
 				BF02B2CC24366EF6001B4E65 /* SPU.cpp in Sources */,
 				BF925D0E255E07F90088EFF2 /* ARM_InstrInfo.cpp in Sources */,
 				BF062AAE25436F440010FF6D /* DSi_NDMA.cpp in Sources */,
 				BF74CC652553756B00060964 /* ARMJIT_Branch.cpp in Sources */,
-				BF925D0B255E07E00088EFF2 /* ARMJIT.cpp in Sources */,
 				BF062AAD25436F440010FF6D /* DSi.cpp in Sources */,
+				D5B723B42E26D55600D3E5F3 /* LAN_Socket.cpp in Sources */,
 				BF02B2C324366EF6001B4E65 /* Wifi.cpp in Sources */,
 				BF02B2DC24366EF6001B4E65 /* NDS.cpp in Sources */,
 			);
@@ -587,6 +990,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C7DD1B2E26D35A0048FF5C /* MelonDSTypes.m in Sources */,
 				BF02B2F1243674AF001B4E65 /* MelonDSEmulatorBridge.mm in Sources */,
 				BF02B2ED24367486001B4E65 /* MelonDS.swift in Sources */,
 			);
@@ -612,10 +1016,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"JIT_ENABLED=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CFLAGS = (
+					"-DMELONDS_VERSION=\\\"0.9.5\\\"",
+					"-D_NETINET_TCP_VAR_H_",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
 				SKIP_INSTALL = YES;
@@ -632,6 +1039,10 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				OTHER_CFLAGS = (
+					"-DMELONDS_VERSION=\\\"0.9.5\\\"",
+					"-D_NETINET_TCP_VAR_H_",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
 				SKIP_INSTALL = YES;
@@ -690,6 +1101,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/melonDS/src/frontend/libslirp\"",
+					"\"$(SRCROOT)/melonDS/src/frontend/libslirp/glib\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -697,6 +1112,10 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/melonDS/src/teakra/include\"",
+					"\"$(SRCROOT)/melonDS/src/frontend\"",
+				);
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -747,12 +1166,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/melonDS/src/frontend/libslirp\"",
+					"\"$(SRCROOT)/melonDS/src/frontend/libslirp/glib\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/melonDS/src/teakra/include\"",
+					"\"$(SRCROOT)/melonDS/src/frontend\"",
+				);
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -762,6 +1189,7 @@
 		BF73178E2356624000774F10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -772,7 +1200,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"JIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -788,13 +1215,18 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/melonDS/src/teakra/include\"",
+					"\"$(SRCROOT)/melonDS/src/frontend\"",
+				);
 			};
 			name = Debug;
 		};
 		BF73178F2356624000774F10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -802,7 +1234,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = "JIT_ENABLED=1";
 				INFOPLIST_FILE = MelonDSDeltaCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -816,7 +1247,11 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/melonDS/src/teakra/include\"",
+					"\"$(SRCROOT)/melonDS/src/frontend\"",
+				);
 			};
 			name = Release;
 		};

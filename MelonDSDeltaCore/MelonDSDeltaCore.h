@@ -17,4 +17,5 @@ FOUNDATION_EXPORT const unsigned char MelonDSDeltaCoreVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MelonDSDeltaCore/PublicHeader.h>
 #if !STATIC_LIBRARY
 #import <MelonDSDeltaCore/MelonDSEmulatorBridge.h>
+#import <MelonDSDeltaCore/MelonDSTypes.h>
 #endif
