@@ -869,9 +869,9 @@ namespace Platform
         case Firm_Color: return Config::FirmwareFavouriteColour;
 
         case AudioBitrate: return Config::AudioBitrate;
+                
+        default: return 0;
         }
-
-        return 0;
     }
 
     bool GetConfigBool(ConfigEntry entry)
@@ -896,9 +896,9 @@ namespace Platform
         case DSiSD_FolderSync: return Config::DSiSDFolderSync != 0;
 
         case Firm_OverrideSettings: return Config::FirmwareOverrideSettings != 0;
+                
+        default: return false;
         }
-
-        return false;
     }
 
     std::string GetConfigString(ConfigEntry entry)
@@ -922,6 +922,26 @@ namespace Platform
 
         case Firm_Username: return Config::FirmwareUsername;
         case Firm_Message: return Config::FirmwareMessage;
+            
+        case ExternalBIOSEnable: break;
+            
+        case DLDI_Enable: break;
+        case DLDI_ImageSize: break;
+        case DLDI_ReadOnly: break;
+        case DLDI_FolderSync: break;
+            
+        case DSiSD_Enable: break;
+        case DSiSD_ImageSize: break;
+        case DSiSD_ReadOnly: break;
+        case DSiSD_FolderSync: break;
+            
+        case Firm_OverrideSettings: break;
+        case Firm_Language: break;
+        case Firm_BirthdayMonth: break;
+        case Firm_BirthdayDay: break;
+        case Firm_Color: break;
+        case Firm_MAC: break;
+        case AudioBitrate: break;
         }
 
         return "";
@@ -931,36 +951,37 @@ namespace Platform
     {
         switch (entry)
         {
-        case Firm_MAC:
+            case Firm_MAC:
             {
                 std::string& mac_in = Config::FirmwareMAC;
                 u8* mac_out = (u8*)data;
-
+                
                 int o = 0;
                 u8 tmp = 0;
                 for (int i = 0; i < 18; i++)
                 {
                     char c = mac_in[i];
                     if (c == '\0') break;
-
+                    
                     int n;
                     if      (c >= '0' && c <= '9') n = c - '0';
                     else if (c >= 'a' && c <= 'f') n = c - 'a' + 10;
                     else if (c >= 'A' && c <= 'F') n = c - 'A' + 10;
                     else continue;
-
+                    
                     if (!(o & 1))
                         tmp = n;
                     else
                         mac_out[o >> 1] = n | (tmp << 4);
-
+                    
                     o++;
                     if (o >= 12) return true;
                 }
             }
-            return false;
+            
+            default: break;
         }
-
+        
         return false;
     }
     
