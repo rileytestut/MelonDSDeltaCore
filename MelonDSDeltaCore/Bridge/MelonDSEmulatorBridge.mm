@@ -283,7 +283,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
             return;
         }
         
-        if (NDS::LoadCart((const u8 *)romData.bytes, romData.length, NULL, 0))
+        if (NDS::LoadCart((const u8 *)romData.bytes, (u32)romData.length, NULL, 0))
         {
             NDS::SetupDirectBoot(gameURL.lastPathComponent.UTF8String);
         }
@@ -306,7 +306,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
                     NSLog(@"Failed to load inserted GBA ROM save data. %@", error);
                 }
                 
-                if (NDS::LoadGBACart((const u8 *)gbaROMData.bytes, gbaROMData.length, (const u8 *)saveData.bytes, saveData.length))
+                if (NDS::LoadGBACart((const u8 *)gbaROMData.bytes, (u32)gbaROMData.length, (const u8 *)saveData.bytes, (u32)saveData.length))
                 {
                     // Cache save URL so we don't accidentally overwrite save data for the wrong game when switching.
                     self.gbaSaveURL = gbaSaveURL;
@@ -565,7 +565,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
         return;
     }
     
-    NDS::LoadSave((const u8 *)saveData.bytes, saveData.length);
+    NDS::LoadSave((const u8 *)saveData.bytes, (u32)saveData.length);
 }
 
 #pragma mark - Save States -
@@ -606,7 +606,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     }
     
     NSString *sanitizedCode = [[cheatCode componentsSeparatedByCharactersInSet:NSCharacterSet.hexadecimalCharacterSet.invertedSet] componentsJoinedByString:@""];
-    int codeLength = (sanitizedCode.length / 8);
+    u32 codeLength = (u32)(sanitizedCode.length / 8);
     
     ARCode code;
     code.Name = sanitizedCode.UTF8String;
@@ -696,7 +696,7 @@ void ParseTextCode(char* text, int tlen, u32* code, int clen) // or whatever thi
     [self.audioEngine attachNode:self.audioEQEffect];
     [self.audioEngine connect:self.audioEngine.inputNode to:self.audioEQEffect format:self.audioConverter.inputFormat];
     
-    NSInteger bufferSize = 1024 * self.audioConverter.inputFormat.streamDescription->mBytesPerFrame;
+    unsigned int bufferSize = 1024 * self.audioConverter.inputFormat.streamDescription->mBytesPerFrame;
     [self.audioEQEffect installTapOnBus:0 bufferSize:bufferSize format:self.audioConverter.inputFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
         dispatch_async(self.microphoneQueue, ^{
             [self processMicrophoneBuffer:buffer];
