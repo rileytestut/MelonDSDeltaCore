@@ -22,7 +22,6 @@
 
 #include "melonDS/src/Platform.h"
 #include "melonDS/src/NDS.h"
-//#include "melonDS/src/NDSCart.h"
 #include "melonDS/src/SPU.h"
 #include "melonDS/src/GPU.h"
 #include "melonDS/src/AREngine.h"
