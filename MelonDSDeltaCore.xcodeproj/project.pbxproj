@@ -1067,6 +1067,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1076,6 +1077,7 @@
 				OTHER_CFLAGS = (
 					"-DMELONDS_VERSION=\\\"0.9.5\\\"",
 					"-D_NETINET_TCP_VAR_H_",
+					"-ffast-math",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
@@ -1090,12 +1092,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
-				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				OTHER_CFLAGS = (
 					"-DMELONDS_VERSION=\\\"0.9.5\\\"",
 					"-D_NETINET_TCP_VAR_H_",
+					"-ffast-math",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MelonDS;
@@ -1144,7 +1146,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
