@@ -49,7 +49,7 @@
 		BF39AFDF2534D2B500800781 /* Standard.deltaskin in Resources */ = {isa = PBXBuildFile; fileRef = BF39AFDE2534D2B500800781 /* Standard.deltaskin */; };
 		BF73178A2356624000774F10 /* MelonDSDeltaCore.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7317882356624000774F10 /* MelonDSDeltaCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF74CC622553756B00060964 /* ARMJIT_LoadStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */; };
-		BF74CC632553756B00060964 /* ARMJIT_Linkage.s in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */; };
+		BF74CC632553756B00060964 /* ARMJIT_Linkage.S in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5D2553756B00060964 /* ARMJIT_Linkage.S */; };
 		BF74CC642553756B00060964 /* ARMJIT_ALU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5E2553756B00060964 /* ARMJIT_ALU.cpp */; };
 		BF74CC652553756B00060964 /* ARMJIT_Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */; };
 		BF74CC662553756B00060964 /* ARMJIT_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */; };
@@ -239,7 +239,7 @@
 		BF7317882356624000774F10 /* MelonDSDeltaCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MelonDSDeltaCore.h; sourceTree = "<group>"; };
 		BF7317892356624000774F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_LoadStore.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_LoadStore.cpp; sourceTree = SOURCE_ROOT; };
-		BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ARMJIT_Linkage.s; path = melonDS/src/ARMJIT_A64/ARMJIT_Linkage.s; sourceTree = SOURCE_ROOT; };
+		BF74CC5D2553756B00060964 /* ARMJIT_Linkage.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = ARMJIT_Linkage.S; path = melonDS/src/ARMJIT_A64/ARMJIT_Linkage.S; sourceTree = SOURCE_ROOT; };
 		BF74CC5E2553756B00060964 /* ARMJIT_ALU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_ALU.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_ALU.cpp; sourceTree = SOURCE_ROOT; };
 		BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_Branch.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_Branch.cpp; sourceTree = SOURCE_ROOT; };
 		BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ARMJIT_Compiler.cpp; path = melonDS/src/ARMJIT_A64/ARMJIT_Compiler.cpp; sourceTree = SOURCE_ROOT; };
@@ -594,7 +594,7 @@
 				BF74CC5F2553756B00060964 /* ARMJIT_Branch.cpp */,
 				BF74CC602553756B00060964 /* ARMJIT_Compiler.cpp */,
 				BF74CC612553756B00060964 /* ARMJIT_Compiler.h */,
-				BF74CC5D2553756B00060964 /* ARMJIT_Linkage.s */,
+				BF74CC5D2553756B00060964 /* ARMJIT_Linkage.S */,
 				BF74CC5C2553756B00060964 /* ARMJIT_LoadStore.cpp */,
 			);
 			name = ARMJIT_A64;
@@ -949,7 +949,7 @@
 				BF74CC692553769C00060964 /* ARMJIT_Memory.cpp in Sources */,
 				BF02B2DA24366EF6001B4E65 /* AREngine.cpp in Sources */,
 				BF02B2D724366EF6001B4E65 /* ARMInterpreter_Branch.cpp in Sources */,
-				BF74CC632553756B00060964 /* ARMJIT_Linkage.s in Sources */,
+				BF74CC632553756B00060964 /* ARMJIT_Linkage.S in Sources */,
 				BF062AB025436F440010FF6D /* DSi_I2C.cpp in Sources */,
 				BF02B2C424366EF6001B4E65 /* SPI.cpp in Sources */,
 				BF02B2CE24366EF6001B4E65 /* ARMInterpreter_LoadStore.cpp in Sources */,
